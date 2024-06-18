@@ -16,7 +16,17 @@ export const theme = {
     },
   },
   extend: {
+    fontSize: {
+      "mt": "36pt",
+      "st": "24pt",
+      "mc": "14pt",
+      "sc": "12pt",
+      "pr": "18pt",
+      "ac": "16pt"
+    },
     colors: {
+      main: "hsl(var(--main))",
+      mainForeground: "hsl(var(--main-foreground))",
       border: "hsl(var(--border))",
       input: "hsl(var(--input))",
       ring: "hsl(var(--ring))",
