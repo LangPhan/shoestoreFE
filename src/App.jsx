@@ -7,6 +7,7 @@ import {
 import RootPage from "./pages/RootPage.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
+import ProductPage from "./pages/ProductPage.jsx";
 
 function App() {
   //Create route for app
@@ -20,6 +21,10 @@ function App() {
         <Route
           path=""
           element={<HomePage />}
+        ></Route>
+        <Route
+          path="/product"
+          element={<ProductPage />}
         ></Route>
       </Route>
     )
