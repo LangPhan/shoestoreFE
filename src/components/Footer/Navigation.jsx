@@ -12,7 +12,7 @@ const NavigationFooter = () => {
   return (
     <div className="ml-8 my-10 text-white flex flex-col justify-between">
       <Link
-        className="bg-white flex items-center px-4 py-2 rounded-2xl"
+        className="bg-white flex w-fit items-center px-4 py-2 rounded-2xl"
         to={"/"}
       >
         <img

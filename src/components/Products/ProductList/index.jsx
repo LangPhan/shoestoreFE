@@ -1,5 +1,6 @@
 import ProductCard from "../Card";
 import Detail from "../Details";
+import ProductPagination from "../Pagination";
 
 const ProductList = () => {
   return (
@@ -10,6 +11,7 @@ const ProductList = () => {
         <ProductCard />
         <ProductCard />
       </div>
+      <ProductPagination />
     </div>
   );
 };

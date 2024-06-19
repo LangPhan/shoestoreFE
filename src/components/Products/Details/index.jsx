@@ -26,7 +26,7 @@ const Detail = () => {
       </div>
       <div>
         <div className="flex justify-center items-center gap-2">
-          <span>Short By</span>
+          <span>Sort By</span>
           <Select defaultValue="default">
             <SelectTrigger className="w-[200px]">
               <SelectValue placeholder="" />
