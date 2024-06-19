@@ -1,8 +1,10 @@
 import Products from "@/components/Products";
+import Banner from "@/components/Products/Banner";
 
 const ProductPage = () => {
   return (
-    <div>
+    <div className="scrollable">
+      <Banner />
       <Products />
     </div>
   );

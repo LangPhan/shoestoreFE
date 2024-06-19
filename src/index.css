@@ -85,3 +85,12 @@
     font-family: "Nunito", sans-serif;
   }
 }
+
+@layer components {
+  .scrollable {
+    overflow: scroll;
+  }
+  .scrollable::-webkit-scrollbar {
+    display: none;
+  }
+}

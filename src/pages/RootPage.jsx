@@ -1,6 +1,8 @@
 import { Outlet } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ModeToggle } from "@/components/mode-toggle";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const RootPage = () => {
   return (
@@ -9,13 +11,10 @@ const RootPage = () => {
       defaultTheme="dark"
       storageKey="vite-ui-theme"
     >
-      <main>
-        <h2 className="text-primary">
-          RootPage
-        </h2>
-        {/* Dark Mode button */}
-        <ModeToggle />
+      <main className="">
+        <Header />
         <Outlet />
+        <Footer />
       </main>
     </ThemeProvider>
   );

@@ -1,13 +1,13 @@
 import { Separator } from "@/components/ui/separator";
 
 const FilterContainer = ({
-  // eslint-disable-next-line react/prop-types
   children,
+  name,
 }) => {
   return (
     <div className="pb-4">
       <h3 className="text-mc font-bold leading-10">
-        Product Categories
+        {name}
         <Separator />
         {children}
       </h3>
