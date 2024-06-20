@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import { covertConcurrency } from "@/lib/utils";
 import {
   PackagePlus,
   Star,
@@ -40,7 +41,7 @@ const ProductCard = memo(() => {
           </span>
         </div>
         <span className="text-mc font-bold">
-          $20.00
+          {covertConcurrency(1400.5)}
         </span>
       </div>
     </div>

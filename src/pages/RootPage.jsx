@@ -17,13 +17,6 @@ const RootPage = () => {
     >
       <>
         <Header />
-        <button
-          onClick={() =>
-            toast.success("Hello")
-          }
-        >
-          SHow toast
-        </button>
         <main>
           <Outlet />
         </main>

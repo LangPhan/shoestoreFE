@@ -1,4 +1,5 @@
 import FilterByCategories from "./ByCategories";
+import FilterByColor from "./Color";
 import FilterBySize from "./Size";
 
 const Filter = () => {
@@ -6,6 +7,7 @@ const Filter = () => {
     <div className="col-span-1 max-w-[260px]">
       <FilterByCategories />
       <FilterBySize />
+      <FilterByColor />
     </div>
   );
 };
