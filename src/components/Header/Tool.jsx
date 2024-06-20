@@ -1,19 +1,21 @@
 import { ShoppingCart } from "lucide-react";
-import { Button } from "../ui/button";
 import { ModeToggle } from "../mode-toggle";
 
 const Tool = () => {
   return (
-    <div className="flex gap-5">
-      <Button
-        variant="outline"
-        size="icon"
-      >
+    <div className="flex justify-between items-center gap-5">
+      <div className="relative hover:cursor-pointer">
         <ShoppingCart />
-      </Button>
+        <div className="absolute -top-2 -right-3 w-5 h-5 bg-red-600 text-white text-[6px] rounded-full flex justify-center items-center">
+          <span className="text-center text-xs">
+            1
+          </span>
+        </div>
+      </div>
       <ModeToggle />
     </div>
   );
 };
 
 export default Tool;
+1;

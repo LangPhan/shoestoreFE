@@ -5,7 +5,7 @@ const FilterContainer = ({
   name,
 }) => {
   return (
-    <div className="pb-4">
+    <div className="py-4">
       <h3 className="text-mc font-bold leading-10">
         {name}
         <Separator />

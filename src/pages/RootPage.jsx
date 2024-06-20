@@ -1,8 +1,12 @@
 import { Outlet } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ModeToggle } from "@/components/mode-toggle";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import {
+  ToastContainer,
+  toast,
+} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RootPage = () => {
   return (
@@ -11,11 +15,33 @@ const RootPage = () => {
       defaultTheme="dark"
       storageKey="vite-ui-theme"
     >
-      <main className="">
+      <>
         <Header />
-        <Outlet />
+        <button
+          onClick={() =>
+            toast.success("Hello")
+          }
+        >
+          SHow toast
+        </button>
+        <main>
+          <Outlet />
+        </main>
         <Footer />
-      </main>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+          transition:Bounce
+        />
+      </>
     </ThemeProvider>
   );
 };

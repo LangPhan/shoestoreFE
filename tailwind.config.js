@@ -17,12 +17,12 @@ export const theme = {
   },
   extend: {
     fontSize: {
-      "mt": "36pt",
-      "st": "24pt",
-      "mc": "14pt",
-      "sc": "12pt",
-      "pr": "18pt",
-      "ac": "16pt"
+      "mt": "48px", // main title
+      "st": "32px", // sub title
+      "mc": "18px", // main content
+      "sc": "16px", // sub content
+      "tc": "12px", // third content
+      "ac": "16px" // action text
     },
     colors: {
       main: "hsl(var(--main))",
