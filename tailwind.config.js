@@ -1,10 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 export const darkMode = ["class"];
 export const content = [
-  './pages/**/*.{js,jsx}',
-  './components/**/*.{js,jsx}',
-  './app/**/*.{js,jsx}',
-  './src/**/*.{js,jsx}',
+  "./pages/**/*.{js,jsx}",
+  "./components/**/*.{js,jsx}",
+  "./app/**/*.{js,jsx}",
+  "./src/**/*.{js,jsx}",
 ];
 export const prefix = "";
 export const theme = {
@@ -17,12 +17,12 @@ export const theme = {
   },
   extend: {
     fontSize: {
-      "mt": "48px", // main title
-      "st": "32px", // sub title
-      "mc": "18px", // main content
-      "sc": "16px", // sub content
-      "tc": "12px", // third content
-      "ac": "16px" // action text
+      mt: "48px", // main title
+      st: "32px", // sub title
+      mc: "18px", // main content
+      sc: "16px", // sub content
+      tc: "12px", // third content
+      ac: "16px", // action text
     },
     colors: {
       main: "hsl(var(--main))",
@@ -81,8 +81,8 @@ export const theme = {
       "accordion-up": "accordion-up 0.2s ease-out",
     },
     backgroundImage: {
-      "product-banner": "url('src/assets/product-banner.jpg')",
-    }
+      "product-banner": "url('./assets/product-banner.jpg')",
+    },
   },
 };
-export const plugins = [("tailwindcss-animate")];
+export const plugins = ["tailwindcss-animate"];
