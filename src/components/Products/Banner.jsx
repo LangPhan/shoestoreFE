@@ -1,6 +1,6 @@
 const Banner = () => {
   return (
-    <section className="relative w-full h-[350px] object-fill object-center">
+    <section className="relative bg-white w-full h-[350px] object-fill object-center">
       <img
         className="absolute inset-0 object-contain w-full h-full"
         src="src/assets/product-banner.jpg"

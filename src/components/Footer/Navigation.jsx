@@ -5,8 +5,8 @@ import {
   InstagramIcon,
   MailIcon,
   TwitterIcon,
-  XIcon,
 } from "lucide-react";
+import { navList } from "../Header/Navbar";
 
 const NavigationFooter = () => {
   return (
@@ -22,12 +22,13 @@ const NavigationFooter = () => {
         />
       </Link>
       <ul className="flex flex-col my-8 gap-5 ">
-        <Link to={"/"}>
-          <li>Home</li>
-        </Link>
-        <Link to={"/product"}>
-          <li>Product</li>
-        </Link>
+        {navList.map((nav) => {
+          return (
+            <Link to={nav.url}>
+              <li>{nav.title}</li>
+            </Link>
+          );
+        })}
       </ul>
       <div className="flex gap-4">
         <FacebookIcon />

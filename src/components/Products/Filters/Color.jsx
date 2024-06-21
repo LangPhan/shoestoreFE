@@ -1,49 +1,44 @@
 import React from "react";
 import FilterContainer from "./Container";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
+import { v4 } from "uuid";
 
 const FilterByColor = () => {
+  // const convertColor = (
+  //   property,
+  //   color
+  // ) => {
+  //   return `${property}-${color}-500`;
+  // };
   const colors = [
     {
       name: "red",
-      text: "text-red-500",
       border: "border-red-500",
+      bg: "bg-red-500",
     },
     {
       name: "blue",
-      text: "text-blue-500",
       border: "border-blue-500",
+      bg: "bg-blue-500",
     },
     {
       name: "yellow",
-      text: "text-yellow-500",
       border: "border-yellow-500",
+      bg: "bg-yellow-500",
     },
   ];
   return (
     <FilterContainer name={"Color"}>
-      <ul className="text-mainForeground text-sc font-normal leading-8">
-        {colors.map((color, index) => {
+      <div className="text-mainForeground flex gap-2 text-sc font-normal leading-8 my-5">
+        {colors.map((color) => {
           return (
-            <li
-              key={index}
-              className="flex items-center py-1"
-            >
-              <Checkbox
-                className={`${color.border}`}
-                id={color.name}
-              />
-              <Label
-                htmlFor={color.name}
-                className={`text-[16px] ${color.text} translate-y-[1px] pl-5 capitalize font-bold`}
-              >
-                {color.name}
-              </Label>
-            </li>
+            <Checkbox
+              key={v4()}
+              className={`${color.border} ${color.bg} w-6 h-6 border-4 data-[state=checked]:bg-main `}
+            />
           );
         })}
-      </ul>
+      </div>
     </FilterContainer>
   );
 };

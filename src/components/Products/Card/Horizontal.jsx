@@ -41,7 +41,7 @@ const ProductHorizontalCard = () => {
           </span>
         </div>
         <Separator />
-        <p className="my-5 max-h-[80px] max-w-[500px] text-mc text-pretty overflow-ellipsis overflow-hidden">
+        <p className="my-5 max-h-[80px] max-w-[500px] text-mc truncate text-wrap">
           Lorem, ipsum dolor sit amet
           consectetur adipisicing elit.
           Nobis blanditiis, consectetur
