@@ -6,12 +6,19 @@ import { Label } from "@/components/ui/label";
 const FilterByColor = () => {
   const colors = [
     {
-      name: "Red",
-      color: "red-500",
+      name: "red",
+      text: "text-red-500",
+      border: "border-red-500",
     },
     {
-      name: "Blue",
-      color: "blue-500",
+      name: "blue",
+      text: "text-blue-500",
+      border: "border-blue-500",
+    },
+    {
+      name: "yellow",
+      text: "text-yellow-500",
+      border: "border-yellow-500",
     },
   ];
   return (
@@ -21,16 +28,15 @@ const FilterByColor = () => {
           return (
             <li
               key={index}
-              className="flex items-center"
+              className="flex items-center py-1"
             >
               <Checkbox
-                id="s"
-                className="border-mainForeground"
+                className={`${color.border}`}
+                id={color.name}
               />
-
               <Label
-                htmlFor="s"
-                className="text-[16px] translate-y-[1px] pl-5 uppercase"
+                htmlFor={color.name}
+                className={`text-[16px] ${color.text} translate-y-[1px] pl-5 capitalize font-bold`}
               >
                 {color.name}
               </Label>

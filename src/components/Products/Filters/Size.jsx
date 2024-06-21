@@ -8,19 +8,26 @@ const FilterBySize = () => {
     <div>
       <FilterContainer name={"Size"}>
         <ul className="text-mainForeground text-sc font-normal leading-8">
-          <li className="flex items-center">
-            <Checkbox
-              id="s"
-              className="border-mainForeground"
-            />
+          {sizes.map((size) => {
+            return (
+              <li
+                key={size}
+                className="flex items-center"
+              >
+                <Checkbox
+                  id={size}
+                  className="border-mainForeground"
+                />
 
-            <Label
-              htmlFor="s"
-              className="text-[16px] translate-y-[1px] pl-5 uppercase"
-            >
-              s
-            </Label>
-          </li>
+                <Label
+                  htmlFor={size}
+                  className="text-[16px] translate-y-[1px] pl-5 uppercase"
+                >
+                  {size}
+                </Label>
+              </li>
+            );
+          })}
         </ul>
       </FilterContainer>
     </div>

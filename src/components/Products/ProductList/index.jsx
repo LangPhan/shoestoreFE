@@ -2,6 +2,7 @@ import { useState } from "react";
 import ProductCard from "../Card";
 import Detail from "../Details";
 import ProductPagination from "../Pagination";
+import ProductHorizontalCard from "../Card/Horizontal";
 
 const ProductList = () => {
   const [
@@ -17,12 +18,28 @@ const ProductList = () => {
           setIsGridLayout
         }
       />
-      <div className="grid grid-cols-3 gap-4 py-6">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+      <div
+        className={`py-6 ${
+          isGirdLayout
+            ? "grid grid-cols-3 gap-4"
+            : "flex flex-col gap-4 justify-between"
+        }`}
+      >
+        {isGirdLayout ? (
+          <>
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+          </>
+        ) : (
+          <>
+            <ProductHorizontalCard />
+            <ProductHorizontalCard />
+            <ProductHorizontalCard />
+          </>
+        )}
       </div>
       <ProductPagination />
     </div>
