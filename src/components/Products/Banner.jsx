@@ -3,7 +3,7 @@ const Banner = () => {
     <section className="relative bg-white w-full h-[350px] object-fill object-center">
       <img
         className="absolute inset-0 object-contain w-full h-full"
-        src="src/assets/product-banner.jpg"
+        src="./src/assets/product-banner.jpg"
         alt=""
       />
       <div className="flex items-center justify-center bg-black opacity-40 h-full">
