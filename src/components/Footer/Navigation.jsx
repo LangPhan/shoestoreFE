@@ -7,6 +7,7 @@ import {
   TwitterIcon,
 } from "lucide-react";
 import { navList } from "../Header/Navbar";
+import { v4 } from "uuid";
 
 const NavigationFooter = () => {
   return (
@@ -24,7 +25,10 @@ const NavigationFooter = () => {
       <ul className="flex flex-col my-8 gap-5 ">
         {navList.map((nav) => {
           return (
-            <Link to={nav.url}>
+            <Link
+              key={v4()}
+              to={nav.url}
+            >
               <li>{nav.title}</li>
             </Link>
           );
