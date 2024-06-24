@@ -5,7 +5,7 @@ const useProductStore = create((set, getValue) => ({
   products: [],
   isLoading: false,
   url: "/product",
-  setUrl: (newUrl) => { set({ url: newUrl, products: [] }) },
+  setUrl: (newUrl) => { set({ url: newUrl }, set({ products: [] })) },
   fetchProducts: async () => {
     set({ isLoading: true })
     const res = await instance.get(getValue().url);

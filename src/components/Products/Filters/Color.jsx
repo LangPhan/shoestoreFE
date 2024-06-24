@@ -16,16 +16,22 @@ const FilterByColor = () => {
       name: "red",
       border: "border-red-500",
       bg: "bg-red-500",
+      checked:
+        "data-[state=checked]:bg-red-500",
     },
     {
       name: "blue",
       border: "border-blue-500",
       bg: "bg-blue-500",
+      checked:
+        "data-[state=checked]:bg-blue-500",
     },
     {
       name: "yellow",
       border: "border-yellow-500",
       bg: "bg-yellow-500",
+      checked:
+        "data-[state=checked]:bg-yellow-500",
     },
   ];
 
@@ -38,8 +44,9 @@ const FilterByColor = () => {
           return (
             <Checkbox
               key={v4()}
-              className={`${color.border} ${color.bg} w-6 h-6 border-4 data-[state=checked]:bg-main `}
-              onClick={() =>
+              id={color.name}
+              className={`${color.border} ${color.bg} w-6 h-6 border-4 ${color.checked}`}
+              onClicked={() =>
                 setUrl(
                   "/products?sortBy=title&order=asc"
                 )

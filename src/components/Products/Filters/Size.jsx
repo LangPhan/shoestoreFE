@@ -16,7 +16,9 @@ const FilterBySize = () => {
               >
                 <Checkbox
                   id={size}
-                  className="border-mainForeground"
+                  className="border-mainForeground data-[state=checked]:bg-main
+                  data-[state=checked]:border-main
+                  "
                 />
 
                 <Label

@@ -1,5 +1,18 @@
-import { ShoppingCart } from "lucide-react";
+import {
+  AlignJustify,
+  ShoppingCart,
+} from "lucide-react";
 import { ModeToggle } from "../mode-toggle";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import NavMobile from "./NavMobile";
+import Logo from "./Logo";
 
 const Tool = () => {
   return (
@@ -13,6 +26,21 @@ const Tool = () => {
         </div>
       </div>
       <ModeToggle />
+      <Sheet>
+        <SheetTrigger>
+          <AlignJustify className="md:hidden" />
+        </SheetTrigger>
+        <SheetContent>
+          <SheetHeader>
+            <div className="my-4">
+              <Logo />
+            </div>
+            <SheetTitle></SheetTitle>
+            <SheetDescription></SheetDescription>
+          </SheetHeader>
+          <NavMobile />
+        </SheetContent>
+      </Sheet>
     </div>
   );
 };

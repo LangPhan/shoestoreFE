@@ -88,7 +88,7 @@
 
 @layer components {
   .container-main {
-    @apply max-w-[1200px] w-full mx-auto;
+    @apply px-2 lg:px-4 xl:px-0 max-w-[1200px] w-full mx-auto;
   }
   .scrollable {
     overflow: scroll;
