@@ -83,6 +83,12 @@ export const theme = {
     backgroundImage: {
       "product-banner": "url('./assets/product-banner.jpg')",
     },
+    gridTemplateColumns: {
+      "product-detail": "3fr 2fr",
+    },
+    boxShadow: {
+      color: "0 0 0 0.5px transparent, 0 0 0 1.5px hsl(var(--main-foreground))",
+    },
   },
 };
 export const plugins = ["tailwindcss-animate"];
