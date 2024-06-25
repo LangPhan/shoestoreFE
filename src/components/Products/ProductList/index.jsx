@@ -1,33 +1,45 @@
-import {
-  useEffect,
-  useState,
-} from "react";
+import { useState } from "react";
 import ProductCard from "../Card";
 import Detail from "../Details";
 import ProductPagination from "../Pagination";
+import { Skeleton } from "@/components/ui/skeleton";
 import ProductHorizontalCard from "../Card/Horizontal";
 import { v4 } from "uuid";
-import useProductStore from "@/stores/productStore";
+import { useProduct } from "@/hooks/useProduct";
+import { toast } from "react-toastify";
 
 const ProductList = () => {
   const [
     isGirdLayout,
     setIsGridLayout,
   ] = useState(true);
+
   const {
-    products,
-    fetchProducts,
+    data,
     isLoading,
-    url,
-  } = useProductStore();
-  useEffect(() => {
-    if (
-      !products ||
-      products.length === 0
-    ) {
-      fetchProducts();
-    }
-  }, [fetchProducts, url]);
+    isError,
+    error,
+  } = useProduct();
+
+  if (isLoading) {
+    return (
+      <div className="flex flex-col gap-5 h-full col-span-3 ">
+        <Skeleton
+          className={
+            "w-full h-[80px] rounded-2xl"
+          }
+        />
+        <Skeleton
+          className={`w-full h-full rounded-2xl`}
+        />
+      </div>
+    );
+  }
+
+  if (isError) {
+    return toast.error(error.message);
+  }
+
   return (
     <div className="grid col-span-3 text-mc">
       <Detail
@@ -39,17 +51,14 @@ const ProductList = () => {
       <div
         className={`py-6 ${
           isGirdLayout
-            ? "grid grid-cols-3 gap-4"
+            ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
             : "flex flex-col gap-4 justify-between"
         }`}
       >
         {isGirdLayout ? (
           <>
-            {isLoading && (
-              <div>Loading...</div>
-            )}
-            {products &&
-              products.map(
+            {data &&
+              data.products.map(
                 (product) => {
                   return (
                     <ProductCard
@@ -72,9 +81,16 @@ const ProductList = () => {
           </>
         ) : (
           <>
-            {/* <ProductHorizontalCard />
-            <ProductHorizontalCard />
-            <ProductHorizontalCard /> */}
+            {data &&
+              data.products.map(
+                (product) => {
+                  return (
+                    <ProductHorizontalCard
+                      key={v4()}
+                    />
+                  );
+                }
+              )}
           </>
         )}
       </div>

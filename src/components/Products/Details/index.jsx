@@ -39,7 +39,7 @@ const Detail = ({
             }
           />
         </div>
-        <p className="text-sc">
+        <p className="text-sc hidden md:block">
           Showing 1-12 of 15 item(s)
         </p>
       </div>

@@ -5,6 +5,7 @@ import {
   ShoppingCart,
   Star,
 } from "lucide-react";
+import { memo } from "react";
 
 const ProductHorizontalCard = () => {
   return (
@@ -63,4 +64,6 @@ const ProductHorizontalCard = () => {
   );
 };
 
-export default ProductHorizontalCard;
+export default memo(
+  ProductHorizontalCard
+);

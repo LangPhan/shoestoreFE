@@ -1,16 +1,21 @@
-import React from "react";
+import React, {
+  useEffect,
+} from "react";
 import FilterContainer from "./Container";
 import { Checkbox } from "@/components/ui/checkbox";
 import { v4 } from "uuid";
-import useProductStore from "@/stores/productStore";
+import {
+  useSearchParams,
+  useNavigate,
+} from "react-router-dom";
 
 const FilterByColor = () => {
-  // const convertColor = (
-  //   property,
-  //   color
-  // ) => {
-  //   return `${property}-${color}-500`;
-  // };
+  const [
+    searchParams,
+    setSearchParams,
+  ] = useSearchParams();
+  const navigate = useNavigate();
+
   const colors = [
     {
       name: "red",
@@ -35,7 +40,20 @@ const FilterByColor = () => {
     },
   ];
 
-  const { setUrl } = useProductStore();
+  const checkedColors = [];
+  const updateColorFilter = (
+    color,
+    checked
+  ) => {
+    if (checked === "unchecked") {
+      if (!checkedColors.includes()) {
+        checkedColors.push(color);
+      }
+    } else {
+      checkedColors.pop(color);
+    }
+    console.log(checkedColors);
+  };
 
   return (
     <FilterContainer name={"Color"}>
@@ -43,14 +61,17 @@ const FilterByColor = () => {
         {colors.map((color) => {
           return (
             <Checkbox
+              onClick={(e) => {
+                updateColorFilter(
+                  color.name,
+                  e.target.getAttribute(
+                    "data-state"
+                  )
+                );
+              }}
               key={v4()}
               id={color.name}
               className={`${color.border} ${color.bg} w-6 h-6 border-4 ${color.checked}`}
-              onClicked={() =>
-                setUrl(
-                  "/products?sortBy=title&order=asc"
-                )
-              }
             />
           );
         })}
