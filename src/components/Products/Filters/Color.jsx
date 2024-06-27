@@ -1,60 +1,67 @@
-import React, {
-  useEffect,
-} from "react";
 import FilterContainer from "./Container";
 import { Checkbox } from "@/components/ui/checkbox";
+import useProductStore from "@/stores/productStore";
 import { v4 } from "uuid";
-import {
-  useSearchParams,
-  useNavigate,
-} from "react-router-dom";
 
 const FilterByColor = () => {
-  const [
-    searchParams,
-    setSearchParams,
-  ] = useSearchParams();
-  const navigate = useNavigate();
-
   const colors = [
     {
-      name: "red",
+      name: "Red",
       border: "border-red-500",
       bg: "bg-red-500",
       checked:
         "data-[state=checked]:bg-red-500",
     },
     {
-      name: "blue",
+      name: "Blue",
       border: "border-blue-500",
       bg: "bg-blue-500",
       checked:
         "data-[state=checked]:bg-blue-500",
     },
     {
-      name: "yellow",
+      name: "Yellow",
       border: "border-yellow-500",
       bg: "bg-yellow-500",
       checked:
         "data-[state=checked]:bg-yellow-500",
     },
   ];
-
-  const checkedColors = [];
+  const { filter, setFilter } =
+    useProductStore();
+  let selectedColors = [
+    ...filter.colors,
+  ];
   const updateColorFilter = (
     color,
     checked
   ) => {
+    let updatedColors;
+
     if (checked === "unchecked") {
-      if (!checkedColors.includes()) {
-        checkedColors.push(color);
+      if (
+        !selectedColors.includes(color)
+      ) {
+        updatedColors = [
+          ...selectedColors,
+          color,
+        ]; // Add color to selectedColors
+      } else {
+        updatedColors =
+          selectedColors.filter(
+            (c) => c !== color
+          ); // Remove color from selectedColors
       }
     } else {
-      checkedColors.pop(color);
+      updatedColors =
+        selectedColors.filter(
+          (c) => c !== color
+        ); // Remove color from selectedColors
     }
-    console.log(checkedColors);
+    setFilter({
+      colors: updatedColors,
+    }); // Update the filter state with updatedColors
   };
-
   return (
     <FilterContainer name={"Color"}>
       <div className="text-mainForeground flex gap-2 text-sc font-normal leading-8 my-5">
@@ -71,7 +78,18 @@ const FilterByColor = () => {
               }}
               key={v4()}
               id={color.name}
-              className={`${color.border} ${color.bg} w-6 h-6 border-4 ${color.checked}`}
+              className={`${
+                color.border
+              } ${
+                color.bg
+              } w-6 h-6 border-4 ${
+                color.checked
+              } ${
+                selectedColors.includes(
+                  color.name
+                ) &&
+                "ring-[3px] ring-main"
+              }`}
             />
           );
         })}

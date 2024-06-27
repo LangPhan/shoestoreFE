@@ -44,6 +44,7 @@ const Filter = ({
   return (
     <div
       ref={filterRef}
+      id="checkpoint"
       className={`
         ${
           isFilter

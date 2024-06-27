@@ -1,38 +1,52 @@
-import { useState } from "react";
 import ProductCard from "../Card";
-import Detail from "../Details";
 import ProductPagination from "../Pagination";
 import { Skeleton } from "@/components/ui/skeleton";
 import ProductHorizontalCard from "../Card/Horizontal";
 import { v4 } from "uuid";
 import { useProduct } from "@/hooks/useProduct";
 import { toast } from "react-toastify";
+import useProductStore from "@/stores/productStore";
+import { useEffect } from "react";
 
-const ProductList = () => {
-  const [
-    isGirdLayout,
-    setIsGridLayout,
-  ] = useState(true);
+const ProductList = ({
+  isGirdLayout,
+}) => {
+  const {
+    category,
+    sort,
+    filter,
+    page,
+    setPage,
+  } = useProductStore();
 
   const {
-    data,
+    data: products,
     isLoading,
     isError,
     error,
-  } = useProduct();
+    isFetched,
+  } = useProduct({
+    category,
+    page,
+    sort,
+    filter,
+  });
+  console.log(products);
+  useEffect(() => {
+    if (isFetched && products) {
+      setPage({
+        pageNo:
+          products.pageable.pageNumber,
+        totalPages: products.totalPages,
+      });
+    }
+  }, [isFetched]);
 
   if (isLoading) {
     return (
-      <div className="flex flex-col gap-5 h-full col-span-3 ">
-        <Skeleton
-          className={
-            "w-full h-[80px] rounded-2xl"
-          }
-        />
-        <Skeleton
-          className={`w-full h-full rounded-2xl`}
-        />
-      </div>
+      <Skeleton
+        className={`rounded-2xl w-full h-full my-4`}
+      />
     );
   }
 
@@ -41,13 +55,7 @@ const ProductList = () => {
   }
 
   return (
-    <div className="grid col-span-3 text-mc">
-      <Detail
-        isGirdLayout={isGirdLayout}
-        setIsGridLayout={
-          setIsGridLayout
-        }
-      />
+    <>
       <div
         className={`py-6 ${
           isGirdLayout
@@ -57,22 +65,21 @@ const ProductList = () => {
       >
         {isGirdLayout ? (
           <>
-            {data &&
-              data.products.map(
+            {products &&
+              products?.content?.map(
                 (product) => {
                   return (
                     <ProductCard
                       key={v4()}
                       name={
-                        product.title
+                        product?.name
                       }
                       price={
                         product.price
                       }
                       sale={100}
                       image={
-                        product
-                          .images[0]
+                        product.imgLink
                       }
                     />
                   );
@@ -81,8 +88,8 @@ const ProductList = () => {
           </>
         ) : (
           <>
-            {data &&
-              data.products.map(
+            {products &&
+              products?.content?.map(
                 (product) => {
                   return (
                     <ProductHorizontalCard
@@ -95,7 +102,7 @@ const ProductList = () => {
         )}
       </div>
       <ProductPagination />
-    </div>
+    </>
   );
 };
 

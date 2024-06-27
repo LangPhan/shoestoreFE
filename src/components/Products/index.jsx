@@ -5,6 +5,7 @@ import {
 } from "react";
 import Filter from "./Filters";
 import { FilterIcon } from "lucide-react";
+import Detail from "./Details";
 const ProductList = lazy(() =>
   import("./ProductList/index.jsx")
 );
@@ -12,6 +13,10 @@ const ProductList = lazy(() =>
 const Products = () => {
   const [isFilter, setIsFilter] =
     useState(false);
+  const [
+    isGirdLayout,
+    setIsGridLayout,
+  ] = useState(true);
   return (
     <div className="container-main md:grid grid-cols-4 gap-10 py-10">
       <Filter
@@ -29,9 +34,19 @@ const Products = () => {
       >
         <FilterIcon className="text-center" />
       </div>
-      <Suspense fallback={<></>}>
-        <ProductList />
-      </Suspense>
+      <div className="col-span-3 text-mc">
+        <Detail
+          isGirdLayout={isGirdLayout}
+          setIsGridLayout={
+            setIsGridLayout
+          }
+        />
+        <Suspense>
+          <ProductList
+            isGirdLayout={isGirdLayout}
+          />
+        </Suspense>
+      </div>
     </div>
   );
 };
