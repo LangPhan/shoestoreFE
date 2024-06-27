@@ -135,7 +135,7 @@ const ProductDetailPage = (props) => {
     <section className="mb-8 product-detail">
       <Banner />
       <div
-        className="grid gap-10 mb-[100px] max-[767px]:p-4 max-[767px]:grid-cols-1
+        className="mt-8 grid gap-10 mb-[100px] max-[767px]:p-4 max-[767px]:grid-cols-1
       md:grid-cols-product-detail container-main"
       >
         <div className="product-left">
@@ -237,7 +237,7 @@ const ProductDetailPage = (props) => {
         </div>
       </div>
       <div className="related-product container-main max-[767px]:p-4">
-        <h2 className="flex justify-center mb-8 text-6xl font-bold text-black product-heading">
+        <h2 className="flex justify-center mb-8 font-bold text-black text-mt product-heading">
           Related Product
         </h2>
         <div className="w-full related-product-list">
@@ -249,7 +249,13 @@ const ProductDetailPage = (props) => {
                     className="flex cursor-pointer md:basis-1/5 max-[767px]:basis-1/3"
                     key={v4()}
                   >
-                    <ProductCard></ProductCard>
+                    <ProductCard
+                      name="Nike Jordan"
+                      price="10000"
+                      sale="50"
+                      image="https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c25lYWtlcnxlbnwwfHwwfHx8MA%3D%3D"
+                    ></ProductCard>
+                    {/* <div>TEST</div> */}
                   </CarouselItem>
                 );
               })}
