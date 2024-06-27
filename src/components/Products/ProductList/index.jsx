@@ -7,6 +7,8 @@ import { useProduct } from "@/hooks/useProduct";
 import { toast } from "react-toastify";
 import useProductStore from "@/stores/productStore";
 import { useEffect } from "react";
+import Spinner from "@/components/ui/spinner";
+import Empty from "./Empty";
 
 const ProductList = ({
   isGirdLayout,
@@ -31,7 +33,6 @@ const ProductList = ({
     sort,
     filter,
   });
-  console.log(products);
   useEffect(() => {
     if (isFetched && products) {
       setPage({
@@ -45,9 +46,18 @@ const ProductList = ({
   if (isLoading) {
     return (
       <Skeleton
-        className={`rounded-2xl w-full h-full my-4`}
-      />
+        className={`rounded-2xl w-full h-screen flex justify-center items-center my-4`}
+      >
+        <Spinner />
+      </Skeleton>
     );
+  }
+
+  if (
+    isFetched &&
+    products?.totalElements === 0
+  ) {
+    return <Empty />;
   }
 
   if (isError) {
@@ -101,7 +111,10 @@ const ProductList = ({
           </>
         )}
       </div>
-      <ProductPagination />
+      <ProductPagination
+        first={products.first}
+        last={products.last}
+      />
     </>
   );
 };
