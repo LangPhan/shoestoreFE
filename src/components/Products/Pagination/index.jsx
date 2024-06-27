@@ -9,14 +9,12 @@ import {
 } from "@/components/ui/pagination";
 import useProductStore from "@/stores/productStore";
 
-const ProductPagination = () => {
+const ProductPagination = ({
+  first,
+  last,
+}) => {
   const { page, setPage } =
     useProductStore();
-  console.log("PageNo: ", page.pageNo);
-  console.log(
-    "PageSize: ",
-    page.totalPages
-  );
   const handlePreviousPage = () => {
     if (page.pageNo > 0) {
       setPage({
@@ -34,6 +32,7 @@ const ProductPagination = () => {
       });
     }
   };
+
   return (
     <>
       <Pagination>
@@ -48,34 +47,22 @@ const ProductPagination = () => {
                 page.pageNo === 0 &&
                 "opacity-20 cursor-not-allowed"
               }`}
-              href={`${
-                page.pageNo !== 0
-                  ? "#checkpoint"
-                  : "#a"
-              }`}
+              {...(!first && {
+                href: "#checkpoint",
+              })}
             />
           </PaginationItem>
           <PaginationItem>
-            <PaginationLink>
-              1
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
             <PaginationLink
-              href="#"
+              href="#checkpoint"
               isActive
             >
-              2
+              {page.pageNo + 1}
             </PaginationLink>
           </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">
-              3
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
+          {/* <PaginationItem>
             <PaginationEllipsis />
-          </PaginationItem>
+          </PaginationItem> */}
           <PaginationItem>
             <PaginationNext
               className={`${
@@ -83,12 +70,9 @@ const ProductPagination = () => {
                   page.totalPages - 1 &&
                 "opacity-20 cursor-not-allowed"
               }`}
-              href={`${
-                page.pageNo !==
-                page.totalPages - 1
-                  ? "#checkpoint"
-                  : "#a"
-              }`}
+              {...(!last && {
+                href: "#checkpoint",
+              })}
               onClick={() =>
                 handleNextPage()
               }
