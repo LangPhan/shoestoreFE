@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Copy, Expand, Search } from "lucide-react";
 import {
   Carousel,
@@ -30,9 +30,10 @@ import ProductCard from "@/components/Products/Card";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useCartStore from "@/stores/cartStore";
 
 const MAXIMUM_QUANTITY = 5;
-const MINIMUM_QUANTITY = 0;
+const MINIMUM_QUANTITY = 1;
 const arrayProductImage = [
   0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 10, 11, 12, 13, 14, 15,
 ];
@@ -44,6 +45,14 @@ const ProductDetailPage = (props) => {
   const [stock, isStock] = useState(false);
   const [image, setImage] = useState("");
   const linkUrl = window.location.href;
+
+  const { totalItems, totalAmount, cart, addToCart, calcCartTotal } =
+    useCartStore((state) => state);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    calcCartTotal();
+  }, [cart]);
 
   const handleShoeSizeChange = (value) => {
     setShoeSize(value);
@@ -66,13 +75,53 @@ const ProductDetailPage = (props) => {
     setImage(value);
   };
 
-  const handleAddToCart = () => {};
-
   const onCopyClipboard = () => {
     toast.success("Copy to clipboard successfully!", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+  };
+
+  const handleAddToCart = () => {
+    const product = {
+      id: "1",
+      name: "test",
+      desc: "this is test",
+      color: "blue",
+      imageUrl:
+        "https://images.unsplash.com/photo-1603787081207-362bcef7c144?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c25lYWtlcnxlbnwwfHwwfHx8MA%3D%3D",
+      price: "10",
+      quantity: "1",
+    };
+    const tempProduct = cart?.find((cartItem) => cartItem.id === product.id);
+
+    if (tempProduct?.quantity >= MAXIMUM_QUANTITY) {
+      toast.warn("Sorry, you have reached the limit of adding item!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+      return;
+    }
+
+    addToCart(product);
+    toast.success("Add item to cart successfully!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
@@ -210,20 +259,6 @@ const ProductDetailPage = (props) => {
           </Carousel>
         </div>
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition:Bounce
-      />
-      <ToastContainer />
     </section>
   );
 };
