@@ -17,7 +17,8 @@ const Detail = ({
   isGirdLayout,
   setIsGridLayout,
 }) => {
-  const { setSort } = useProductStore();
+  const { setSort, page } =
+    useProductStore();
   const handleChangeSort = (value) => {
     if (value === "lowestPrice") {
       setSort({
@@ -62,7 +63,11 @@ const Detail = ({
           />
         </div>
         <p className="text-sc hidden md:block">
-          Showing 1-12 of 15 item(s)
+          {`No.${
+            page.pageNo + 1
+          } page of ${
+            page.totalPages
+          } pages`}
         </p>
       </div>
       <div>
