@@ -11,13 +11,35 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import useProductStore from "@/stores/productStore";
 
 const Detail = ({
   isGirdLayout,
   setIsGridLayout,
 }) => {
+  const { setSort } = useProductStore();
+  const handleChangeSort = (value) => {
+    if (value === "lowestPrice") {
+      setSort({
+        sortBy: "price",
+        sortDir: "asc",
+      });
+    } else if (
+      value === "highestPrice"
+    ) {
+      setSort({
+        sortBy: "price",
+        sortDir: "desc",
+      });
+    } else {
+      setSort({
+        sortBy: "",
+        sortDir: "",
+      });
+    }
+  };
   return (
-    <div className="w-full h-fit py-3 px-4 rounded-3xl border-slate-300 border-[1px] flex justify-between">
+    <div className="min-w-full h-fit py-3 px-4 rounded-3xl border-slate-300 border-[1px] flex justify-between">
       <div className="flex gap-4 items-center">
         <div className="flex gap-2">
           <LayoutGrid
@@ -39,7 +61,7 @@ const Detail = ({
             }
           />
         </div>
-        <p className="text-sc">
+        <p className="text-sc hidden md:block">
           Showing 1-12 of 15 item(s)
         </p>
       </div>
@@ -48,7 +70,12 @@ const Detail = ({
           <span className="text-sc">
             Sort By
           </span>
-          <Select defaultValue="default">
+          <Select
+            defaultValue="default"
+            onValueChange={(value) =>
+              handleChangeSort(value)
+            }
+          >
             <SelectTrigger className="w-[200px]">
               <SelectValue placeholder="" />
             </SelectTrigger>
@@ -57,10 +84,10 @@ const Detail = ({
                 <SelectItem value="default">
                   Default
                 </SelectItem>
-                <SelectItem value="lowPrice">
+                <SelectItem value="lowestPrice">
                   Lowest Price
                 </SelectItem>
-                <SelectItem value="highPrice">
+                <SelectItem value="highestPrice">
                   Highest Price
                 </SelectItem>
               </SelectGroup>

@@ -17,7 +17,7 @@ const RootPage = () => {
     >
       <>
         <Header />
-        <main>
+        <main className="min-h-screen scroll-smooth">
           <Outlet />
         </main>
         <Footer />

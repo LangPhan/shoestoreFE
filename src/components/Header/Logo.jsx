@@ -7,9 +7,9 @@ const Logo = () => {
       to={"/"}
     >
       <img
+        className="w-[180px] md:w-[220px]"
         src="https://www.likelion.edu.vn/logo-black.svg"
         alt="Logo"
-        width={220}
       />
     </Link>
   );
