@@ -26,6 +26,7 @@ const ProductList = ({
     isLoading,
     isError,
     error,
+
     isFetched,
   } = useProduct({
     category,
@@ -33,6 +34,7 @@ const ProductList = ({
     sort,
     filter,
   });
+
   useEffect(() => {
     if (isFetched && products) {
       setPage({
@@ -61,7 +63,8 @@ const ProductList = ({
   }
 
   if (isError) {
-    return toast.error(error.message);
+    toast.error(error.message);
+    return <Empty />;
   }
 
   return (
@@ -104,6 +107,19 @@ const ProductList = ({
                   return (
                     <ProductHorizontalCard
                       key={v4()}
+                      name={
+                        product?.name
+                      }
+                      price={
+                        product?.price
+                      }
+                      description={
+                        product?.description
+                      }
+                      image={
+                        product?.imgLink
+                      }
+                      sale={100}
                     />
                   );
                 }
@@ -111,10 +127,12 @@ const ProductList = ({
           </>
         )}
       </div>
-      <ProductPagination
-        first={products.first}
-        last={products.last}
-      />
+      {products && (
+        <ProductPagination
+          first={products.first}
+          last={products.last}
+        />
+      )}
     </>
   );
 };
