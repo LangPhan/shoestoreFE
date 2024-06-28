@@ -16,7 +16,7 @@ const ProductCard = memo(
   ({ name, price, sale, image }) => {
     return (
       <div className="group relative flex flex-col gap-2 rounded-t-2xl hover:border-main hover:border-[1px] transition-all duration-100 px-14 md:px-0">
-        <div className="group/cart absolute md:hidden group-hover:block transition-all top-3 right-3 z-10 w-fit h-fit px-3 py-3 rounded-full hover:cursor-pointer hover:bg-slate-200">
+        <div className="group/cart absolute md:hidden group-hover:block transition-all top-3 right-3 z-10 w-fit h-fit px-3 py-3 rounded-full hover:cursor-pointer group-hover:bg-slate-200">
           <PackagePlus className="text-main" />
           <div className="hidden group-hover/cart:block transition-all absolute bg-slate-100 px-1 py-2 right-[100%] top-[50%] -translate-y-[50%] w-[120px] text-center rounded-3xl text-main select-none">
             Add to Cart
@@ -32,7 +32,7 @@ const ProductCard = memo(
             {`Sale ${sale} %`}
           </Badge>
           <img
-            className="rounded-t-2xl absolute inset-0 w-full h-full object-cover"
+            className="rounded-t-2xl absolute inset-0 w-full h-full object-cover dark:opacity-80"
             loading="lazy"
             src={image}
             alt={name}
