@@ -6,7 +6,7 @@ const useProductStore = create((set, get) => ({
     sortBy: '',
     sortDir: '',
   },
-  filter: { colors: [], size: [] },
+  filter: { colors: [], sizes: [] },
   page: {
     pageNo: 0,
     totalPages: 0,

@@ -1,4 +1,5 @@
 import axiosClient from "@/lib/axiosConfig";
+import { convertQueryString } from "@/lib/utils";
 
 export const productApi = {
   getProducts: ({ queryKey }) => {
@@ -21,6 +22,7 @@ export const productApi = {
         queryParams += `${key}=${filter[key]}&`;
       }
     });
+    queryParams = convertQueryString(queryParams);
     return axiosClient.get(`/product?pageSize=12&${queryParams}`);
   },
 
