@@ -26,7 +26,6 @@ const ProductList = ({
     isLoading,
     isError,
     error,
-
     isFetched,
   } = useProduct({
     category,
@@ -43,7 +42,7 @@ const ProductList = ({
         totalPages: products.totalPages,
       });
     }
-  }, [isFetched]);
+  }, [isFetched, products]);
 
   if (isLoading) {
     return (
