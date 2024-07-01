@@ -19,28 +19,13 @@ function App() {
   //Create route for app
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route
-        path="/"
-        element={<RootPage />}
-        errorElement={<ErrorPage />}
-      >
+      <Route path="/" element={<RootPage />} errorElement={<ErrorPage />}>
+        <Route path="" element={<HomePage />}></Route>
+        <Route path="/about" element={<AboutPage />}></Route>
+        <Route path="/product" element={<ProductPage />}></Route>
         <Route
-          path=""
-          element={<HomePage />}
-        ></Route>
-        <Route
-          path="/about"
-          element={<AboutPage />}
-        ></Route>
-        <Route
-          path="/product"
-          element={<ProductPage />}
-        ></Route>
-        <Route
-          path="/product-detail/:productid"
-          element={
-            <ProductDetailPage />
-          }
+          path="/product-detail/:productName/:categoryId"
+          element={<ProductDetailPage />}
         ></Route>
         <Route
           path="/cart"
@@ -62,9 +47,7 @@ function App() {
       </Route>
     )
   );
-  return (
-    <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
