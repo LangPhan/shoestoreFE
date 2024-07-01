@@ -16,7 +16,8 @@ import {
 
 const OrderSummary = () => {
   const currentState =
-    useLocation().state?.name;
+    useLocation().state?.name ||
+    "Shopping Cart";
   const navigate = useNavigate();
   return (
     <div className="w-full mx-auto md:w-1/3 h-fit max-w-[350px] rounded-xl border-y-[12px] border-main shadow-2xl">
