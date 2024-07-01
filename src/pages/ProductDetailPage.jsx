@@ -353,7 +353,7 @@ const ProductDetailPage = (props) => {
                     relatedProducts.content.map((item, index) => {
                       return (
                         <CarouselItem
-                          className="flex cursor-pointer 2xl:basis-1/5 max-[500px]:basis-1/1 md:basis-1/3"
+                          className="flex cursor-pointer xl:basis-1/5 max-[500px]:basis-1/1 sm:basis-1/3"
                           key={v4()}
                         >
                           <ProductCard
