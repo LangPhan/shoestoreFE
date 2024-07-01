@@ -10,16 +10,8 @@ import { useEffect } from "react";
 import Spinner from "@/components/ui/spinner";
 import Empty from "./Empty";
 
-const ProductList = ({
-  isGirdLayout,
-}) => {
-  const {
-    category,
-    sort,
-    filter,
-    page,
-    setPage,
-  } = useProductStore();
+const ProductList = ({ isGirdLayout }) => {
+  const { category, sort, filter, page, setPage } = useProductStore();
 
   const {
     data: products,
@@ -36,8 +28,7 @@ const ProductList = ({
   useEffect(() => {
     if (isFetched && products) {
       setPage({
-        pageNo:
-          products.pageable.pageNumber,
+        pageNo: products.pageable.pageNumber,
         totalPages: products.totalPages,
       });
     }
@@ -53,10 +44,7 @@ const ProductList = ({
     );
   }
 
-  if (
-    isFetched &&
-    products?.totalElements === 0
-  ) {
+  if (isFetched && products?.totalElements === 0) {
     return <Empty />;
   }
 
@@ -76,45 +64,29 @@ const ProductList = ({
         {isGirdLayout ? (
           <>
             {products &&
-              products?.content?.map(
-                (product) => {
-                  return (
-                    <ProductCard
-                      key={v4()}
-                      name={
-                        product?.name
-                      }
-                      price={
-                        product.price
-                      }
-                      sale={100}
-                      image={
-                        product.imgLink
-                      }
-                    />
-                  );
-                }
-              )}
+              products?.content?.map((product) => {
+                return (
+                  <ProductCard
+                    key={v4()}
+                    name={product?.name}
+                    price={product.price}
+                    sale={100}
+                    image={product.imgLink}
+                    categoryId={product?.category?.id}
+                  />
+                );
+              })}
           </>
         ) : (
           <>
             {products &&
-              products?.content?.map(
-                (product) => {
-                  return (
-                    <ProductHorizontalCard
-                      key={v4()}
-                    />
-                  );
-                }
-              )}
+              products?.content?.map((product) => {
+                return <ProductHorizontalCard key={v4()} />;
+              })}
           </>
         )}
       </div>
-      <ProductPagination
-        first={products.first}
-        last={products.last}
-      />
+      <ProductPagination first={products.first} last={products.last} />
     </>
   );
 };
