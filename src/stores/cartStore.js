@@ -22,13 +22,13 @@ const useCartStore = create((set, getValue) => ({
     const { id, name, desc, color, imageUrl, price, quantity } = product;
     const cart = getValue().cart;
     const tempProduct = cart.find((cartItem) => cartItem.id === id);
-    debugger;
+
     if (tempProduct) {
       const tempCart = cart.map((cartItem) => {
         if (id === cartItem.id) {
           let newQuantity = 0;
           newQuantity += Number(cartItem.quantity) + Number(quantity);
-          if (newQuantity >= MAXIMUM_QUANTITY) newQuantity = MAXIMUM_QUANTITY;
+          // if (newQuantity >= MAXIMUM_QUANTITY) newQuantity = MAXIMUM_QUANTITY;
           return { ...cartItem, quantity: newQuantity };
         } else {
           return cartItem;
