@@ -4,19 +4,34 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { covertConcurrency } from "@/lib/utils";
+import { convertConcurrency } from "@/lib/utils";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import {
   PackagePlus,
   Star,
 } from "lucide-react";
 import { memo } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = memo(
-  ({ name, price, sale, image }) => {
+  ({
+    name,
+    price,
+    sale,
+    image,
+    categoryId,
+  }) => {
+    const navigate = useNavigate();
     return (
-      <div className="group relative flex flex-col gap-2 rounded-t-2xl hover:border-main hover:border-[1px] transition-all duration-100 px-14 md:px-0">
-        <div className="group/cart absolute md:hidden group-hover:block transition-all top-3 right-3 z-10 w-fit h-fit px-3 py-3 rounded-full hover:cursor-pointer group-hover:bg-slate-200">
+      <div
+        className="w-full h-full group relative flex flex-col gap-2 rounded-t-2xl hover:border-main hover:border-[1px] transition-all duration-100 md:px-0 cursor-pointer"
+        onClick={() =>
+          navigate(
+            `/product-detail/${name}/${categoryId}`
+          )
+        }
+      >
+        <div className="absolute z-10 px-3 py-3 transition-all rounded-full group/cart md:hidden group-hover:block top-3 right-3 w-fit h-fit hover:cursor-pointer group-hover:bg-slate-200">
           <PackagePlus className="text-main" />
           <div className="hidden group-hover/cart:block transition-all absolute bg-slate-100 px-1 py-2 right-[100%] top-[50%] -translate-y-[50%] w-[120px] text-center rounded-3xl text-main select-none">
             Add to Cart
@@ -32,13 +47,13 @@ const ProductCard = memo(
             {`Sale ${sale} %`}
           </Badge>
           <img
-            className="rounded-t-2xl absolute inset-0 w-full h-full object-cover dark:opacity-80"
+            className="absolute inset-0 object-cover w-full h-full rounded-t-2xl dark:opacity-80"
             loading="lazy"
             src={image}
             alt={name}
           />
         </div>
-        <div className="group-hover:px-2 transition-all duration-500">
+        <div className="transition-all duration-500 group-hover:scale-95 ">
           <div className="flex justify-between text-mainForeground">
             <TooltipProvider>
               <Tooltip>
@@ -52,15 +67,15 @@ const ProductCard = memo(
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
-            <span className="flex gap-1 items-center">
-              <Star className="fill-main w-4 text-main" />
+            <span className="flex items-center gap-1">
+              <Star className="w-4 fill-main text-main" />
               <p className="text-tc">
                 (8.6k)
               </p>
             </span>
           </div>
-          <span className="text-mc font-bold">
-            {covertConcurrency(price)}
+          <span className="font-bold text-mc">
+            {convertConcurrency(price)}
           </span>
         </div>
       </div>

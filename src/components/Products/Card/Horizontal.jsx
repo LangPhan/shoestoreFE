@@ -16,7 +16,7 @@ const ProductHorizontalCard = ({
 }) => {
   return (
     <div className="h-fit border-[1px] border-slate-200 hover:border-main hover:bg-secondary transition-all rounded-xl flex gap-4 py-4 px-3">
-      <div className="w-1/3 h-full flex justify-center items-center">
+      <div className="w-1/2 md:w-1/3 h-full flex justify-center items-center">
         <div className="relative w-[250px] aspect-square">
           <img
             className="w-full h-full object-cover"
@@ -35,7 +35,7 @@ const ProductHorizontalCard = ({
         <p className="text-2xl font-bold">
           {name}
         </p>
-        <div className="flex my-5 gap-4 items-center">
+        <div className="flex flex-col md:flex-row my-5 gap-4 items-start">
           <div className="flex gap-1">
             <Star className="fill-main w-4 text-main" />
             <Star className="fill-main w-4 text-main" />
@@ -48,7 +48,7 @@ const ProductHorizontalCard = ({
           </span>
         </div>
         <Separator />
-        <p className="my-5 max-h-[80px] min-h-[80px] max-w-[500px] text-mc truncate text-wrap">
+        <p className="my-5 max-h-[80px] min-h-[40px] max-w-[500px] text-mc truncate text-wrap">
           {description}
         </p>
         <div>

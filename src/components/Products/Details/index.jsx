@@ -40,9 +40,9 @@ const Detail = ({
     }
   };
   return (
-    <div className="min-w-full h-fit py-3 px-4 rounded-3xl border-slate-300 border-[1px] flex justify-between">
+    <div className="min-w-full h-fit py-3 px-4 rounded-3xl border-slate-300 border-[1px] flex justify-between gap-1">
       <div className="flex gap-4 items-center">
-        <div className="flex gap-2">
+        <div className="flex gap-1 sm:gap-2">
           <LayoutGrid
             className={`${
               isGirdLayout &&
@@ -71,8 +71,8 @@ const Detail = ({
         </p>
       </div>
       <div>
-        <div className="flex justify-center items-center gap-2">
-          <span className="text-sc">
+        <div className="flex justify-center items-center gap-2 sm:gap-3">
+          <span className="text-[12px] min-[420px]:text-sc">
             Sort By
           </span>
           <Select
