@@ -1,6 +1,7 @@
 import OrderSummary from "./OrderSummary";
 import {
   Link,
+  Link,
   Outlet,
   useLocation,
   useNavigate,
@@ -14,7 +15,9 @@ import { Button } from "../ui/button";
 import CartNavigate from "./Navigate";
 import useCartStore from "@/stores/cartStore";
 import Empty from "../Products/ProductList/Empty";
-import Banner from "../Products/Banner";
+import CartNavigate from "./Navigate";
+import useCartStore from "@/stores/cartStore";
+import Empty from "../Products/ProductList/Empty";
 
 const Cart = () => {
   const location = useLocation();
@@ -28,11 +31,11 @@ const Cart = () => {
   if (totalItems === 0) {
     return (
       <>
-        <div className="w-full flex flex-col  items-center justify-center">
-          <Empty />
-          <Button className="w-fit">
+        <Empty />
+        <div className="w-full flex justify-center">
+          <Button>
             <Link to={"/product"}>
-              Explore More Products
+              Products
             </Link>
           </Button>
         </div>
@@ -41,6 +44,7 @@ const Cart = () => {
   }
   return (
     <>
+      <CartNavigate />
       <CartNavigate />
       <div className="flex flex-col md:flex-row gap-5 my-10]">
         <div className="w-full md:w-2/3 shadow-xl rounded-xl">
