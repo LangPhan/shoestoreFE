@@ -1,7 +1,15 @@
-import React from "react";
+import RelatedProduct from "./Related/RelatedProduct";
+import ProductImage from "./Image/ProductImage";
+import ProductSize from "./Content/ProductSize";
+import ProductColor from "./Content/ProductColor";
+import ProductInfo from "./Content/ProductInfo";
+import ProductQuantity from "./Content/ProductQuantity";
 
-const ProductDetail = () => {
-  return <div></div>;
+export {
+  RelatedProduct,
+  ProductImage,
+  ProductSize,
+  ProductColor,
+  ProductInfo,
+  ProductQuantity,
 };
-
-export default ProductDetail;
