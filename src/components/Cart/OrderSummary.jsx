@@ -13,12 +13,16 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
+import useCartStore from "@/stores/cartStore";
+import { convertConcurrency } from "@/lib/utils";
 
 const OrderSummary = () => {
   const currentState =
     useLocation().state?.name ||
     "Shopping Cart";
   const navigate = useNavigate();
+  const { totalAmount } =
+    useCartStore();
   return (
     <div className="w-full mx-auto md:w-1/3 h-fit max-w-[350px] rounded-xl border-y-[12px] border-main shadow-2xl">
       <div className="h-[50px] flex justify-center items-center">
@@ -51,7 +55,11 @@ const OrderSummary = () => {
         </h3>
         <div className="flex justify-between text-sm text-mainForeground">
           <p>Total </p>
-          <p>$800</p>
+          <p>
+            {convertConcurrency(
+              totalAmount
+            )}
+          </p>
         </div>
         <div className="flex justify-between text-sm text-mainForeground">
           <p>Discount</p>
@@ -67,7 +75,11 @@ const OrderSummary = () => {
         </div>{" "}
         <div className="py-5 border-t-[1px] flex justify-between text-sm text-mainForeground">
           <p>Total Amount </p>
-          <p>$100</p>
+          <p>
+            {convertConcurrency(
+              totalAmount
+            )}
+          </p>
         </div>
         <div className="h-[40px] w-full">
           {currentState ===

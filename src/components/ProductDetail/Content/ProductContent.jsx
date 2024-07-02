@@ -6,7 +6,7 @@ import ProductQuantity from "./ProductQuantity";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { Copy } from "lucide-react";
 import { toast } from "react-toastify";
-import { covertConcurrency } from "@/lib/utils";
+import { convertConcurrency } from "@/lib/utils";
 
 const ProductContent = ({
   handleShoeSizeChange,
@@ -24,38 +24,52 @@ const ProductContent = ({
   const linkUrl = window.location.href;
 
   const onCopyClipboard = () => {
-    toast.success("Copy to clipboard successfully!");
+    toast.success(
+      "Copy to clipboard successfully!"
+    );
   };
   return (
     <Fragment>
       <div className="flex flex-col md:pl-10 product-right text-mainForeground">
         <h3 className="mb-5 text-4xl font-semibold leading-none">
-          {selectedProduct && selectedProduct.name}
+          {selectedProduct &&
+            selectedProduct.name}
         </h3>
         <div className="mb-5 text-base font-medium">
-          {selectedProduct && selectedProduct?.description}
+          {selectedProduct &&
+            selectedProduct?.description}
         </div>
         <ProductSize
-          handleShoeSizeChange={handleShoeSizeChange}
+          handleShoeSizeChange={
+            handleShoeSizeChange
+          }
           shoeSize={shoeSize}
           shoeColor={shoeColor}
           shoeSizeList={shoeSizeList}
         ></ProductSize>
         <ProductColor
-          handleShoeColorChange={() => handleShoeColorChange}
+          handleShoeColorChange={() =>
+            handleShoeColorChange
+          }
           shoeColor={shoeColor}
           shoeColorList={shoeColorList}
         ></ProductColor>
         <ProductInfo></ProductInfo>
         <div className="mb-8 text-4xl font-bold text-black price">
           {selectedProduct
-            ? covertConcurrency(selectedProduct.price)
-            : covertConcurrency(0)}
+            ? convertConcurrency(
+                selectedProduct.price
+              )
+            : convertConcurrency(0)}
         </div>
         <ProductQuantity
           quantity={quantity}
-          onQuantityIncrement={() => onQuantityIncrement}
-          onQuantityDecrement={() => onQuantityDecrement}
+          onQuantityIncrement={() =>
+            onQuantityIncrement
+          }
+          onQuantityDecrement={() =>
+            onQuantityDecrement
+          }
         ></ProductQuantity>
         <div className="flex items-center justify-between">
           <button
@@ -64,7 +78,9 @@ const ProductContent = ({
           >
             ADD TO CART
           </button>
-          <CopyToClipboard text={linkUrl}>
+          <CopyToClipboard
+            text={linkUrl}
+          >
             <button
               className="w-12 h-12 border-[1px] rounded-full text-xs flex items-center justify-center cursor-pointer"
               onClick={onCopyClipboard}
