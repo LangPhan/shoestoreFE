@@ -35,7 +35,7 @@ const ProductHorizontalCard = ({
         <p className="text-2xl font-bold">
           {name}
         </p>
-        <div className="flex my-5 gap-4 items-center">
+        <div className="flex flex-col md:flex-row my-5 gap-4 items-start">
           <div className="flex gap-1">
             <Star className="fill-main w-4 text-main" />
             <Star className="fill-main w-4 text-main" />
