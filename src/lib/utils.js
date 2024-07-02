@@ -19,7 +19,7 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
-export function covertConcurrency(price) {
+export function convertConcurrency(price) {
   const USDollar = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",

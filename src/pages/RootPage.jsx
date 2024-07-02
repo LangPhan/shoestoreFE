@@ -1,4 +1,7 @@
-import { Outlet } from "react-router-dom";
+import {
+  Outlet,
+  ScrollRestoration,
+} from "react-router-dom";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -21,6 +24,7 @@ const RootPage = () => {
           <Outlet />
         </main>
         <Footer />
+        <ScrollRestoration />
         <ToastContainer
           position="bottom-right"
           autoClose={5000}
