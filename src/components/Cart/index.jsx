@@ -1,7 +1,6 @@
 import OrderSummary from "./OrderSummary";
 import {
   Link,
-  Link,
   Outlet,
   useLocation,
   useNavigate,
@@ -12,9 +11,6 @@ import {
   Truck,
 } from "lucide-react";
 import { Button } from "../ui/button";
-import CartNavigate from "./Navigate";
-import useCartStore from "@/stores/cartStore";
-import Empty from "../Products/ProductList/Empty";
 import CartNavigate from "./Navigate";
 import useCartStore from "@/stores/cartStore";
 import Empty from "../Products/ProductList/Empty";
@@ -35,7 +31,7 @@ const Cart = () => {
         <div className="w-full flex justify-center">
           <Button>
             <Link to={"/product"}>
-              Products
+              Explore More Products
             </Link>
           </Button>
         </div>
@@ -44,7 +40,6 @@ const Cart = () => {
   }
   return (
     <>
-      <CartNavigate />
       <CartNavigate />
       <div className="flex flex-col md:flex-row gap-5 my-10]">
         <div className="w-full md:w-2/3 shadow-xl rounded-xl">
