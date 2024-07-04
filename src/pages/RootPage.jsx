@@ -19,11 +19,7 @@ const RootPage = () => {
       storageKey="vite-ui-theme"
     >
       <>
-        <Header />
-        <main className="min-h-screen scroll-smooth">
-          <Outlet />
-        </main>
-        <Footer />
+        <Outlet />
         <ScrollRestoration />
         <ToastContainer
           position="bottom-right"

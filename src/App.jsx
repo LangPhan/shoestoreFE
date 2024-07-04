@@ -14,40 +14,63 @@ import CartPage from "./pages/CartPage.jsx";
 import CartDetail from "./components/Cart/CartDetail/index.jsx";
 import CartAddress from "./components/Cart/Address/index.jsx";
 import CartPayment from "./components/Cart/Payment/index.jsx";
+import AuthPage from "./pages/AuthPage.jsx";
 
 function App() {
   //Create route for app
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<RootPage />} errorElement={<ErrorPage />}>
-        <Route path="" element={<HomePage />}></Route>
-        <Route path="/about" element={<AboutPage />}></Route>
-        <Route path="/product" element={<ProductPage />}></Route>
+      <Route
+        path="/"
+        element={<RootPage />}
+        errorElement={<ErrorPage />}
+      >
         <Route
-          path="/product-detail/:productName/:categoryId"
-          element={<ProductDetailPage />}
-        ></Route>
-        <Route
-          path="/cart"
-          element={<CartPage />}
+          path=""
+          element={<HomePage />}
         >
           <Route
-            index
-            element={<CartDetail />}
+            path="/about"
+            element={<AboutPage />}
           ></Route>
           <Route
-            path="address"
-            element={<CartAddress />}
+            path="/product"
+            element={<ProductPage />}
           ></Route>
           <Route
-            path="payment"
-            element={<CartPayment />}
+            path="/product-detail/:productName/:categoryId"
+            element={
+              <ProductDetailPage />
+            }
           ></Route>
+          <Route
+            path="/cart"
+            element={<CartPage />}
+          >
+            <Route
+              index
+              element={<CartDetail />}
+            ></Route>
+            <Route
+              path="address"
+              element={<CartAddress />}
+            ></Route>
+            <Route
+              path="payment"
+              element={<CartPayment />}
+            ></Route>
+          </Route>
         </Route>
+        <Route
+          path="auth"
+          element={<AuthPage />}
+        ></Route>
       </Route>
     )
   );
-  return <RouterProvider router={router} />;
+  return (
+    <RouterProvider router={router} />
+  );
 }
 
 export default App;

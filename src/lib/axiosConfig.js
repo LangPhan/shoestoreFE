@@ -1,4 +1,4 @@
-import { API_PROD_URL, API_URL } from "@/constant";
+import { API_PROD_URL } from "@/constant";
 import axios from "axios";
 
 const axiosClient = axios.create({
@@ -8,6 +8,7 @@ const axiosClient = axios.create({
     'Content-Type': 'application/json'
   }
 })
+
 axiosClient.interceptors.response.use(
   (response) => response?.data ?? response,
   (error) => {

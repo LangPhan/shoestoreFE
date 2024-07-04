@@ -1,5 +1,6 @@
 export const API_URL = "https://dummyjson.com/";
 export const API_PROD_URL = "https://tzuy284.id.vn/api/v1";
+export const API_PLACE_URL = "https://vapi.vnappmob.com/api"
 
 export const RED = "#ff0000";
 export const BROWN = "#a52a2a";

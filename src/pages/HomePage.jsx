@@ -1,8 +1,16 @@
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import { Outlet } from "react-router-dom";
+
 const HomePage = () => {
   return (
-    <div className="text-main">
-      HomePage
-    </div>
+    <>
+      <Header />
+      <main className="min-h-screen scroll-smooth">
+        <Outlet />
+      </main>
+      <Footer />
+    </>
   );
 };
 
