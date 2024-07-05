@@ -15,6 +15,7 @@ import CartDetail from "./components/Cart/CartDetail/index.jsx";
 import CartAddress from "./components/Cart/Address/index.jsx";
 import CartPayment from "./components/Cart/Payment/index.jsx";
 import AuthPage from "./pages/AuthPage.jsx";
+import RequireAuth from "./components/Auth/Provider/RequireAuth.jsx";
 
 function App() {
   //Create route for app
@@ -53,7 +54,11 @@ function App() {
             ></Route>
             <Route
               path="address"
-              element={<CartAddress />}
+              element={
+                <RequireAuth>
+                  <CartAddress />
+                </RequireAuth>
+              }
             ></Route>
             <Route
               path="payment"

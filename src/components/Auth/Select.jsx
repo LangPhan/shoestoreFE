@@ -18,6 +18,7 @@ import {
 
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
+import { memo } from "react";
 const SelectField = ({
   open,
   setOpen,
@@ -100,4 +101,4 @@ const SelectField = ({
   );
 };
 
-export default SelectField;
+export default memo(SelectField);

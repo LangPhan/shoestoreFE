@@ -10,11 +10,11 @@ import SignUp from "./SignUp";
 
 const AuthContainer = () => {
   return (
-    <section className="relative min-h-screen min-w-screen py-10 flex flex-col gap-5 justify-start items-center bg-product-banner bg-cover bg-no-repeat bg-center before:absolute before:inset-0 before:bg-black before:opacity-10 before:z-0">
+    <section className="relative min-h-screen min-w-screen flex flex-col gap-5 justify-center items-center bg-product-banner bg-cover bg-no-repeat bg-center before:absolute before:inset-0 before:bg-black before:opacity-10 before:z-0">
       <Logo />
       <Tabs
         defaultValue="signIn"
-        className="w-screen px-2 md:w-[400px] py-5 rounded-md drop-shadow-2xl z-50 bg-slate-100 dark:bg-background"
+        className="w-[95%] px-2 min-[420px]:w-[400px] py-5 rounded-md drop-shadow-2xl z-50 bg-slate-100 dark:bg-background"
       >
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="signIn">

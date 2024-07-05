@@ -1,9 +1,51 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import {
+  Link,
+  useNavigate,
+} from "react-router-dom";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { authApi } from "@/api";
+import authStore from "@/stores/authStore";
+import loginSchema from "./schemas/loginSchema";
+
+//Define schema for login form
 
 const SignIn = () => {
+  const navigate = useNavigate();
+  const { login, isAuth, user } =
+    authStore();
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { isSubmitting, errors },
+  } = useForm({
+    resolver: zodResolver(loginSchema),
+  });
+
+  const mutation = useMutation({
+    mutationKey: "postUserLogin",
+    mutationFn: (accInfo) => {
+      return authApi.login(accInfo);
+    },
+    onSuccess: (data) => {
+      login(data);
+      navigate("/");
+      console.log(data);
+    },
+    onError: (err) => {
+      setError("", err);
+    },
+  });
+
+  const onSubmit = (data) => {
+    mutation.mutate(data);
+  };
+
   return (
     <div className="mx-auto grid w-full gap-6">
       <div className="grid gap-2 text-center">
@@ -15,16 +57,21 @@ const SignIn = () => {
           your account
         </p>
       </div>
-      <form className="grid gap-4">
+      <form
+        onSubmit={handleSubmit(
+          onSubmit
+        )}
+        className="grid gap-4"
+      >
         <div className="grid gap-2">
           <Label htmlFor="username">
             Username
           </Label>
           <Input
+            {...register("username")}
             id="username"
             type="text"
             placeholder="Enter your username"
-            required
           />
         </div>
         <div className="grid gap-2">
@@ -40,25 +87,34 @@ const SignIn = () => {
             </Link>
           </div>
           <Input
+            {...register("password")}
             id="password"
             type="password"
             placeholder="Enter your password"
-            required
             autoComplete="on"
           />
+        </div>
+        <div className="min-h-6 text-red-500">
+          {Object.values(errors)
+            .length > 0 &&
+            Object.values(errors)[0]
+              .message}
         </div>
         <Button
           type="submit"
           className="w-full"
+          disabled={isSubmitting}
         >
-          Login
+          {isSubmitting
+            ? "Signing In"
+            : "Sign In"}
         </Button>
-        <Button
+        {/* <Button
           variant="outline"
           className="w-full"
         >
           Login with Google
-        </Button>
+        </Button> */}
       </form>
       <div className="mt-4 text-center text-sm">
         Don&apos;t have an account?{" "}

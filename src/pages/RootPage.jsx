@@ -3,12 +3,7 @@ import {
   ScrollRestoration,
 } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme-provider";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import {
-  ToastContainer,
-  toast,
-} from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const RootPage = () => {
@@ -28,7 +23,7 @@ const RootPage = () => {
           newestOnTop={false}
           closeOnClick
           rtl={false}
-          pauseOnFocusLoss
+          pauseOnFocusLoss={false}
           draggable
           pauseOnHover
           theme="colored"
