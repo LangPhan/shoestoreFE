@@ -5,8 +5,51 @@ import {
 import { ThemeProvider } from "@/components/theme-provider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {
+  useGetUser,
+  useRefreshToken,
+} from "@/hooks/useAuth";
+import { useEffect } from "react";
+import authStore from "@/stores/authStore";
 
 const RootPage = () => {
+  let token = {};
+  try {
+    const tokenString =
+      localStorage.getItem("token");
+    if (tokenString) {
+      token = JSON.parse(tokenString);
+    }
+  } catch (error) {}
+
+  const accessToken =
+    token?.accessToken;
+  const refreshToken =
+    token?.refreshToken;
+  const { isSuccess, isError, error } =
+    useGetUser({
+      accessToken,
+    });
+  // set user when accessToken is valid
+  const { setUser } = authStore();
+
+  useEffect(() => {
+    if (isSuccess) {
+      setUser(accessToken);
+    }
+  }, [isSuccess]);
+
+  //handle refresh token when token in valid
+  const { mutate } = useRefreshToken();
+  useEffect(() => {
+    if (
+      isError &&
+      error.status === 401
+    ) {
+      mutate(refreshToken);
+    }
+  }, [error]);
+
   return (
     //Root Layout config
     <ThemeProvider
@@ -33,5 +76,4 @@ const RootPage = () => {
     </ThemeProvider>
   );
 };
-
 export default RootPage;

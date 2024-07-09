@@ -27,6 +27,6 @@ export const productApi = {
   },
 
   getCategoryProduct: () => {
-    return axiosClient.get('/category')
+    return axiosClient.get('/category/getList')
   }
 }

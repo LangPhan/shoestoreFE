@@ -39,30 +39,28 @@ const FilterByCategories = () => {
             <ArrowRight />
           </li>
           {data &&
-            data?.content.map(
-              (category) => {
-                return (
-                  <li
-                    key={category.id}
-                    className={`${
-                      category.id ===
-                        categorySelected &&
-                      "text-main"
-                    } flex flex-row justify-between items-center capitalize select-none cursor-pointer hover:text-main`}
-                    onClick={() =>
-                      setCategory(
-                        category.id
-                      )
-                    }
-                  >
-                    {formatName(
-                      category.name
-                    )}
-                    <ArrowRight />
-                  </li>
-                );
-              }
-            )}
+            data?.map((category) => {
+              return (
+                <li
+                  key={category.id}
+                  className={`${
+                    category.id ===
+                      categorySelected &&
+                    "text-main"
+                  } flex flex-row justify-between items-center capitalize select-none cursor-pointer hover:text-main`}
+                  onClick={() =>
+                    setCategory(
+                      category.id
+                    )
+                  }
+                >
+                  {formatName(
+                    category.name
+                  )}
+                  <ArrowRight />
+                </li>
+              );
+            })}
         </ul>
       </FilterContainer>
     </div>

@@ -11,13 +11,14 @@ import { useMutation } from "@tanstack/react-query";
 import { authApi } from "@/api";
 import authStore from "@/stores/authStore";
 import loginSchema from "./schemas/loginSchema";
+import { memo } from "react";
+import { toast } from "react-toastify";
 
 //Define schema for login form
 
-const SignIn = () => {
+const SignIn = ({ setShowVerify }) => {
   const navigate = useNavigate();
-  const { login, isAuth, user } =
-    authStore();
+  const { login } = authStore();
   const {
     register,
     handleSubmit,
@@ -33,11 +34,18 @@ const SignIn = () => {
       return authApi.login(accInfo);
     },
     onSuccess: (data) => {
-      login(data);
+      if (!data.user.verify) {
+        login(data.token);
+        return setShowVerify(true);
+      }
+      login(data.token);
+      toast.success(
+        "Login Successfully"
+      );
       navigate("/");
-      console.log(data);
     },
     onError: (err) => {
+      console.log(err);
       setError("", err);
     },
   });
@@ -47,7 +55,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className="mx-auto grid w-full gap-6">
+    <div className="mx-auto px-2   grid w-full gap-6">
       <div className="grid gap-2 text-center">
         <h1 className="text-3xl font-bold">
           Login
@@ -129,4 +137,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default memo(SignIn);

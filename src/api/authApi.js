@@ -1,7 +1,6 @@
 import axiosClient from "@/lib/axiosConfig"
 
 
-
 export const authApi = {
   login: async (userInfo) => {
     try {
@@ -24,11 +23,53 @@ export const authApi = {
     }
   },
 
-  checkAccessToken: async (accessToken) => {
+  verifyOTP: async (accessToken, otp) => {
     try {
-      const res = await axiosClient.get("promotion/get", {
+      const res = await axiosClient.post(`/otp/verify`, otp, {
         headers: {
           Authorization: `Bearer ${accessToken}`
+        },
+      })
+      return res
+    } catch (error) {
+      throw error
+    }
+  },
+
+  sendOTP: async (accessToken, method) => {
+    try {
+      if (method !== "sendSms" && method !== "sendEmail") {
+        throw new Error("Invalid method. Please use 'sendSms' or 'sendEmail'.");
+      }
+      const res = await axiosClient.get("otp/" + method, {
+        headers: {
+          Authorization: 'Bearer ' + accessToken,
+        }
+      })
+      return res
+    } catch (err) {
+      throw err
+    }
+  },
+
+  getUser: async ({ queryKey }) => {
+    const [, accessToken] = queryKey
+    try {
+      const res = await axiosClient.get("user/getUser", {
+        headers: {
+          Authorization: "Bearer " + accessToken
+        }
+      })
+      return res
+    } catch (error) {
+      throw error
+    }
+  },
+  refreshToken: async (refreshToken) => {
+    try {
+      const res = await axiosClient.post("auth/refresh-token", {}, {
+        headers: {
+          Authorization: "Bearer " + refreshToken
         }
       })
       return res

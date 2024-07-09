@@ -1,9 +1,9 @@
-import { API_PROD_URL } from "@/constant";
+import { API_PROD_URL, API_PROD_URL_2 } from "@/constant";
 import axios from "axios";
 
 const axiosClient = axios.create({
   baseURL: `${API_PROD_URL}`,
-  timeout: 2000,
+  timeout: 5000,
   headers: {
     'Content-Type': 'application/json'
   }

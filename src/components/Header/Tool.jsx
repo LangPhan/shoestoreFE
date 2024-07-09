@@ -16,6 +16,7 @@ import NavMobile from "./NavMobile";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import Profile from "./Profile";
 
 const Tool = () => {
   const { totalItems, calcCartTotal } =
@@ -52,6 +53,7 @@ const Tool = () => {
           <NavMobile />
         </SheetContent>
       </Sheet>
+      <Profile />
     </div>
   );
 };

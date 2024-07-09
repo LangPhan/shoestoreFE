@@ -16,6 +16,9 @@ import CartAddress from "./components/Cart/Address/index.jsx";
 import CartPayment from "./components/Cart/Payment/index.jsx";
 import AuthPage from "./pages/AuthPage.jsx";
 import RequireAuth from "./components/Auth/Provider/RequireAuth.jsx";
+import MailOTP from "./components/Auth/MailOTP.jsx";
+import SmsOTP from "./components/Auth/SmsOTP.jsx";
+import Options from "./components/Auth/Options.jsx";
 
 function App() {
   //Create route for app
@@ -69,7 +72,21 @@ function App() {
         <Route
           path="auth"
           element={<AuthPage />}
-        ></Route>
+        >
+          <Route
+            path=""
+            index
+            element={<Options />}
+          ></Route>
+          <Route
+            path="email"
+            element={<MailOTP />}
+          ></Route>
+          <Route
+            path="sms"
+            element={<SmsOTP />}
+          ></Route>
+        </Route>
       </Route>
     )
   );

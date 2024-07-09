@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Logo = () => {
   return (
     <Link
-      className="dark:bg-white flex items-center py-2 rounded-2xl"
+      className="dark:bg-white flex items-center p-2 rounded-2xl"
       to={"/"}
     >
       <img
