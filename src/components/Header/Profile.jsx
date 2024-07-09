@@ -2,8 +2,10 @@ import authStore from "@/stores/authStore";
 import { User } from "lucide-react";
 import { Skeleton } from "../ui/skeleton";
 import { Button } from "../ui/button";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+  const navigate = useNavigate();
   const token =
     localStorage.getItem("token");
   const { user, isAuth } = authStore();
@@ -24,7 +26,12 @@ const Profile = () => {
       )}
       {user === null && !isAuth && (
         <>
-          <Button variant="ghost">
+          <Button
+            variant="ghost"
+            onClick={() =>
+              navigate("/auth")
+            }
+          >
             Login
           </Button>
         </>
