@@ -22,6 +22,7 @@ const authStore = create((set, get) => ({
   setUser: (accessToken) => {
     set({ isAuth: true })
     set({ user: jwtDecode(accessToken) })
+    set({ isFetching: false })
   },
 }))
 

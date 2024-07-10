@@ -88,13 +88,11 @@ const SignUp = ({ setShowVerify }) => {
       return authApi.register(userInfo);
     },
     onSuccess: (data) => {
-      console.log(data);
       login(data?.token);
       setShowVerify(true);
     },
     onError: (error) => {
       setError("", error);
-      console.log(error);
     },
   });
 

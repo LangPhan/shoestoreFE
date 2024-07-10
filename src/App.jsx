@@ -35,7 +35,16 @@ function App() {
         >
           <Route
             path="/about"
-            element={<AboutPage />}
+            element={
+              <RequireAuth
+                roles={[
+                  "USER",
+                  "ADMIN",
+                ]}
+              >
+                <AboutPage />
+              </RequireAuth>
+            }
           ></Route>
           <Route
             path="/product"
@@ -57,16 +66,7 @@ function App() {
             ></Route>
             <Route
               path="address"
-              element={
-                <RequireAuth
-                  roles={[
-                    "USER",
-                    "ADMIN",
-                  ]}
-                >
-                  <CartAddress />
-                </RequireAuth>
-              }
+              element={<CartAddress />}
             ></Route>
             <Route
               path="payment"

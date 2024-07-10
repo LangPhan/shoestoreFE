@@ -18,7 +18,6 @@ import { useNavigate } from "react-router-dom";
 import { authApi } from "@/api";
 import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
-import Spinner from "../ui/spinner";
 
 const Options = () => {
   const [option, setOption] =
@@ -40,11 +39,9 @@ const Options = () => {
         "sendEmail"
       ),
     onSuccess: (data) => {
-      console.log(data);
       return navigate("email");
     },
     onError: (err) => {
-      console.log(err);
       toast.error(err.message);
     },
     onMutate: () => {
@@ -60,11 +57,9 @@ const Options = () => {
         "sendSms"
       ),
     onSuccess: (data) => {
-      console.log(data);
       return navigate("sms");
     },
     onError: (err) => {
-      console.log(err);
       toast.error(err.message);
     },
     onMutate: () => {

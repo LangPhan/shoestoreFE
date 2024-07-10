@@ -34,7 +34,10 @@ const SignIn = ({ setShowVerify }) => {
       return authApi.login(accInfo);
     },
     onSuccess: (data) => {
-      if (!data.user.verify) {
+      if (
+        !data.user.verify &&
+        !data.user.verify === null
+      ) {
         login(data.token);
         return setShowVerify(true);
       }
@@ -45,7 +48,6 @@ const SignIn = ({ setShowVerify }) => {
       navigate("/");
     },
     onError: (err) => {
-      console.log(err);
       setError("", err);
     },
   });
