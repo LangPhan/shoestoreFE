@@ -56,7 +56,7 @@ const Navbar = () => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  to="orders"
+                  to="/admin/orders"
                   className="flex items-center justify-center transition-colors rounded-lg h-9 w-9 bg-accent text-accent-foreground hover:text-foreground md:h-8 md:w-8"
                 >
                   <ShoppingCart className="w-5 h-5" />
@@ -74,7 +74,7 @@ const Navbar = () => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  to="products"
+                  to="/admin/products"
                   className="flex items-center justify-center transition-colors rounded-lg h-9 w-9 text-muted-foreground hover:text-foreground md:h-8 md:w-8"
                 >
                   <Package className="w-5 h-5" />

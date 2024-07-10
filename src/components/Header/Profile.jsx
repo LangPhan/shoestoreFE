@@ -44,6 +44,14 @@ const Profile = () => {
             <div
               className="hover:bg-slate-100 text-red-500 font-semibold text-center"
               onClick={() => {
+                navigate("/admin");
+              }}
+            >
+              Manage
+            </div>
+            <div
+              className="hover:bg-slate-100 text-red-500 font-semibold text-center"
+              onClick={() => {
                 logout();
                 toast.info(
                   "Logout successfully"

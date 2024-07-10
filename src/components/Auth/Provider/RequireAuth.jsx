@@ -18,9 +18,10 @@ const RequireAuth = ({
     if (!isFetching) {
       if (
         !isAuth ||
-        !roles.includes(user?.role)
+        (roles.length > 0 &&
+          !roles.includes(user?.role))
       ) {
-        navigate("/auth", {
+        return navigate("/auth", {
           replace: true,
           state: {
             backURI: location.pathname,

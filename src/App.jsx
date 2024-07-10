@@ -104,7 +104,6 @@ function App() {
               <AdminPage />
             </RequireAuth>
           }
-          errorElement={<ErrorPage />}
         >
           <Route
             path="orders"
