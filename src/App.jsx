@@ -35,7 +35,16 @@ function App() {
         >
           <Route
             path="/about"
-            element={<AboutPage />}
+            element={
+              <RequireAuth
+                roles={[
+                  "USER",
+                  "ADMIN",
+                ]}
+              >
+                <AboutPage />
+              </RequireAuth>
+            }
           ></Route>
           <Route
             path="/product"
