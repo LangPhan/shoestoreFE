@@ -19,55 +19,108 @@ import RequireAuth from "./components/Auth/Provider/RequireAuth.jsx";
 import MailOTP from "./components/Auth/MailOTP.jsx";
 import SmsOTP from "./components/Auth/SmsOTP.jsx";
 import Options from "./components/Auth/Options.jsx";
-import { Orders, Wrapper } from "./components/Dashboard/index.jsx";
+import { Orders } from "./components/Dashboard/index.jsx";
 import Products from "./components/Dashboard/Products/Products.jsx";
+import AdminPage from "./pages/AdminPage.jsx";
 
 function App() {
   //Create route for app
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<RootPage />} errorElement={<ErrorPage />}>
-        <Route path="" element={<HomePage />}>
-          <Route path="/about" element={<AboutPage />}></Route>
-          <Route path="/product" element={<ProductPage />}></Route>
+      <Route
+        path="/"
+        element={<RootPage />}
+        errorElement={<ErrorPage />}
+      >
+        <Route
+          path=""
+          element={<HomePage />}
+        >
+          <Route
+            path="/about"
+            element={<AboutPage />}
+          ></Route>
+          <Route
+            path="/product"
+            element={<ProductPage />}
+          ></Route>
           <Route
             path="/product-detail/:productName/:categoryId"
-            element={<ProductDetailPage />}
+            element={
+              <ProductDetailPage />
+            }
           ></Route>
-          <Route path="/cart" element={<CartPage />}>
-            <Route index element={<CartDetail />}></Route>
+          <Route
+            path="/cart"
+            element={<CartPage />}
+          >
+            <Route
+              index
+              element={<CartDetail />}
+            ></Route>
             <Route
               path="address"
               element={
-                <RequireAuth roles={["USER", "ADMIN"]}>
+                <RequireAuth
+                  roles={[
+                    "USER",
+                    "ADMIN",
+                  ]}
+                >
                   <CartAddress />
                 </RequireAuth>
               }
             ></Route>
-            <Route path="payment" element={<CartPayment />}></Route>
+            <Route
+              path="payment"
+              element={<CartPayment />}
+            ></Route>
           </Route>
         </Route>
-        <Route path="auth" element={<AuthPage />}>
-          <Route path="" index element={<Options />}></Route>
-          <Route path="email" element={<MailOTP />}></Route>
-          <Route path="sms" element={<SmsOTP />}></Route>
-        </Route>
-
         <Route
-          path="/"
-          element={<Wrapper></Wrapper>}
+          path="auth"
+          element={<AuthPage />}
+        >
+          <Route
+            path=""
+            index
+            element={<Options />}
+          ></Route>
+          <Route
+            path="email"
+            element={<MailOTP />}
+          ></Route>
+          <Route
+            path="sms"
+            element={<SmsOTP />}
+          ></Route>
+        </Route>
+        <Route
+          path="/admin"
+          element={
+            <RequireAuth
+              roles={["ADMIN"]}
+            >
+              <AdminPage />
+            </RequireAuth>
+          }
           errorElement={<ErrorPage />}
         >
-          <Route path="/dashboard/orders" element={<Orders></Orders>}></Route>
           <Route
-            path="/dashboard/products"
-            element={<Products></Products>}
+            path="orders"
+            element={<Orders />}
+          ></Route>
+          <Route
+            path="products"
+            element={<Products />}
           ></Route>
         </Route>
       </Route>
     )
   );
-  return <RouterProvider router={router} />;
+  return (
+    <RouterProvider router={router} />
+  );
 }
 
 export default App;
