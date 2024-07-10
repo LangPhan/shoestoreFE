@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import {
   Link,
+  useLocation,
   useNavigate,
 } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,6 +19,7 @@ import { toast } from "react-toastify";
 
 const SignIn = ({ setShowVerify }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { login } = authStore();
   const {
     register,
@@ -45,6 +47,11 @@ const SignIn = ({ setShowVerify }) => {
       toast.success(
         "Login Successfully"
       );
+      if (location.state?.backURI) {
+        return navigate(
+          location.state.backURI
+        );
+      }
       navigate("/");
     },
     onError: (err) => {

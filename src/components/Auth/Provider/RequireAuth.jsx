@@ -1,13 +1,17 @@
 import authStore from "@/stores/authStore";
 import { Loader2 } from "lucide-react";
 import { useLayoutEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 
 const RequireAuth = ({
   children,
   roles,
 }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { isAuth, user, isFetching } =
     authStore();
   useLayoutEffect(() => {
@@ -16,7 +20,12 @@ const RequireAuth = ({
         !isAuth ||
         !roles.includes(user?.role)
       ) {
-        navigate("/auth");
+        navigate("/auth", {
+          replace: true,
+          state: {
+            backURI: location.pathname,
+          },
+        });
       }
     }
   }, [isAuth, user, isFetching]);
