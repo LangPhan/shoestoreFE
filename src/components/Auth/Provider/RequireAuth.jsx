@@ -1,24 +1,34 @@
 import authStore from "@/stores/authStore";
-import { useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { Loader2 } from "lucide-react";
+import {
+  useEffect,
+  useLayoutEffect,
+} from "react";
+import { useNavigate } from "react-router-dom";
 
 const RequireAuth = ({
   children,
-  role,
+  roles,
 }) => {
-  const { isAuth, checkAccessToken } =
+  const navigate = useNavigate();
+  const { isAuth, user, isFetching } =
     authStore();
   useEffect(() => {
-    if (!isAuth) {
-      checkAccessToken();
-      console.log("checked");
+    if (!isFetching) {
+      if (
+        !isAuth ||
+        !roles.includes(user?.role)
+      ) {
+        return navigate("/auth");
+      }
     }
-  }, [isAuth]);
-  return isAuth ? (
-    children
-  ) : (
-    <h2>Hello</h2>
-  );
+  }, [isAuth, user, isFetching]);
+  if (isFetching) {
+    return (
+      <Loader2 className="h-5 w-5 animate-spin mx-auto" />
+    );
+  }
+  return children;
 };
 
 export default RequireAuth;

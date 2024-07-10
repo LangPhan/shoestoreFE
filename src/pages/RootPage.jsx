@@ -31,11 +31,14 @@ const RootPage = () => {
       accessToken,
     });
   // set user when accessToken is valid
-  const { setUser } = authStore();
+  const { setUser, setFetching } =
+    authStore();
 
   useEffect(() => {
+    setFetching(true);
     if (isSuccess) {
       setUser(accessToken);
+      setFetching(false);
     }
   }, [isSuccess]);
 

@@ -1,4 +1,7 @@
-import { AlertDialogDescription } from "../ui/alert-dialog";
+import {
+  AlertDialogDescription,
+  AlertDialogFooter,
+} from "../ui/alert-dialog";
 
 import {
   InputOTP,
@@ -72,7 +75,7 @@ const SmsOTP = () => {
           onSubmit={form.handleSubmit(
             onSubmit
           )}
-          className="w-2/3 space-y-6"
+          className="space-y-6"
         >
           <AlertDialogDescription>
             Please enter the OTP code
@@ -82,7 +85,7 @@ const SmsOTP = () => {
             control={form.control}
             name="pin"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="flex justify-center flex-col items-center">
                 <FormLabel>
                   Your OTP
                 </FormLabel>
@@ -117,10 +120,18 @@ const SmsOTP = () => {
               </FormItem>
             )}
           />
-
-          <Button type="submit">
-            Submit
-          </Button>
+          <AlertDialogFooter>
+            <Button
+              type="submit"
+              disabled={
+                mutation.isPending
+              }
+            >
+              {mutation.isPending
+                ? "Submitting..."
+                : "Submit"}
+            </Button>
+          </AlertDialogFooter>
         </form>
       </Form>
     </>

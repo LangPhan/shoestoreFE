@@ -11,7 +11,7 @@ export const useGetUser = ({ accessToken }) => {
   })
 }
 export const useRefreshToken = () => {
-  const { login, logout } = authStore();
+  const { login, logout, setFetching } = authStore();
   return useMutation({
     mutationKey: "refreshToken",
     mutationFn: (refreshToken) => {
@@ -23,6 +23,9 @@ export const useRefreshToken = () => {
       } else {
         logout()
       }
+    },
+    onSettled: () => {
+      setFetching(false)
     }
   })
 }

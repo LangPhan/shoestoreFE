@@ -58,7 +58,12 @@ function App() {
             <Route
               path="address"
               element={
-                <RequireAuth>
+                <RequireAuth
+                  roles={[
+                    "USER",
+                    "ADMIN",
+                  ]}
+                >
                   <CartAddress />
                 </RequireAuth>
               }

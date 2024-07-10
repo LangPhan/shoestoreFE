@@ -4,6 +4,7 @@ import {
   RadioGroupItem,
 } from "@/components/ui/radio-group";
 import {
+  Loader2,
   MailIcon,
   MessageCircle,
 } from "lucide-react";
@@ -17,10 +18,13 @@ import { useNavigate } from "react-router-dom";
 import { authApi } from "@/api";
 import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
+import Spinner from "../ui/spinner";
 
 const Options = () => {
   const [option, setOption] =
     useState("email");
+  const [isLoading, setIsLoading] =
+    useState(false);
 
   const navigate = useNavigate();
 
@@ -43,9 +47,9 @@ const Options = () => {
       console.log(err);
       toast.error(err.message);
     },
-    // onSettled: (data) => {
-    //   navigate("email");
-    // },
+    onMutate: () => {
+      setIsLoading(true);
+    },
   });
 
   const smsMutation = useMutation({
@@ -62,6 +66,9 @@ const Options = () => {
     onError: (err) => {
       console.log(err);
       toast.error(err.message);
+    },
+    onMutate: () => {
+      setIsLoading(true);
     },
   });
 
@@ -113,11 +120,19 @@ const Options = () => {
       </RadioGroup>
       <AlertDialogFooter>
         <AlertDialogAction
+          disabled={isLoading}
           onClick={() =>
             handleSelected()
           }
         >
-          Confirm
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Submitting....
+            </>
+          ) : (
+            "Confirm"
+          )}
         </AlertDialogAction>
       </AlertDialogFooter>
     </>

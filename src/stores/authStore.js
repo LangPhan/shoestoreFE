@@ -6,7 +6,10 @@ import { create } from "zustand"
 const authStore = create((set, get) => ({
   isAuth: false,
   user: null,
-
+  isFetching: false,
+  setFetching: (state) => {
+    set({ isFetching: state })
+  },
   login: (token) => {
     localStorage.setItem("token", JSON.stringify(token))
     set({ isAuth: true })
