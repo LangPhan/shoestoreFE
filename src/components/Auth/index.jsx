@@ -26,7 +26,7 @@ const AuthContainer = () => {
       <Logo />
       <Tabs
         defaultValue="signIn"
-        className="w-[95%] min-[420px]:w-[400px] py-5 rounded-md drop-shadow-2xl z-50 bg-slate-100 dark:bg-background"
+        className="w-[95%] min-[420px]:w-[400px] px-2 py-5 rounded-md drop-shadow-2xl z-50 bg-slate-100 dark:bg-background"
       >
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="signIn">
