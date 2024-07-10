@@ -26,21 +26,24 @@ const RootPage = () => {
     token?.accessToken;
   const refreshToken =
     token?.refreshToken;
-  const { isSuccess, isError, error } =
-    useGetUser({
-      accessToken,
-    });
+  const {
+    isSuccess,
+    isError,
+    error,
+    isFetching,
+  } = useGetUser({
+    accessToken,
+  });
   // set user when accessToken is valid
   const { setUser, setFetching } =
     authStore();
 
   useEffect(() => {
-    setFetching(true);
+    setFetching(isFetching);
     if (isSuccess) {
       setUser(accessToken);
-      setFetching(false);
     }
-  }, [isSuccess]);
+  }, [isSuccess, isFetching]);
 
   //handle refresh token when token in valid
   const { mutate } = useRefreshToken();
@@ -52,7 +55,6 @@ const RootPage = () => {
       mutate(refreshToken);
     }
   }, [error]);
-
   return (
     //Root Layout config
     <ThemeProvider
