@@ -3,11 +3,11 @@ import axios from "axios";
 
 const axiosClient = axios.create({
   baseURL: `${API_PROD_URL}`,
-  timeout: 5000,
+  timeout: 60000,
   headers: {
-    'Content-Type': 'application/json'
-  }
-})
+    "Content-Type": "application/json",
+  },
+});
 
 axiosClient.interceptors.response.use(
   (response) => response?.data ?? response,
@@ -15,7 +15,7 @@ axiosClient.interceptors.response.use(
     const customError = {
       message: "An unknown error occurred",
       status: null,
-      data: null
+      data: null,
     };
 
     if (error.response) {
@@ -34,8 +34,8 @@ axiosClient.interceptors.response.use(
       customError.status = null;
       customError.data = null;
     }
-    return Promise.reject(customError)
+    return Promise.reject(customError);
   }
-)
+);
 
 export default axiosClient;
