@@ -53,43 +53,19 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import Product from "../Product/Product";
 import { Fragment, useEffect, useState } from "react";
 import { v4 } from "uuid";
-import { getProductList } from "@/api/productAdminApi";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogClose,
-} from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { Copy } from "lucide-react";
-
-const sampleProduct = [1, 2, 3, 4, 5];
+import { useProductAdminList } from "@/hooks/useProductAdmin";
+import { Skeleton } from "@/components/ui/skeleton";
+import Spinner from "@/components/ui/spinner";
 
 const Products = () => {
   const accessToken = JSON.parse(localStorage.getItem("token")).accessToken;
 
-  const [productList, setProductList] = useState({});
-
-  const getProductListData = async () => {
-    const result = await getProductList({ accessToken });
-    setProductList(result.content);
-  };
-
-  useEffect(() => {
-    getProductListData();
-  }, []);
+  const { data: productList, isLoading } = useProductAdminList({
+    accessToken,
+  });
 
   return (
     <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
@@ -243,53 +219,64 @@ const Products = () => {
               </Button>
             </div>
           </div>
-          <TabsContent value="all">
-            <Card x-chunk="dashboard-06-chunk-0">
-              <CardHeader>
-                <CardTitle>Products</CardTitle>
-                <CardDescription>
-                  Manage your products and view their sales performance.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead className="hidden w-[100px] sm:table-cell">
-                        <span className="sr-only">Image</span>
-                      </TableHead>
-                      <TableHead>Name</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead className="hidden md:table-cell">
-                        Price
-                      </TableHead>
-                      <TableHead className="hidden md:table-cell">
-                        Quantity
-                      </TableHead>
-                      <TableHead className="hidden md:table-cell">
-                        Created at
-                      </TableHead>
-                      <TableHead>
-                        <span className="sr-only">Actions</span>
-                      </TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {productList &&
-                      productList.length > 0 &&
-                      productList.map((product) => (
-                        <Product key={v4()} product={product}></Product>
-                      ))}
-                  </TableBody>
-                </Table>
-              </CardContent>
-              <CardFooter>
-                <div className="text-xs text-muted-foreground">
-                  Showing <strong>1-10</strong> of <strong>32</strong> products
-                </div>
-              </CardFooter>
-            </Card>
-          </TabsContent>
+          {isLoading && (
+            <Skeleton
+              className={`rounded-2xl w-full h-screen flex justify-center items-center my-4`}
+            >
+              <Spinner />
+            </Skeleton>
+          )}
+          {!isLoading && (
+            <TabsContent value="all">
+              <Card x-chunk="dashboard-06-chunk-0">
+                <CardHeader>
+                  <CardTitle>Products</CardTitle>
+                  <CardDescription>
+                    Manage your products and view their sales performance.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="hidden w-[100px] sm:table-cell">
+                          <span className="sr-only">Image</span>
+                        </TableHead>
+                        <TableHead>Name</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead className="hidden md:table-cell">
+                          Price
+                        </TableHead>
+                        <TableHead className="hidden md:table-cell">
+                          Quantity
+                        </TableHead>
+                        <TableHead className="hidden md:table-cell">
+                          Created at
+                        </TableHead>
+                        <TableHead>
+                          <span className="sr-only">Actions</span>
+                        </TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {productList &&
+                        productList.content &&
+                        productList.content.length > 0 &&
+                        productList.content.map((product) => (
+                          <Product key={v4()} product={product}></Product>
+                        ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+                <CardFooter>
+                  <div className="text-xs text-muted-foreground">
+                    Showing <strong>1-10</strong> of <strong>32</strong>{" "}
+                    products
+                  </div>
+                </CardFooter>
+              </Card>
+            </TabsContent>
+          )}
         </Tabs>
       </main>
     </div>
