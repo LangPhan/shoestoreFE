@@ -16,16 +16,34 @@ const setToLocalStorage = (cart) => {
   );
 }
 
+
+
 const useCartStore = create((set, getValue) => ({
   cart: getLocalStorage(),
   totalItems: 0,
   totalAmount: 0,
   shippingFee: 0,
   isLoading: false,
+  voucher: null,
+  totalVoucher: 0,
 
   handleDataOnChange: () => {
     getValue().calcCartTotal()
+    getValue().calcTotalVoucher()
     setToLocalStorage(getValue().cart)
+  },
+  setVoucher: (voucher) => {
+    set({ voucher: voucher })
+  },
+
+  calcTotalVoucher: () => {
+    const discountPercent = getValue()?.voucher?.discountPercent
+    if (discountPercent) {
+      return set((state) => ({
+        totalVoucher: Number(parseFloat((state.totalAmount * discountPercent) / 100).toFixed(2))
+      }))
+    }
+    set({ totalVoucher: 0 })
   },
   addToCart: (product) => {
     const cart = getValue().cart;
@@ -86,6 +104,11 @@ const useCartStore = create((set, getValue) => ({
     const cart = getValue().cart
     let updatedCart = cart.filter((item) => item.id !== productId)
     set({ cart: updatedCart })
+    getValue().handleDataOnChange()
+  },
+
+  clearCart: () => {
+    set({ cart: [] })
     getValue().handleDataOnChange()
   }
 }));

@@ -1,17 +1,24 @@
-import { Separator } from "@/components/ui/separator";
+import {
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const FilterContainer = ({
   children,
   name,
 }) => {
   return (
-    <div className="py-4">
-      <h3 className="text-mc font-bold leading-10">
-        {name}
-        <Separator />
+    <AccordionItem value={name}>
+      <AccordionTrigger>
+        <h3 className="text-mc font-bold leading-10 ">
+          {name}
+        </h3>
+      </AccordionTrigger>
+      <AccordionContent>
         {children}
-      </h3>
-    </div>
+      </AccordionContent>
+    </AccordionItem>
   );
 };
 

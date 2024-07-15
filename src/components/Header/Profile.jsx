@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/hover-card";
 import { toast } from "react-toastify";
 
-const Profile = () => {
+const Profile = ({ isShow }) => {
   const navigate = useNavigate();
   const token =
     localStorage.getItem("token");
@@ -20,27 +20,43 @@ const Profile = () => {
     isFetching,
     logout,
   } = authStore();
+
   if (isFetching && token) {
     return (
-      <Skeleton className="w-[140px] h-8"></Skeleton>
+      <Skeleton
+        className={`${
+          !isShow && "hidden md:block"
+        } w-[140px] h-8`}
+      ></Skeleton>
     );
   }
   return (
-    <div className="w-[140px] h-full cursor-pointer">
+    <div
+      className={`${
+        !isShow && "hidden md:block"
+      } w-full md:w-[140px] h-full cursor-pointer`}
+    >
       {user !== null && isAuth && (
         <HoverCard
           openDelay={200}
           closeDelay={200}
+          defaultOpen={
+            isShow ? true : false
+          }
         >
           <HoverCardTrigger asChild>
             <div className="flex justify-center items-center gap-2">
               <User className="w-8 h-8" />
               <p className="font-bold w-[120px] capitalize truncate">
-                {user?.sub}
+                {user?.username}
               </p>
             </div>
           </HoverCardTrigger>
-          <HoverCardContent className="w-[140px] px-0 py-2">
+          <HoverCardContent
+            className={`${
+              isShow && "shadow-none"
+            } w-[140px] px-0 py-2`}
+          >
             <div
               className="hover:bg-slate-100 text-red-500 font-semibold text-center"
               onClick={() => {
