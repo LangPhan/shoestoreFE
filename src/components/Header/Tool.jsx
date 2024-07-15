@@ -26,7 +26,7 @@ const Tool = () => {
     calcCartTotal();
   }, []);
   return (
-    <div className="flex items-center justify-between gap-5">
+    <div className="flex items-center justify-between gap-4">
       <div className="relative hover:cursor-pointer">
         <Link to={"/cart"}>
           <ShoppingCart />

@@ -46,8 +46,8 @@ const Profile = ({ isShow }) => {
         >
           <HoverCardTrigger asChild>
             <div className="flex justify-center items-center gap-2">
-              <User className="w-8 h-8" />
-              <p className="font-bold w-[120px] capitalize truncate">
+              <User className="min-w-8 min-h-8" />
+              <p className="font-semibold max-w-[120px] capitalize truncate">
                 {user?.username}
               </p>
             </div>

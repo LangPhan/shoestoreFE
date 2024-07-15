@@ -19,7 +19,7 @@ export const navList = [
 const Navbar = () => {
   return (
     <nav className="hidden md:block h-full w-full">
-      <ul className="flex w-full h-full gap-1 justify-center items-center">
+      <ul className="flex w-full h-full px-2 gap-1 justify-center items-center">
         {navList.map((nav) => {
           return (
             <NavLink
@@ -28,7 +28,7 @@ const Navbar = () => {
               }) =>
                 `min-w-[120px] text-center hover:text-main hover:font-semibold hover:bg-slate-200 transition-all rounded-3xl px-6 py-2 ${
                   isActive &&
-                  "text-main"
+                  "text-main font-semibold"
                 }`
               }
               key={v4()}

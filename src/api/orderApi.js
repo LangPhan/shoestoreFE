@@ -28,9 +28,7 @@ export const orderApi = {
       throw error;
     }
   },
-};
 
-export const orderApi = {
   createNewOder: async (accessToken, orderDetail) => {
     try {
       const res = await axiosClient.post("order/create", orderDetail, {
@@ -67,5 +65,6 @@ export const orderApi = {
       throw (error)
     }
   }
-}
+};
+
 
