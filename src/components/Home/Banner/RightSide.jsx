@@ -2,7 +2,7 @@ const RightSide = () => {
   return (
     <div className="relative w-1/2 group">
       <img
-        className="absolute -top-[60px] group-hover:rotate-[35deg] transition-transform duration-1000 group-hover:origin-center ease-in-out"
+        className="absolute -top-[60px] group-hover:rotate-[35deg] transition-transform duration-1000 group-hover:origin-center ease-in-out drop-shadow-2xl"
         src="src\assets\main.png"
         alt="Shoe Banner"
       />
@@ -15,10 +15,10 @@ const RightSide = () => {
       <div className="absolute right-1/2 w-6 h-6 bg-main rounded-full animate-ping-custom">
         <div className="absolute w-3 h-3 bg-slate-200 rounded-full translate-x-1/2 translate-y-1/2 animate-pulse-custom"></div>
       </div>
-      <div className="absolute bottom-0 w-6 h-6 bg-main rounded-full animate-ping-custom">
+      <div className="absolute bottom-0 left-5 w-6 h-6 bg-main rounded-full animate-ping-custom">
         <div className="absolute w-3 h-3 bg-slate-200 rounded-full translate-x-1/2 translate-y-1/2 animate-pulse-custom"></div>
       </div>
-      <div className="absolute bottom-0 right-0 w-6 h-6 bg-main rounded-full animate-ping-custom">
+      <div className="absolute bottom-0 right-5 w-6 h-6 bg-main rounded-full animate-ping-custom">
         <div className="absolute w-3 h-3 bg-slate-200 rounded-full translate-x-1/2 translate-y-1/2 animate-pulse-custom"></div>
       </div>
     </div>
