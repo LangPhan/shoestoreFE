@@ -22,6 +22,8 @@ import Options from "./components/Auth/Options.jsx";
 import { Orders } from "./components/Dashboard/index.jsx";
 import Products from "./components/Dashboard/Products/Products.jsx";
 import AdminPage from "./pages/AdminPage.jsx";
+import OrderPage from "./pages/OrderPage.jsx";
+import OrderStatus from "./components/Order/Status.jsx";
 
 function App() {
   //Create route for app
@@ -73,7 +75,28 @@ function App() {
             ></Route>
             <Route
               path="payment"
-              element={<CartPayment />}
+              element={
+                <RequireAuth
+                  roles={["USER"]}
+                >
+                  <CartPayment />
+                </RequireAuth>
+              }
+            ></Route>
+          </Route>
+          <Route
+            path="order"
+            element={
+              <RequireAuth
+                roles={["USER"]}
+              >
+                <OrderPage />
+              </RequireAuth>
+            }
+          >
+            <Route
+              path="status"
+              element={<OrderStatus />}
             ></Route>
           </Route>
         </Route>

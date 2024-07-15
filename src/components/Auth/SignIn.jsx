@@ -64,7 +64,7 @@ const SignIn = ({ setShowVerify }) => {
   };
 
   return (
-    <div className="mx-auto px-2   grid w-full gap-6">
+    <div className="mx-auto px-2 grid w-full gap-6">
       <div className="grid gap-2 text-center">
         <h1 className="text-3xl font-bold">
           Login

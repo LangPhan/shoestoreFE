@@ -15,14 +15,32 @@ import {
 } from "react-router-dom";
 import useCartStore from "@/stores/cartStore";
 import { convertConcurrency } from "@/lib/utils";
+import { memo, useState } from "react";
+import { useVoucher } from "@/hooks/useCart";
+import { v4 } from "uuid";
+import { ScrollArea } from "@radix-ui/react-scroll-area";
 
 const OrderSummary = () => {
   const currentState =
     useLocation().state?.name ||
     "Shopping Cart";
   const navigate = useNavigate();
-  const { totalAmount } =
-    useCartStore();
+
+  const {
+    totalAmount,
+    totalVoucher,
+    voucher: voucherSelected,
+    setVoucher: setVoucherSelected,
+    calcTotalVoucher,
+  } = useCartStore();
+  const { data: vouchers } =
+    useVoucher();
+
+  const handleDiscount = (value) => {
+    setVoucherSelected(value);
+    calcTotalVoucher();
+  };
+
   return (
     <div className="w-full mx-auto md:w-1/3 h-fit max-w-[350px] rounded-xl border-y-[12px] border-main shadow-2xl">
       <div className="h-[50px] flex justify-center items-center">
@@ -31,20 +49,63 @@ const OrderSummary = () => {
         </h3>
       </div>
       <div className="flex justify-center border-y-[1px] py-2">
-        <Select defaultValue="">
+        <Select
+          value={voucherSelected}
+          onValueChange={(value) =>
+            handleDiscount(value)
+          }
+        >
           <SelectTrigger className="w-[280px] justify-center gap-4">
-            <TicketPercent className="text-main -rotate-45" />
-            <p>Apply Coupons</p>
+            {voucherSelected ? (
+              <SelectValue
+                className="capitalize"
+                content={
+                  setVoucherSelected.name
+                }
+              />
+            ) : (
+              <>
+                <TicketPercent className="text-main -rotate-45" />
+                <p>Apply Coupons</p>
+              </>
+            )}
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>
-                North America
-              </SelectLabel>
-              <SelectItem value="est">
-                Eastern Standard Time
-                (EST)
-              </SelectItem>
+              <ScrollArea>
+                {vouchers &&
+                  vouchers.content.map(
+                    (voucher) => {
+                      if (
+                        Number(
+                          voucher.quantity
+                        ) > 0
+                      ) {
+                        return (
+                          <SelectItem
+                            className="capitalize flex"
+                            key={v4()}
+                            value={
+                              voucher
+                            }
+                          >
+                            <span>
+                              {
+                                voucher.name
+                              }
+                            </span>
+
+                            <span className="ml-2 text-xs text-foreground">
+                              {"-" +
+                                voucher.discountPercent +
+                                "%"}
+                            </span>
+                          </SelectItem>
+                        );
+                      }
+                    }
+                  )}
+              </ScrollArea>
             </SelectGroup>
           </SelectContent>
         </Select>
@@ -63,11 +124,15 @@ const OrderSummary = () => {
         </div>
         <div className="flex justify-between text-sm text-mainForeground">
           <p>Discount</p>
-          <p>$800</p>
+          <p></p>
         </div>
         <div className="flex justify-between text-sm text-mainForeground">
           <p>Coupon Discount </p>
-          <p>$800</p>
+          <p>
+            {convertConcurrency(
+              totalVoucher
+            )}
+          </p>
         </div>
         <div className="flex justify-between text-sm text-mainForeground">
           <p>Shipping Fee </p>
@@ -77,7 +142,7 @@ const OrderSummary = () => {
           <p>Total Amount </p>
           <p>
             {convertConcurrency(
-              totalAmount
+              totalAmount - totalVoucher
             )}
           </p>
         </div>
@@ -87,7 +152,11 @@ const OrderSummary = () => {
             <Button
               className="w-full"
               onClick={() =>
-                navigate("address")
+                navigate("address", {
+                  state: {
+                    name: "Shipping Address",
+                  },
+                })
               }
             >
               PLACE ORDER
@@ -99,4 +168,4 @@ const OrderSummary = () => {
   );
 };
 
-export default OrderSummary;
+export default memo(OrderSummary);

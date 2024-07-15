@@ -8,7 +8,7 @@ import {
 
 const RequireAuth = ({
   children,
-  roles,
+  roles = [],
 }) => {
   const navigate = useNavigate();
   const location = useLocation();

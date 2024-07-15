@@ -27,8 +27,9 @@ const RootPage = () => {
   const refreshToken =
     token?.refreshToken;
   const {
+    data: userInfo,
     isSuccess,
-    isError,
+    isError: isAccessTokenInvalid,
     error,
     isFetching,
   } = useGetUser({
@@ -41,7 +42,7 @@ const RootPage = () => {
   useEffect(() => {
     setFetching(isFetching);
     if (isSuccess) {
-      setUser(accessToken);
+      setUser(userInfo);
     }
   }, [isSuccess, isFetching]);
 
@@ -49,7 +50,7 @@ const RootPage = () => {
   const { mutate } = useRefreshToken();
   useEffect(() => {
     if (
-      isError &&
+      isAccessTokenInvalid &&
       error.status === 401
     ) {
       mutate(refreshToken);

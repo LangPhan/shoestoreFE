@@ -29,3 +29,43 @@ export const orderApi = {
     }
   },
 };
+
+export const orderApi = {
+  createNewOder: async (accessToken, orderDetail) => {
+    try {
+      const res = await axiosClient.post("order/create", orderDetail, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
+      return res
+    } catch (error) {
+      throw (error)
+    }
+  },
+  createNewPayment: async (accessToken, orderInfo) => {
+    try {
+      const res = await axiosClient.post(`payment/submitOrder?orderId=${orderInfo.orderId}`, {}, {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+        }
+      })
+      return res
+    } catch (error) {
+      throw (error)
+    }
+  },
+  updatePaidStatus: async (accessToken, orderId) => {
+    try {
+      const res = await axiosClient.put("order/update-payment/" + orderId, {}, {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+        }
+      })
+      return res
+    } catch (error) {
+      throw (error)
+    }
+  }
+}
+

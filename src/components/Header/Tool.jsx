@@ -53,7 +53,7 @@ const Tool = () => {
           <NavMobile />
         </SheetContent>
       </Sheet>
-      <Profile />
+      <Profile isShow={false} />
     </div>
   );
 };

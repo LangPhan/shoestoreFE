@@ -19,12 +19,24 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
+export function getAccessToken() {
+  return JSON.parse(
+    localStorage.getItem("token")
+  )?.accessToken;
+}
+
 export function convertConcurrency(price) {
   const USDollar = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
   });
   return USDollar.format(price);
+}
+export function formatCurrencyVND(amount) {
+  return new Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  }).format(amount);
 }
 
 export function convertQueryString(queryString) {
@@ -76,3 +88,38 @@ export const handleColorList = (color) => {
     return MUSTARD_YELLOW;
   }
 };
+
+export const convertToDate = (str) => {
+  const year = str.substring(0, 4);
+  const month = str.substring(4, 6);
+  const day = str.substring(6, 8);
+  const hour = str.substring(8, 10);
+  const minute = str.substring(
+    10,
+    12
+  );
+  const second = str.substring(
+    12,
+    14
+  );
+
+  // Creating a new Date object
+  const date = new Date(
+    `${year}-${month}-${day}T${hour}:${minute}:${second}`
+  );
+
+  // Formatting to "dd/mm/yyyy hh:mm:ss"
+  const formattedDate =
+    date.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+    });
+
+  return formattedDate;
+};
+

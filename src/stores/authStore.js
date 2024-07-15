@@ -1,4 +1,3 @@
-import { jwtDecode } from "jwt-decode"
 import { create } from "zustand"
 
 
@@ -6,22 +5,21 @@ import { create } from "zustand"
 const authStore = create((set, get) => ({
   isAuth: false,
   user: null,
-  isFetching: false,
+  isFetching: true,
   setFetching: (state) => {
     set({ isFetching: state })
   },
   login: (token) => {
     localStorage.setItem("token", JSON.stringify(token))
     set({ isAuth: true })
-    return set({ user: jwtDecode(token.accessToken) })
   },
   logout: () => {
     localStorage.removeItem("token")
     set({ isAuth: false, user: null })
   },
-  setUser: (accessToken) => {
+  setUser: (userInfo) => {
     set({ isAuth: true })
-    set({ user: jwtDecode(accessToken) })
+    set({ user: userInfo })
     set({ isFetching: false })
   },
 }))
