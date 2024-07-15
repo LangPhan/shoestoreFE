@@ -4,7 +4,7 @@ const Banner = () => {
       <img
         className="absolute inset-0 object-contain w-full h-full"
         src="../product-banner.jpg"
-        alt=""
+        alt="shoe-banner"
       />
       <div className="flex items-center justify-center h-full bg-black opacity-40">
         <h2 className="font-bold text-white uppercase select-none text-mt">

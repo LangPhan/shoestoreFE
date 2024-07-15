@@ -24,6 +24,7 @@ import Products from "./components/Dashboard/Products/Products.jsx";
 import AdminPage from "./pages/AdminPage.jsx";
 import OrderPage from "./pages/OrderPage.jsx";
 import OrderStatus from "./components/Order/Status.jsx";
+import Home from "./components/Home/index.jsx";
 
 function App() {
   //Create route for app
@@ -38,6 +39,11 @@ function App() {
           path=""
           element={<HomePage />}
         >
+          <Route
+            index
+            path="/"
+            element={<Home />}
+          ></Route>
           <Route
             path="/about"
             element={<AboutPage />}
