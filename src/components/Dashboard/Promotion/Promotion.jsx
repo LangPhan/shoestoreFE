@@ -10,8 +10,6 @@ import {
 } from "@/components/ui/table";
 import { Fragment, useEffect, useState } from "react";
 import { convertConcurrency } from "@/lib/utils";
-import ProductForm from "./ProductForm";
-import { productAdminApi } from "@/api/productAdminApi";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -23,49 +21,50 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { toast } from "react-toastify";
-import { useQueryClient } from "@tanstack/react-query";
+import PromotionForm from "./PromotionForm";
 
-const Product = ({ product, ...props }) => {
+const Promotion = ({ promotion, ...props }) => {
   const {
     name,
-    price,
-    quantity,
-    imgLink,
-    category: { name: categoryName },
-    id: productId,
-  } = product;
+    discountPercent,
+    expiredDate,
+    startedDate,
+    active,
+    id: promotionId,
+  } = promotion;
   const accessToken = JSON.parse(localStorage.getItem("token")).accessToken;
-  const queryClient = useQueryClient();
 
-  const handleDeleteProduct = async (productId) => {
-    debugger;
-    await productAdminApi.deleteProduct({
-      accessToken,
-      productId,
-    });
-    toast.success("Delete product successfully!");
-    queryClient.invalidateQueries({ queryKey: ["product-list-admin"] });
+  const handleDeletePromotion = async (promotionId) => {
+    // await productAdminApi.deleteProduct({
+    //   accessToken,
+    //   productId,
+    // });
   };
 
   return (
     <Fragment>
       <TableRow className="cursor-pointer">
-        <TableCell className="hidden sm:table-cell">
-          <img src={imgLink} className="object-cover w-full h-full"></img>
+        <TableCell className="font-medium truncate max-w-[100px]">
+          {name}
         </TableCell>
-        <TableCell className="font-medium truncate">{name}</TableCell>
         <TableCell>
-          <Badge variant="outline">Active</Badge>
+          <Badge
+            className={active ? "bg-green-500 text-white" : ""}
+            variant={active ? "outline" : "destructive"}
+          >
+            {active ? "True" : "False"}
+          </Badge>
         </TableCell>
         <TableCell className="hidden md:table-cell">
-          {convertConcurrency(price)}
+          {discountPercent}
         </TableCell>
-        <TableCell className="hidden md:table-cell">{quantity}</TableCell>
-        <TableCell className="hidden md:table-cell">{categoryName}</TableCell>
+        <TableCell className="hidden md:table-cell">
+          {`${startedDate[2]}/${startedDate[1]}/${startedDate[0]}`}
+        </TableCell>
+        <TableCell className="hidden md:table-cell">{`${expiredDate[2]}/${expiredDate[1]}/${expiredDate[0]}`}</TableCell>
         <TableCell>
-          <ProductForm productId={productId}></ProductForm>
-          <AlertDialog>
+          <PromotionForm promotionId={promotionId}></PromotionForm>
+          {/* <AlertDialog>
             <AlertDialogTrigger className="ml-2">
               <Button>Delete</Button>
             </AlertDialogTrigger>
@@ -74,23 +73,23 @@ const Product = ({ product, ...props }) => {
                 <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                 <AlertDialogDescription>
                   This action cannot be undone. This will permanently delete
-                  your product and remove your data from our servers.
+                  your promotion and remove your data from our servers.
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
                 <AlertDialogAction
-                  onClick={() => handleDeleteProduct(productId)}
+                  onClick={() => handleDeletePromotion(promotionId)}
                 >
                   Delete
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
-          </AlertDialog>
+          </AlertDialog> */}
         </TableCell>
       </TableRow>
     </Fragment>
   );
 };
 
-export default Product;
+export default Promotion;

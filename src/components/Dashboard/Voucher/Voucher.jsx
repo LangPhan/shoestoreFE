@@ -9,9 +9,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Fragment, useEffect, useState } from "react";
-import { convertConcurrency } from "@/lib/utils";
-import ProductForm from "./ProductForm";
-import { productAdminApi } from "@/api/productAdminApi";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -23,48 +20,60 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import VoucherForm from "./VoucherForm";
+import { voucherAdminApi } from "@/api";
 import { toast } from "react-toastify";
-import { useQueryClient } from "@tanstack/react-query";
 
-const Product = ({ product, ...props }) => {
+const Voucher = ({ voucher, ...props }) => {
   const {
     name,
-    price,
+    discountPercent,
+    expired_date,
+    create_date,
     quantity,
-    imgLink,
-    category: { name: categoryName },
-    id: productId,
-  } = product;
+    active,
+    deleted,
+    id: voucherId,
+  } = voucher;
   const accessToken = JSON.parse(localStorage.getItem("token")).accessToken;
-  const queryClient = useQueryClient();
 
-  const handleDeleteProduct = async (productId) => {
-    debugger;
-    await productAdminApi.deleteProduct({
-      accessToken,
-      productId,
-    });
-    toast.success("Delete product successfully!");
-    queryClient.invalidateQueries({ queryKey: ["product-list-admin"] });
+  const handleDeleteVoucher = async (voucherId) => {
+    await voucherAdminApi.deleteVoucherDetail({ accessToken, voucherId });
+    toast.success("Delete voucher successfully!");
   };
 
   return (
     <Fragment>
       <TableRow className="cursor-pointer">
-        <TableCell className="hidden sm:table-cell">
-          <img src={imgLink} className="object-cover w-full h-full"></img>
-        </TableCell>
         <TableCell className="font-medium truncate">{name}</TableCell>
-        <TableCell>
-          <Badge variant="outline">Active</Badge>
+        <TableCell>{discountPercent}</TableCell>
+        <TableCell className="hidden md:table-cell">
+          {`${create_date[2]}/${create_date[1]}/${create_date[0]}`}
         </TableCell>
         <TableCell className="hidden md:table-cell">
-          {convertConcurrency(price)}
+          {`${expired_date[2]}/${expired_date[1]}/${expired_date[0]}`}
         </TableCell>
         <TableCell className="hidden md:table-cell">{quantity}</TableCell>
-        <TableCell className="hidden md:table-cell">{categoryName}</TableCell>
+        <TableCell className="hidden md:table-cell">
+          <Badge
+            className={active ? "bg-green-500 text-white" : ""}
+            variant={active ? "outline" : "destructive"}
+          >
+            {active ? "True" : "False"}
+          </Badge>
+        </TableCell>
+        <TableCell className="hidden md:table-cell">
+          <Badge
+            className={
+              deleted ? "bg-green-500 text-white" : "bg-red-500 text-white"
+            }
+            variant={deleted ? "destructive" : "outline"}
+          >
+            {deleted ? "True" : "False"}
+          </Badge>
+        </TableCell>
         <TableCell>
-          <ProductForm productId={productId}></ProductForm>
+          <VoucherForm voucherId={voucherId}></VoucherForm>
           <AlertDialog>
             <AlertDialogTrigger className="ml-2">
               <Button>Delete</Button>
@@ -74,13 +83,13 @@ const Product = ({ product, ...props }) => {
                 <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                 <AlertDialogDescription>
                   This action cannot be undone. This will permanently delete
-                  your product and remove your data from our servers.
+                  your voucher and remove your data from our servers.
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
                 <AlertDialogAction
-                  onClick={() => handleDeleteProduct(productId)}
+                  onClick={() => handleDeleteVoucher(voucherId)}
                 >
                   Delete
                 </AlertDialogAction>
@@ -93,4 +102,4 @@ const Product = ({ product, ...props }) => {
   );
 };
 
-export default Product;
+export default Voucher;

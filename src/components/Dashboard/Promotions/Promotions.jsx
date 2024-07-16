@@ -59,13 +59,15 @@ import { v4 } from "uuid";
 import { useProductAdminList } from "@/hooks/useProductAdmin";
 import { Skeleton } from "@/components/ui/skeleton";
 import Spinner from "@/components/ui/spinner";
-import ProductForm from "../Product/ProductForm";
-import ImageUpload from "../Form/ImageUpload";
+import React from "react";
+import { usePromotionAdminList } from "@/hooks/usePromotionAdmin";
+import Promotion from "../Promotion/Promotion";
+import PromotionForm from "../Promotion/PromotionForm";
 
-const Products = () => {
+const Promotions = () => {
   const accessToken = JSON.parse(localStorage.getItem("token")).accessToken;
 
-  const { data: productList, isLoading } = useProductAdminList({
+  const { data: promotionList, isLoading } = usePromotionAdminList({
     accessToken,
   });
 
@@ -107,7 +109,7 @@ const Products = () => {
                 className="flex items-center gap-4 px-2.5 text-foreground"
               >
                 <Package className="w-5 h-5" />
-                Products
+                Promotions
               </Link>
               <Link
                 href="#"
@@ -136,12 +138,12 @@ const Products = () => {
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
-                <Link href="#">Products</Link>
+                <Link href="#">Promotions</Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>All Products</BreadcrumbPage>
+              <BreadcrumbPage>All Promotions</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
@@ -213,7 +215,7 @@ const Products = () => {
                   Export
                 </span>
               </Button>
-              <ProductForm isAddProduct={true}></ProductForm>
+              <PromotionForm isAddPromotion={true}></PromotionForm>
             </div>
           </div>
           {isLoading && (
@@ -227,26 +229,21 @@ const Products = () => {
             <TabsContent value="all">
               <Card x-chunk="dashboard-06-chunk-0">
                 <CardHeader>
-                  <CardTitle>Products</CardTitle>
-                  <CardDescription>Manage your products.</CardDescription>
+                  <CardTitle>Promotions</CardTitle>
+                  <CardDescription>Manage your promotions.</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="hidden w-[100px] sm:table-cell">
-                          <span className="sr-only">Image</span>
-                        </TableHead>
                         <TableHead>Name</TableHead>
-                        <TableHead>Status</TableHead>
+                        <TableHead>Active</TableHead>
+                        <TableHead>Discount Percent</TableHead>
                         <TableHead className="hidden md:table-cell">
-                          Price
+                          Start Date
                         </TableHead>
                         <TableHead className="hidden md:table-cell">
-                          Quantity
-                        </TableHead>
-                        <TableHead className="hidden md:table-cell">
-                          Category
+                          Expired Date
                         </TableHead>
                         <TableHead>
                           <span className="sr-only">Actions</span>
@@ -254,16 +251,22 @@ const Products = () => {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {productList &&
-                        productList.content &&
-                        productList.content.length > 0 &&
-                        productList.content.map((product) => (
-                          <Product key={v4()} product={product}></Product>
+                      {promotionList &&
+                        promotionList.length > 0 &&
+                        promotionList.map((promotion) => (
+                          <Promotion
+                            key={v4()}
+                            promotion={promotion}
+                          ></Promotion>
                         ))}
                     </TableBody>
                   </Table>
                 </CardContent>
                 <CardFooter>
+                  {/* <div className="text-xs text-muted-foreground">
+                    Showing <strong>1-10</strong> of <strong>32</strong>{" "}
+                    promotions
+                  </div> */}
                 </CardFooter>
               </Card>
             </TabsContent>
@@ -274,4 +277,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Promotions;

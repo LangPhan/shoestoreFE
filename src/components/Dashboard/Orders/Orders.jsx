@@ -56,7 +56,9 @@ import { Fragment, useEffect, useState } from "react";
 import { useOrderList } from "@/hooks/useOrderAdmin";
 import OrderDetail from "../OrderDetail/OrderDetail";
 import { Skeleton } from "@/components/ui/skeleton";
-import Spinner from "@/components/ui/spinner";
+import Spinner from "@/components/ui/spinner"; 
+import exportApi from "@/api/exportApi";
+import { CsvBuilder } from "filefy";
 
 const Orders = () => {
   const accessToken = JSON.parse(localStorage.getItem("token")).accessToken;
@@ -76,6 +78,20 @@ const Orders = () => {
 
   const handleOrderDetail = (orderId) => {
     setCurrentOrderDetail(orderId);
+  };
+
+  const exportOrderApi = async () => {
+    debugger;
+    const result = await exportApi.exportOrders({ accessToken });
+    const columns = result.slice(0, result.indexOf("\n")).split(",");
+    const rows = result
+      .split("\n")
+      .map((item) => item.split(","))
+      .slice(1);
+    const csvBuilder = new CsvBuilder("order_list.csv")
+      .setColumns(columns)
+      .addRows(rows)
+      .exportFile();
   };
 
   return (
@@ -275,6 +291,7 @@ const Orders = () => {
                       size="sm"
                       variant="outline"
                       className="gap-1 text-sm h-7"
+                      onClick={() => exportOrderApi()}
                     >
                       <File className="h-3.5 w-3.5" />
                       <span className="sr-only sm:not-sr-only">Export</span>
