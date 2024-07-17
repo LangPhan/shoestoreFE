@@ -123,3 +123,34 @@ export const convertToDate = (str) => {
   return formattedDate;
 };
 
+export function adjustTextareaHeight(event) {
+  const textarea = event.target;
+  textarea.style.height = "auto"; // Reset height to auto to get the correct new height
+  textarea.style.height = `${textarea.scrollHeight}px`; // Set the height to scroll height
+  const minHeight = 20; // Minimum height for the textarea, adjust as needed
+  if (
+    textarea.scrollHeight <
+    textarea.clientHeight
+  ) {
+    textarea.style.height = `${minHeight}px`; // Temporarily shrink to force recalculation
+    textarea.style.height = `${Math.max(
+      textarea.scrollHeight,
+      minHeight
+    )}px`; // Adjust to new content or minHeight
+  }
+
+  // Apply overflow:hidden when height is less than 100px
+  if (textarea.clientHeight < 100) {
+    textarea.style.overflow =
+      "hidden";
+  } else {
+    textarea.style.overflow =
+      "scroll"; // or "auto" if you prefer
+  }
+}
+
+export function getJsonRecommend(data) {
+  return data?.candidates[0]?.content
+    .parts[0]
+    .jsonRecommendReturnType;
+}

@@ -17,6 +17,7 @@ import Logo from "./Logo";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import Profile from "./Profile";
+import AskAI from "../AskAI";
 
 const Tool = () => {
   const { totalItems, calcCartTotal } =
@@ -53,6 +54,7 @@ const Tool = () => {
           <NavMobile />
         </SheetContent>
       </Sheet>
+      <AskAI />
       <Profile isShow={false} />
     </div>
   );
