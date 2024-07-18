@@ -25,6 +25,7 @@ const AskAI = () => {
     useAI.postQuestion();
   const [messages, setMessages] =
     useState([]);
+  console.log(messages);
   return (
     <Dialog className="max-w-screen">
       <DialogTrigger asChild>
@@ -56,6 +57,9 @@ const AskAI = () => {
                       }
                       data={
                         message.text
+                      }
+                      image={
+                        message.image
                       }
                     />
                   );

@@ -1,9 +1,11 @@
+import { memo } from "react";
+
 const RightSide = () => {
   return (
     <div className="relative w-1/2 group">
       <img
         className="absolute -top-[60px] group-hover:rotate-[35deg] transition-transform duration-1000 group-hover:origin-center ease-in-out drop-shadow-2xl"
-        src="src\assets\main.png"
+        src="https://github.com/LangPhan/shoestoreFE/blob/dev/src/assets/main.png?raw=true"
         alt="Shoe Banner"
       />
       <div className="absolute left-5 top-16 w-6 h-6 bg-main rounded-full animate-ping-custom">
@@ -25,4 +27,4 @@ const RightSide = () => {
   );
 };
 
-export default RightSide;
+export default memo(RightSide);

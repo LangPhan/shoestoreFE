@@ -30,7 +30,6 @@ const InputField = ({
   const onChange = (imageList) => {
     setImages(imageList);
   };
-
   const handleSubmit = () => {
     const userInput =
       textAreaRef.current?.value.trim();
@@ -41,30 +40,23 @@ const InputField = ({
         {
           text: userInput,
           isAi: false,
+          image:
+            images.length > 0
+              ? images[0]["data_url"]
+              : null,
         },
       ]);
-      const questions =
-        !images.length > 0
-          ? {
-              contents: [
-                {
-                  role: "user",
-                  parts: [
-                    {
-                      text: userInput,
-                    },
-                  ],
-                },
-              ],
-            }
-          : {
-              contents: [
-                {
-                  role: "user",
-                  parts: [
-                    {
-                      text: userInput,
-                    },
+      const questions = {
+        contents: [
+          {
+            role: "user",
+            parts: [
+              {
+                text: userInput,
+              },
+              ...(!images.length
+                ? []
+                : [
                     {
                       inline_data: {
                         data: images[0].data_url.split(
@@ -75,10 +67,11 @@ const InputField = ({
                             .type,
                       },
                     },
-                  ],
-                },
-              ],
-            };
+                  ]),
+            ],
+          },
+        ],
+      };
 
       askAIMutation.mutate(questions, {
         onSuccess: (data) => {
@@ -96,6 +89,7 @@ const InputField = ({
         },
       });
     }
+    setImages([]);
     textAreaRef.current.value = "";
   };
 

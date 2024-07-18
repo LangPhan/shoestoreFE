@@ -6,7 +6,11 @@ import {
 import { memo } from "react";
 import RecommendList from "./RecommendList";
 
-const Message = ({ isAI, data }) => {
+const Message = ({
+  isAI,
+  data,
+  image,
+}) => {
   return (
     <div
       className={`flex py-2 h-full items-start ${
@@ -54,7 +58,16 @@ const Message = ({ isAI, data }) => {
             ) : null}
           </>
         ) : (
-          data
+          <>
+            {image ? (
+              <img
+                width={120}
+                src={image}
+                alt="Image ne"
+              />
+            ) : null}
+            {data}
+          </>
         )}
       </div>
     </div>
