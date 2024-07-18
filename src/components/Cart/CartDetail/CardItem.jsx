@@ -12,12 +12,7 @@ import {
   DialogClose,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+
 import { toast } from "react-toastify";
 
 const CardItem = ({
@@ -139,7 +134,7 @@ const CardItem = ({
         </Button>
       </div>
       <div className="max-w-full w-full h-full flex items-center">
-        <p className="w-full whitespace-normal truncate">
+        <p className="w-full text-center whitespace-normal truncate">
           {convertConcurrency(total)}
         </p>
       </div>

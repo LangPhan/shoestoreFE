@@ -25,6 +25,7 @@ import AdminPage from "./pages/AdminPage.jsx";
 import OrderPage from "./pages/OrderPage.jsx";
 import OrderStatus from "./components/Order/Status.jsx";
 import Home from "./components/Home/index.jsx";
+import Order from "./components/Order/index.jsx";
 
 function App() {
   //Create route for app
@@ -100,6 +101,11 @@ function App() {
               </RequireAuth>
             }
           >
+            <Route
+              path=""
+              index
+              element={<Order />}
+            ></Route>
             <Route
               path="status"
               element={<OrderStatus />}

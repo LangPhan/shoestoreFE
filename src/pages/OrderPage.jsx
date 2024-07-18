@@ -1,9 +1,9 @@
-import Order from "@/components/Order";
+import { Outlet } from "react-router-dom";
 
 const OrderPage = () => {
   return (
-    <section className="container-main">
-      <Order />
+    <section>
+      <Outlet />
     </section>
   );
 };

@@ -4,7 +4,7 @@ import Banner from "@/components/Products/Banner";
 const ProductPage = () => {
   return (
     <div className="scrollable">
-      <Banner />
+      <Banner name={"Product"} />
       <Products />
     </div>
   );

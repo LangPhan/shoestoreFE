@@ -1,4 +1,4 @@
-const Banner = () => {
+const Banner = ({ name }) => {
   return (
     <section className="relative bg-white w-full h-[350px] object-fill object-center">
       <img
@@ -8,7 +8,7 @@ const Banner = () => {
       />
       <div className="flex items-center justify-center h-full bg-black opacity-40">
         <h2 className="font-bold text-white uppercase select-none text-mt">
-          Product
+          {name}
         </h2>
       </div>
     </section>
