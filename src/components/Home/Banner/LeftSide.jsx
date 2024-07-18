@@ -2,20 +2,20 @@ import { Button } from "@/components/ui/button";
 
 const LeftSide = () => {
   return (
-    <div className="w-1/2 flex justify-center">
-      <div className="min-w-[415px] w-full">
-        <div className="font-extrabold text-8xl leading-tight tracking-wider select-none drop-shadow-lg">
-          <div className="h-full w-full">
+    <div className="md:w-1/2 flex justify-center overflow-hidden">
+      <div className="relative w-full">
+        <div className="font-extrabold text-6xl lg:text-8xl leading-tight tracking-wider select-none drop-shadow-lg">
+          <div className="h-full">
             <span>Sh</span>
-            <span className="inline-block py-[14px] px-[72px] border-main border-[12px] rounded-3xl"></span>
+            <span className="inline-block py-[12px] lg:py-[14px] px-[64px] lg:px-[72px] border-main border-[12px] rounded-3xl"></span>
             <span className="ml-1">
               es
             </span>
           </div>
           <span>Collect !</span>
         </div>
-        <div className="flex gap-4 my-5">
-          <p className="text-mc text-mainForeground max-w-[250px]">
+        <div className="flex flex-col max-w-[480px] lg:flex-row gap-4 my-5">
+          <p className="text-md lg:text-mc text-mainForeground lg:max-w-[300px]">
             Discover our stylish and
             comfortable shoes, perfect
             for every occasion and need.

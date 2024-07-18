@@ -83,7 +83,7 @@ const OrderStatus = () => {
   }, [status]);
 
   return (
-    <div className="h-screen place-content-center">
+    <div className="relative h-screen place-content-center">
       <Card className="w-full md:w-[450px] mx-auto flex justify-center flex-col items-center">
         <CardHeader>
           <CardTitle className="mx-auto">
@@ -148,6 +148,18 @@ const OrderStatus = () => {
           </Button>
         </CardFooter>
       </Card>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2">
+        <dotlottie-player
+          src="https://lottie.host/e48ee5d9-b006-445b-93d4-32db880157a8/zcnQoCCrNC.json"
+          background="transparent"
+          speed="1"
+          style={{
+            width: "500px",
+            height: "500px",
+          }}
+          autoplay
+        ></dotlottie-player>
+      </div>
     </div>
   );
 };

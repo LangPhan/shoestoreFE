@@ -17,7 +17,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import InputField from "./InputField";
 import Message from "./Message";
 import useAI from "@/hooks/useAI";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { v4 } from "uuid";
 
 const AskAI = () => {
@@ -25,7 +25,6 @@ const AskAI = () => {
     useAI.postQuestion();
   const [messages, setMessages] =
     useState([]);
-  console.log(messages);
   return (
     <Dialog className="max-w-screen">
       <DialogTrigger asChild>
@@ -93,4 +92,4 @@ const AskAI = () => {
   );
 };
 
-export default AskAI;
+export default memo(AskAI);
