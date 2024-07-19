@@ -154,3 +154,14 @@ export function getJsonRecommend(data) {
     .parts[0]
     .jsonRecommendReturnType;
 }
+
+export function scrollToRef(ref) {
+  // Check if the ref and its current property exist
+  if (ref && ref.current) {
+    // Use the scrollIntoView method with smooth behavior for smooth scrolling
+    ref.current.scrollIntoView(
+      { behavior: "smooth", block: "start" }
+    );
+  }
+}
+

@@ -18,8 +18,11 @@ import {
   useCreateNewPayment,
 } from "@/hooks/useOrder";
 import { getAccessToken } from "@/lib/utils";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const CartPayment = () => {
+  const navigate = useNavigate();
   const {
     cart,
     totalVoucher,
@@ -88,6 +91,10 @@ const CartPayment = () => {
               }
             );
           } else {
+            navigate("/order");
+            toast.success(
+              "Order successfully!"
+            );
             clearCart();
           }
         },

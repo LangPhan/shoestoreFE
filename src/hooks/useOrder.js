@@ -2,6 +2,12 @@ import { orderApi } from "@/api"
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { toast } from "react-toastify"
 
+export const useGetOrderByUser = ({ accessToken, pageNo }) => {
+  return useQuery({
+    queryKey: ["getOrderByUser", accessToken, pageNo],
+    queryFn: orderApi.getOrderByPage
+  })
+}
 
 export const useCreateNewOrder = () => {
   return useMutation({

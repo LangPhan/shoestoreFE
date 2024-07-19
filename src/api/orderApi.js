@@ -64,6 +64,19 @@ export const orderApi = {
     } catch (error) {
       throw (error)
     }
+  },
+  getOrderByPage: ({ queryKey }) => {
+    const [, accessToken, pageNo] = queryKey
+    try {
+      const res = axiosClient.get("order?pageSize=5&sortDirection=desc&sortBy=createDate" + `&pageNo=${pageNo}`, {
+        headers: {
+          Authorization: "Bearer " + accessToken
+        }
+      })
+      return res
+    } catch (error) {
+      throw (error)
+    }
   }
 };
 

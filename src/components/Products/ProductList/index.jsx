@@ -6,12 +6,25 @@ import { v4 } from "uuid";
 import { useProduct } from "@/hooks/useProduct";
 import { toast } from "react-toastify";
 import useProductStore from "@/stores/productStore";
-import { useEffect } from "react";
+import {
+  useEffect,
+  useRef,
+} from "react";
 import Spinner from "@/components/ui/spinner";
 import Empty from "./Empty";
+import { scrollToRef } from "@/lib/utils";
 
-const ProductList = ({ isGirdLayout }) => {
-  const { category, sort, filter, page, setPage } = useProductStore();
+const ProductList = ({
+  isGirdLayout,
+  checkPointRef,
+}) => {
+  const {
+    category,
+    sort,
+    filter,
+    page,
+    setPage,
+  } = useProductStore();
 
   const {
     data: products,
@@ -29,9 +42,11 @@ const ProductList = ({ isGirdLayout }) => {
   useEffect(() => {
     if (isFetched && products) {
       setPage({
-        pageNo: products.pageable.pageNumber,
+        pageNo:
+          products.pageable.pageNumber,
         totalPages: products.totalPages,
       });
+      scrollToRef(checkPointRef);
     }
   }, [isFetched, products]);
 
@@ -45,7 +60,10 @@ const ProductList = ({ isGirdLayout }) => {
     );
   }
 
-  if (isFetched && products?.totalElements === 0) {
+  if (
+    isFetched &&
+    products?.totalElements === 0
+  ) {
     return <Empty />;
   }
 
@@ -66,39 +84,60 @@ const ProductList = ({ isGirdLayout }) => {
         {isGirdLayout ? (
           <>
             {products &&
-              products?.content?.map((product) => {
-                return (
-                  <ProductCard
-                    key={v4()}
-                    name={product?.name}
-                    price={product.price}
-                    sale={100}
-                    image={product.imgLink}
-                    categoryId={product?.category?.id}
-                  />
-                );
-              })}
+              products?.content?.map(
+                (product) => {
+                  return (
+                    <ProductCard
+                      key={v4()}
+                      name={
+                        product?.name
+                      }
+                      price={
+                        product.price
+                      }
+                      sale={100}
+                      image={
+                        product.imgLink
+                      }
+                      categoryId={
+                        product
+                          ?.category?.id
+                      }
+                    />
+                  );
+                }
+              )}
           </>
         ) : (
           <>
             {products &&
-              products?.content?.map((product) => {
-                return (
-                  <ProductHorizontalCard
-                    key={v4()}
-                    name={product?.name}
-                    price={product?.price}
-                    description={product?.description}
-                    image={product?.imgLink}
-                    sale={100}
-                  />
-                );
-              })}
+              products?.content?.map(
+                (product) => {
+                  return (
+                    <ProductHorizontalCard
+                      key={v4()}
+                      name={
+                        product?.name
+                      }
+                      price={
+                        product?.price
+                      }
+                      description={
+                        product?.description
+                      }
+                      image={
+                        product?.imgLink
+                      }
+                      sale={100}
+                    />
+                  );
+                }
+              )}
           </>
         )}
       </div>
       {products && (
-        <ProductPagination first={products.first} last={products.last} />
+        <ProductPagination />
       )}
     </>
   );

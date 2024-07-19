@@ -7,7 +7,7 @@ const Banner = ({ name }) => {
         alt="shoe-banner"
       />
       <div className="flex items-center justify-center h-full bg-black opacity-40">
-        <h2 className="font-bold text-white uppercase select-none text-mt">
+        <h2 className="font-bold text-white text-center uppercase select-none text-mt">
           {name}
         </h2>
       </div>

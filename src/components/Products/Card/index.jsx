@@ -58,7 +58,7 @@ const ProductCard = memo(
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <p className="text-mc max-w-[300px] sm:max-w-[140px] md:max-w-[120px] lg:max-w-[220px] max-h-[50px] truncate">
+                  <p className="text-mc max-w-[250px] sm:max-w-[140px] md:max-w-[120px] lg:max-w-[220px] max-h-[50px] truncate">
                     {name}
                   </p>
                 </TooltipTrigger>

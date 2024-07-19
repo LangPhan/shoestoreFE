@@ -1,6 +1,7 @@
 import {
   Suspense,
   lazy,
+  useRef,
   useState,
 } from "react";
 import Filter from "./Filters";
@@ -17,8 +18,12 @@ const Products = () => {
     isGirdLayout,
     setIsGridLayout,
   ] = useState(true);
+  const checkPointRef = useRef(null);
   return (
-    <div className="container-main md:grid grid-cols-4 gap-10 py-10">
+    <div
+      className="container-main md:grid grid-cols-4 gap-10 py-10"
+      ref={checkPointRef}
+    >
       <Filter
         isFilter={isFilter}
         setIsFilter={setIsFilter}
@@ -44,6 +49,9 @@ const Products = () => {
         <Suspense>
           <ProductList
             isGirdLayout={isGirdLayout}
+            checkPointRef={
+              checkPointRef
+            }
           />
         </Suspense>
       </div>

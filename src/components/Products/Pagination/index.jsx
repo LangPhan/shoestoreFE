@@ -1,7 +1,6 @@
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -9,10 +8,7 @@ import {
 } from "@/components/ui/pagination";
 import useProductStore from "@/stores/productStore";
 
-const ProductPagination = ({
-  first,
-  last,
-}) => {
+const ProductPagination = () => {
   const { page, setPage } =
     useProductStore();
   const handlePreviousPage = () => {
@@ -43,13 +39,10 @@ const ProductPagination = ({
             }
           >
             <PaginationPrevious
-              className={`${
+              className={`hover:cursor-pointer ${
                 page.pageNo === 0 &&
                 "opacity-20 cursor-not-allowed"
               }`}
-              {...(!first && {
-                href: "#checkpoint",
-              })}
             />
           </PaginationItem>
           <PaginationItem>
@@ -60,19 +53,14 @@ const ProductPagination = ({
               {page.pageNo + 1}
             </PaginationLink>
           </PaginationItem>
-          {/* <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem> */}
+
           <PaginationItem>
             <PaginationNext
-              className={`${
+              className={`hover:cursor-pointer ${
                 page.pageNo ===
                   page.totalPages - 1 &&
                 "opacity-20 cursor-not-allowed"
               }`}
-              {...(!last && {
-                href: "#checkpoint",
-              })}
               onClick={() =>
                 handleNextPage()
               }

@@ -58,12 +58,20 @@ const Profile = ({ isShow }) => {
             } w-[140px] px-0 py-2`}
           >
             <div
-              className="hover:bg-slate-100 text-red-500 font-semibold text-center"
+              className="hover:bg-slate-100  font-semibold text-center"
               onClick={() => {
                 navigate("/admin");
               }}
             >
               Manage
+            </div>
+            <div
+              className="hover:bg-slate-100 font-semibold text-center"
+              onClick={() =>
+                navigate("/order")
+              }
+            >
+              Order History
             </div>
             <div
               className="hover:bg-slate-100 text-red-500 font-semibold text-center"

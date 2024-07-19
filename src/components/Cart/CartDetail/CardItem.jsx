@@ -24,6 +24,7 @@ const CardItem = ({
   price,
   quantity,
   total,
+  isOrder = false,
 }) => {
   const {
     changeProductQuantity,
@@ -32,7 +33,12 @@ const CardItem = ({
   return (
     <div className="col relative font-bold w-full h-full border-[1px] rounded-lg border-slate-200 text-xs md:text-base min-h-[90px]">
       <Dialog>
-        <DialogTrigger asChild>
+        <DialogTrigger
+          className={`${
+            isOrder && "hidden"
+          }`}
+          asChild
+        >
           <div className="absolute w-6 h-6 flex items-center justify-center right-1 top-1 hover:bg-red-500 hover:rounded-full hover:cursor-pointer transition-all group">
             <X className="w-4 h-4 font-bold text-mainForeground group-hover:text-white" />
           </div>
@@ -115,7 +121,9 @@ const CardItem = ({
               id
             )
           }
-          disabled={quantity === 1}
+          disabled={
+            quantity === 1 || isOrder
+          }
         >
           -
         </Button>
@@ -123,6 +131,7 @@ const CardItem = ({
         <Button
           variant="ghost"
           className="h-2 w-2"
+          disabled={isOrder}
           onClick={() =>
             changeProductQuantity(
               "INCREASE",

@@ -139,7 +139,9 @@ const OrderStatus = () => {
         )}
         <CardFooter className="flex justify-between gap-2">
           <Button variant="outline">
-            Orders History
+            <Link to={"/order"}>
+              Orders History
+            </Link>
           </Button>
           <Button>
             <Link to={"/product"}>
