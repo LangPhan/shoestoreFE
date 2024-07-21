@@ -8,12 +8,16 @@ import {
   ThumbsUp,
 } from "lucide-react";
 import React, { useRef, useState } from "react";
-import { buttonVariants } from "../ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { loggedInUserData } from "@/constant/data";
-import { Textarea } from "../ui/textarea";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Link } from "react-router-dom";
 import { EmojiPicker } from "./EmojiPicker";
 
@@ -41,9 +45,6 @@ const ChatBottombar = ({ sendMessage, isMobile = false }) => {
   };
 
   const handleSend = () => {
-    let divElement = document.getElementById("footer");
-    divElement.scrollTop = divElement.scrollHeight;
-
     if (message.trim()) {
       const newMessage = {
         content: message.trim(),

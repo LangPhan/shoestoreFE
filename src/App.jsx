@@ -22,6 +22,7 @@ import Options from "./components/Auth/Options.jsx";
 import { Orders } from "./components/Dashboard/index.jsx";
 import Products from "./components/Dashboard/Products/Products.jsx";
 import AdminPage from "./pages/AdminPage.jsx";
+import ChatAdmin from "./components/Chat/Admin/ChatAdmin.jsx";
 
 function App() {
   //Create route for app
@@ -63,6 +64,7 @@ function App() {
         >
           <Route path="orders" element={<Orders />}></Route>
           <Route path="products" element={<Products />}></Route>
+          <Route path="chat" element={<ChatAdmin />}></Route>
         </Route>
       </Route>
     )

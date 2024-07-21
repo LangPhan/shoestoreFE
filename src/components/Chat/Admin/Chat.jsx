@@ -1,19 +1,16 @@
-import { userData } from "@/constant/data";
 import React, { useEffect, useState } from "react";
-import ChatTopbar from "./ChatTopbar";
-import ChatList from "./ChatList";
+import ChatTopbar from "../Component/ChatTopbar";
+import ChatList from "../Component/ChatList";
 import { messageApi } from "@/api/messageApi";
 import connectStompClient from "@/lib/stompClient";
-import { Skeleton } from "../ui/skeleton";
-import Spinner from "../ui/spinner";
+import { Skeleton } from "@/components/ui/skeleton";
+import Spinner from "@/components/ui/spinner";
 
-const Chat = ({ messages, selectedUser, isMobile = true }) => {
-  const [messagesState, setMessages] = useState(messages ? messages : []);
+const Chat = ({ selectedRoomChat, isMobile = true }) => {
+  const [messagesState, setMessages] = useState([]);
   const [client, setClient] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
   const accessToken = JSON.parse(localStorage.getItem("token")).accessToken;
-  const roomChatId = "ab12d22d-9a33-4d3e-87d7-f1962da5d6c9";
 
   const loggedUser = {
     id: "ab12d22d-9a33-4d3e-87d7-f1962da5d6c9",
@@ -26,7 +23,8 @@ const Chat = ({ messages, selectedUser, isMobile = true }) => {
   };
 
   const sendMessage = (newMessage) => {
-    debugger;
+    let roomChatId = selectedRoomChat?.id;
+
     const destination = `/app/${roomChatId}/sendMessage`;
     try {
       client?.publish({
@@ -39,6 +37,7 @@ const Chat = ({ messages, selectedUser, isMobile = true }) => {
   };
 
   const fetchMessages = async () => {
+    let roomChatId = selectedRoomChat?.id;
     setIsLoading(true);
     const messages = await messageApi.getMessageList({
       accessToken,
@@ -50,11 +49,11 @@ const Chat = ({ messages, selectedUser, isMobile = true }) => {
 
   useEffect(() => {
     fetchMessages();
-  }, []);
+  }, [selectedRoomChat]);
 
   useEffect(() => {
     const onConnect = (client) => {
-      client.subscribe(`/topic/${roomChatId}`, (message) => {
+      client.subscribe(`/topic/${selectedRoomChat?.id}`, (message) => {
         console.log("Received message:", message.body);
         try {
           const parsedMessage = JSON.parse(message.body);
@@ -80,7 +79,8 @@ const Chat = ({ messages, selectedUser, isMobile = true }) => {
         stompClient.deactivate();
       }
     };
-  }, []);
+  }, [selectedRoomChat]);
+
   return (
     <div className="flex flex-col justify-between w-full h-full">
       {isLoading ? (
@@ -91,7 +91,7 @@ const Chat = ({ messages, selectedUser, isMobile = true }) => {
         </Skeleton>
       ) : (
         <>
-          <ChatTopbar loggedUser={loggedUser} />
+          <ChatTopbar loggedUser={selectedRoomChat?.user} />
           <ChatList
             messages={messagesState}
             loggedUser={loggedUser}

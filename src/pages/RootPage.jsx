@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useGetUser, useRefreshToken } from "@/hooks/useAuth";
 import { useEffect } from "react";
 import authStore from "@/stores/authStore";
-import ChatAdmin from "@/components/ChatAdmin";
+import ChatAdmin from "@/components/Chat";
 
 const RootPage = () => {
   let token = {};

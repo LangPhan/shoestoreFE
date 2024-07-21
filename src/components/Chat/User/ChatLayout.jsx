@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/resizable";
 import { cn } from "@/lib/utils";
 import React from "react";
-import Chat from "./Chat";
+import Chat from "../Component/Chat";
 import { messageApi } from "@/api/messageApi";
 
 const ChatLayout = ({

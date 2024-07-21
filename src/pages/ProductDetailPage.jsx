@@ -14,7 +14,7 @@ import { useParams } from "react-router-dom";
 import { MAXIMUM_QUANTITY, MINIMUM_QUANTITY } from "@/constant";
 import { RelatedProduct, ProductImage } from "@/components/ProductDetail";
 import ProductContent from "@/components/ProductDetail/Content/ProductContent";
-import ChatAdmin from "@/components/ChatAdmin";
+import ChatAdmin from "@/components/Chat";
 
 const ProductDetailPage = () => {
   const [quantity, setQuantity] = useState(1);

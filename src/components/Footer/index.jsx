@@ -1,7 +1,7 @@
 import React from "react";
 import ActionFooter from "./Action";
 import NavigationFooter from "./Navigation";
-import ChatAdmin from "../ChatAdmin";
+import ChatUser from "../Chat/User/ChatUser";
 
 const Footer = () => {
   return (
@@ -18,7 +18,7 @@ const Footer = () => {
           </p>
         </div>
       </div>
-      <ChatAdmin></ChatAdmin>
+      <ChatUser></ChatUser>
     </footer>
   );
 };

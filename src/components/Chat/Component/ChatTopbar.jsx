@@ -1,10 +1,10 @@
 import React from "react";
-import { Avatar, AvatarImage } from "../ui/avatar";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { userData } from "@/constant/data";
 import { Info, Phone, Video } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "../ui/button";
+import { buttonVariants } from "@/components/ui/button";
 
 export const TopbarIcons = [{ icon: Phone }, { icon: Video }, { icon: Info }];
 
@@ -14,15 +14,17 @@ const ChatTopbar = ({ loggedUser }) => {
       <div className="flex items-center gap-2">
         <Avatar className="flex items-center justify-center">
           <AvatarImage
-            src={loggedUser.avatar || "/LoggedInUser.jpg"}
-            alt={loggedUser.username}
+            src={loggedUser?.avatar || "/LoggedInUser.jpg"}
+            alt={loggedUser?.username || "UNKOWN"}
             width={6}
             height={6}
             className="w-10 h-10 "
           />
         </Avatar>
         <div className="flex flex-col">
-          <span className="font-medium">{loggedUser.username}</span>
+          <span className="font-medium">
+            {loggedUser?.username || "UNKOWN"}
+          </span>
           <span className="text-xs">Active 2 mins ago</span>
         </div>
       </div>

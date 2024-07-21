@@ -1,7 +1,7 @@
 import { userData } from "@/constant/data";
 import { cn } from "@/lib/utils";
 import React, { useEffect, useRef } from "react";
-import { Avatar, AvatarImage } from "../ui/avatar";
+import { Avatar, AvatarImage } from "../../ui/avatar";
 import { AnimatePresence, motion } from "framer-motion";
 import ChatBottombar from "./ChatBottombar";
 
