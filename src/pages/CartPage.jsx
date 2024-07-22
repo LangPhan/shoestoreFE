@@ -2,7 +2,7 @@ import Cart from "@/components/Cart";
 
 const CartPage = () => {
   return (
-    <section className="container-main">
+    <section className="min-h-screen container-main">
       <Cart />
     </section>
   );
