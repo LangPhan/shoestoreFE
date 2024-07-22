@@ -1,5 +1,4 @@
 import { FilterX } from "lucide-react";
-import React from "react";
 
 const Empty = () => {
   return (

@@ -1,19 +1,16 @@
-import OrderStatus from "./OrderStatus";
-import {
-  ChevronsUpDown,
-  Plus,
-  X,
-} from "lucide-react";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { useState } from "react";
-import { Button } from "../ui/button";
-import CardItem from "../Cart/CartDetail/CardItem";
 import { convertConcurrency } from "@/lib/utils";
+import { ChevronsUpDown } from "lucide-react";
+import { useState } from "react";
 import { v4 } from "uuid";
+import CardItem from "../Cart/CartDetail/CardItem";
+import { Button } from "../ui/button";
+import OrderStatus from "./OrderStatus";
+
 const OrderCell = ({ order }) => {
   const [isOpen, setIsOpen] =
     useState(false);

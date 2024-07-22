@@ -1,10 +1,4 @@
 import {
-  AlignJustify,
-  ShoppingCart,
-} from "lucide-react";
-import { ModeToggle } from "../mode-toggle";
-import useCartStore from "@/stores/cartStore";
-import {
   Sheet,
   SheetContent,
   SheetDescription,
@@ -12,12 +6,17 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import NavMobile from "./NavMobile";
-import Logo from "./Logo";
-import { Link } from "react-router-dom";
+import useCartStore from "@/stores/cartStore";
+import {
+  AlignJustify,
+  ShoppingCart,
+} from "lucide-react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ModeToggle } from "../mode-toggle";
+import Logo from "./Logo";
+import NavMobile from "./NavMobile";
 import Profile from "./Profile";
-import AskAI from "../AskAI";
 
 const Tool = () => {
   const { totalItems, calcCartTotal } =
@@ -54,7 +53,6 @@ const Tool = () => {
           <NavMobile />
         </SheetContent>
       </Sheet>
-      <AskAI />
       <Profile isShow={false} />
     </div>
   );
