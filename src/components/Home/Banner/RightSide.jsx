@@ -1,16 +1,16 @@
-import { memo } from "react";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { memo } from "react";
 
 const RightSide = () => {
   return (
     <div className="relative md:w-1/2 min-h-fit group md:-translate-y-[20%] flex justify-center md:block">
       <div
-        className="relative h-[400px] md:h-full aspect-square ease-in-out drop-shadow-2xl bg-[url('https://github.com/LangPhan/shoestoreFE/blob/dev/src/assets/main.png?raw=true')]
+        className="relative h-[400px] md:h-full aspect-square ease-in-out drop-shadow-2xl bg-[url('https://github.com/LangPhan/shoestoreFE/blob/68175e516e9aa055d1e9a6743bf45849df6686f8/public/main.png?raw=true')]
         bg-center bg-contain bg-no-repeat
         "
         alt="Shoe Banner"
@@ -23,7 +23,7 @@ const RightSide = () => {
               </div>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Add to library</p>
+              <p>Personal</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
@@ -35,7 +35,7 @@ const RightSide = () => {
               </div>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Add to library</p>
+              <p>Flexible</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
@@ -47,7 +47,7 @@ const RightSide = () => {
               </div>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Add to library</p>
+              <p>Energy</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
@@ -59,7 +59,7 @@ const RightSide = () => {
               </div>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Add to library</p>
+              <p>Speed Up</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
@@ -71,7 +71,7 @@ const RightSide = () => {
               </div>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Add to library</p>
+              <p>Colorful</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>

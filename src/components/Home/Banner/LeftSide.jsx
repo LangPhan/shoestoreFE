@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const LeftSide = () => {
   return (
@@ -20,13 +21,19 @@ const LeftSide = () => {
             comfortable shoes, perfect
             for every occasion and need.
           </p>
-          <Button className="rounded-3xl px-10 py-6 shadow-xl bg-main">
-            Shop Now
+          <Button className="rounded-3xl px-10 py-6 shadow-xl bg-main font-bold text-white">
+            <Link to={"/product"}>
+              Shop Now
+            </Link>
           </Button>
         </div>
         <div className="w-[220px] h-[74px] border-slate-200 border-[1px] rounded-full flex items-center justify-start px-1 shadow-lg">
-          <div className="relative w-[64px] aspect-square border-[1px] border-slate-200 rounded-full"></div>
-          <div className="relative w-[64px] aspect-square border-[1px] border-slate-200 rounded-full -translate-x-1/2"></div>
+          <div className="z-20 relative w-[64px] aspect-square border-[1px] border-slate-200 rounded-full bg-[url('https://masterbundles.com/wp-content/uploads/2022/03/1-nike-logo-design-%E2%80%93-history-meaning-and-evolution.png')] bg-center bg-cover"></div>
+          <div
+            className="z-10 relative w-[64px] aspect-square border-[1px] border-slate-200 rounded-full -translate-x-1/2
+          bg-[url('https://inkythuatso.com/uploads/thumbnails/800/2021/09/logo-adidas-vector-inkythuatso-01-29-09-08-58.jpg')] bg-center bg-cover
+          "
+          ></div>
           <p className="text-mainForeground -translate-x-1/3">
             <span className="text-main mr-1">
               7+

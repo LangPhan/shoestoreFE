@@ -1,19 +1,23 @@
+import { authApi } from "@/api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import authStore from "@/stores/authStore";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import {
+  Eye,
+  EyeOff,
+} from "lucide-react";
+import { memo, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   Link,
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import { authApi } from "@/api";
-import authStore from "@/stores/authStore";
-import loginSchema from "./schemas/loginSchema";
-import { memo } from "react";
 import { toast } from "react-toastify";
+import loginSchema from "./schemas/loginSchema";
 
 //Define schema for login form
 
@@ -21,6 +25,8 @@ const SignIn = ({ setShowVerify }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { login } = authStore();
+  const [isShowPass, setIsShowPass] =
+    useState(false);
   const {
     register,
     handleSubmit,
@@ -91,7 +97,7 @@ const SignIn = ({ setShowVerify }) => {
             placeholder="Enter your username"
           />
         </div>
-        <div className="grid gap-2">
+        <div className="grid gap-2 relative">
           <div className="flex items-center">
             <Label htmlFor="password">
               Password
@@ -106,10 +112,29 @@ const SignIn = ({ setShowVerify }) => {
           <Input
             {...register("password")}
             id="password"
-            type="password"
+            type={
+              isShowPass
+                ? "text"
+                : "password"
+            }
             placeholder="Enter your password"
             autoComplete="on"
           />
+          {isShowPass ? (
+            <Eye
+              className="absolute w-4 h-4 top-[60%] right-[4%] hover:cursor-pointer text-slate-500"
+              onClick={() =>
+                setIsShowPass(false)
+              }
+            />
+          ) : (
+            <EyeOff
+              className="absolute w-4 h-4 top-[60%] right-[4%] hover:cursor-pointer text-slate-500"
+              onClick={() =>
+                setIsShowPass(true)
+              }
+            />
+          )}
         </div>
         <div className="min-h-6 text-red-500">
           {Object.values(errors)

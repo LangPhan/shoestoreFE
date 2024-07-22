@@ -26,10 +26,10 @@ const Message = ({
         </Avatar>
       )}
       <div
-        className={`p-4 w-fit ${
+        className={`px-4 py-2 w-fit ${
           isAI
             ? "max-w-full"
-            : "bg-main w-3/4 rounded-2xl text-white"
+            : "bg-main max-w-[80%] rounded-2xl text-white"
         }`}
       >
         {isAI ? (

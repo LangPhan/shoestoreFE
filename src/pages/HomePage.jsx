@@ -7,11 +7,10 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      <main className="min-h-screen scroll-smooth">
+      <main className="scroll-smooth">
         <Outlet />
         <AskAI />
       </main>
-
       <Footer />
     </>
   );

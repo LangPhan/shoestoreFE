@@ -6,6 +6,7 @@ import {
   Star,
 } from "lucide-react";
 import { memo } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProductHorizontalCard = ({
   name,
@@ -13,7 +14,9 @@ const ProductHorizontalCard = ({
   sale,
   image,
   description,
+  categoryId,
 }) => {
+  const navigate = useNavigate();
   return (
     <div className="h-fit border-[1px] border-slate-200 hover:border-main hover:bg-secondary transition-all rounded-xl flex gap-4 py-4 px-3">
       <div className="w-1/2 md:w-1/3 h-full flex justify-center items-center">
@@ -31,7 +34,7 @@ const ProductHorizontalCard = ({
           </Badge>
         </div>
       </div>
-      <div className="w-2/3 full">
+      <div className="w-2/3">
         <p className="text-2xl font-bold">
           {name}
         </p>
@@ -52,7 +55,14 @@ const ProductHorizontalCard = ({
           {description}
         </p>
         <div>
-          <Button className="font-bold">
+          <Button
+            className="font-bold"
+            onClick={() =>
+              navigate(
+                `/product-detail/${name}/${categoryId}`
+              )
+            }
+          >
             <ShoppingCart className="mr-2" />
             Add to Cart
           </Button>

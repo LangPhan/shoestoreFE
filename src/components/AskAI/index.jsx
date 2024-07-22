@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import useAI from "@/hooks/useAI";
+import { MessageCircleMore } from "lucide-react";
 import { memo, useState } from "react";
 import { v4 } from "uuid";
 import { ScrollArea } from "../ui/scroll-area";
@@ -29,17 +30,19 @@ const AskAI = () => {
       <DialogTrigger asChild>
         <div
           className="group fixed w-[10%] md:w-[6%] xl:w-[4%] aspect-square bottom-[12%] right-[4%] md:right-[2%] border-[2px] rounded-full border-main px-2 py-2 hover:cursor-pointer 
-        bg-[url('./ai.jpg')] bg-cover bg-center shadow-sm shadow-main 
+        bg-[url('https://github.com/LangPhan/shoestoreFE/blob/68175e516e9aa055d1e9a6743bf45849df6686f8/public/ai.jpg?raw=true')] bg-cover bg-center shadow-sm shadow-main z-50 
       "
         >
-          <div className="group-hover:visible absolute invisible right-[100%] w-[120px] top-[10%] px-2 py-2 border-[2px] border-main rounded-xl -translate-x-[5%] transition-opacity duration-500 drop-shadow-md">
+          <div className="group-hover:visible absolute invisible right-[100%] w-[120px] top-[10%] px-2 py-2 border-[2px] border-main rounded-xl -translate-x-[5%] transition-opacity duration-500 drop-shadow-md bg-white dark:bg-black">
             Ask AI Now
           </div>
         </div>
       </DialogTrigger>
       <DialogContent className="w-full h-full md:h-[95%] 2xl:h-3/4 flex flex-col">
         <div className="flex flex-col flex-1 overflow-hidden">
-          <DialogHeader>
+          <DialogHeader
+            className={"mb-2"}
+          >
             <DialogTitle>
               Welcome to ASK AI
             </DialogTitle>
@@ -50,7 +53,7 @@ const AskAI = () => {
             </DialogDescription>
           </DialogHeader>
           <ScrollArea className="flex-1 overflow-auto rounded-md border p-4">
-            {messages.length > 0 &&
+            {messages.length > 0 ? (
               messages.map(
                 (message) => {
                   return (
@@ -68,7 +71,12 @@ const AskAI = () => {
                     />
                   );
                 }
-              )}
+              )
+            ) : (
+              <div className="w-full h-full my-auto flex flex-col justify-center items-center">
+                <MessageCircleMore className="w-56 h-44 text-slate-200 dark:text-slate-700" />
+              </div>
+            )}
             {askAIMutation.isPending && (
               <div className="flex items-center space-x-4">
                 <Avatar>
@@ -90,6 +98,7 @@ const AskAI = () => {
         </div>
         <InputField
           askAIMutation={askAIMutation}
+          messages={messages}
           setMessages={setMessages}
         />
       </DialogContent>

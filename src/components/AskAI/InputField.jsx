@@ -2,8 +2,6 @@ import {
   adjustTextareaHeight,
   getJsonRecommend,
 } from "@/lib/utils";
-import { Button } from "../ui/button";
-import { Textarea } from "../ui/textarea";
 import {
   ImageUp,
   Loader2,
@@ -16,15 +14,19 @@ import {
   useState,
 } from "react";
 import ImageUploading from "react-images-uploading";
+import { Button } from "../ui/button";
+import { Textarea } from "../ui/textarea";
 
 const InputField = ({
   askAIMutation,
+  messages,
   setMessages,
 }) => {
   const textAreaRef = useRef(null);
   const [images, setImages] = useState(
     []
   );
+
   const maxNumber = 1;
 
   const onChange = (imageList) => {
@@ -113,6 +115,25 @@ const InputField = ({
           errors,
         }) => (
           <div className="">
+            {messages?.length === 0 &&
+              images.length === 0 && (
+                <div>
+                  <p className="text-xs pb-1 text-slate-500">
+                    Example prompt:
+                  </p>
+                  <div
+                    onClick={() => {
+                      textAreaRef.current.value =
+                        "I am going to date with my boy friend";
+                      handleSubmit();
+                    }}
+                    className="w-fit text-white px-4 py-2 rounded-2xl bg-main hover:cursor-pointer"
+                  >
+                    I am going to date
+                    with my boy friend
+                  </div>
+                </div>
+              )}
             <div className="h-fit translate-x-5 py-2">
               {errors?.maxFileSize && (
                 <span>
@@ -161,6 +182,7 @@ const InputField = ({
             </div>
             <div className="flex items-start p-2 bg-secondary rounded-full min-h-full">
               <Button
+                className="hover:text-main focus-visible:ring-offset-0 focus-visible:ring-0"
                 variant="ghost"
                 style={
                   isDragging
@@ -174,6 +196,15 @@ const InputField = ({
               </Button>
               <Textarea
                 ref={textAreaRef}
+                onKeyDown={(e) => {
+                  if (
+                    e.key === "Enter" &&
+                    !e.shiftKey
+                  ) {
+                    e.preventDefault(); // Prevents the default action of the enter key in a textarea (new line)
+                    handleSubmit(); // Call the submit function
+                  }
+                }}
                 className="flex-grow resize-none min-h-0 max-h-[100px]"
                 rows={1}
                 placeholder="Type your message..."
@@ -182,6 +213,7 @@ const InputField = ({
                 }
               />
               <Button
+                className="hover:text-main focus-visible:ring-offset-0 focus-visible:ring-0"
                 variant="ghost"
                 onClick={() =>
                   handleSubmit()

@@ -22,7 +22,6 @@ export const productApi = {
         queryParams += `${key}=${filter[key]}&`;
       }
     });
-    debugger;
     queryParams = convertQueryString(queryParams);
     return axiosClient.get(`/product?pageSize=12&${queryParams}`);
   },
