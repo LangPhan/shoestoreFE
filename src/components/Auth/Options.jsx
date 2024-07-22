@@ -1,23 +1,23 @@
+import { authApi } from "@/api";
 import { Label } from "@/components/ui/label";
 import {
   RadioGroup,
   RadioGroupItem,
 } from "@/components/ui/radio-group";
+import { useMutation } from "@tanstack/react-query";
 import {
   Loader2,
   MailIcon,
   MessageCircle,
 } from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   AlertDialogAction,
   AlertDialogDescription,
   AlertDialogFooter,
 } from "../ui/alert-dialog";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { authApi } from "@/api";
-import { toast } from "react-toastify";
-import { useMutation } from "@tanstack/react-query";
 
 const Options = () => {
   const [option, setOption] =
@@ -38,7 +38,7 @@ const Options = () => {
         accessToken,
         "sendEmail"
       ),
-    onSuccess: (data) => {
+    onSuccess: () => {
       return navigate("email");
     },
     onError: (err) => {
@@ -56,7 +56,7 @@ const Options = () => {
         accessToken,
         "sendSms"
       ),
-    onSuccess: (data) => {
+    onSuccess: () => {
       return navigate("sms");
     },
     onError: (err) => {
