@@ -26,3 +26,18 @@ export const MINIMUM_QUANTITY = 1;
 export const RECEIVED = "Fulfill";
 export const TO_SHIP = "In progress";
 export const COMPLETE = "Completed";
+
+export const COLOR_LIST = [
+  "Red",
+  "Brown",
+  "Bubblegum Pink",
+  "Bold Orange",
+  "Pistachio Green",
+  "Navy Blue",
+  "Metallics",
+  "White",
+  "Black",
+  "Beige/Taupe",
+  "Olive Green",
+  "Mustard Yellow",
+];

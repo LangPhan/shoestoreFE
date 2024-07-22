@@ -31,7 +31,6 @@ const Chat = ({
   };
 
   const sendMessage = (newMessage) => {
-    debugger;
     const destination = `/app/${roomChatId}/sendMessage`;
     try {
       client?.publish({

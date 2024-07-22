@@ -27,6 +27,8 @@ import OrderStatus from "./components/Order/Status.jsx";
 import Home from "./components/Home/index.jsx";
 import Order from "./components/Order/index.jsx";
 import ChatAdmin from "./components/Chat/Admin/ChatAdmin.jsx";
+import Promotions from "./components/Dashboard/Promotions/Promotions.jsx";
+import Vouchers from "./components/Dashboard/Vouchers/Vouchers.jsx";
 
 function App() {
   //Create route for app
@@ -87,6 +89,8 @@ function App() {
         >
           <Route path="orders" element={<Orders />}></Route>
           <Route path="products" element={<Products />}></Route>
+          <Route path="promotions" element={<Promotions />}></Route>
+          <Route path="vouchers" element={<Vouchers />}></Route>
           <Route path="chat" element={<ChatAdmin />}></Route>
         </Route>
       </Route>

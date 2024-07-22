@@ -7,10 +7,3 @@ export const useProductAdminList = ({ accessToken }) => {
     queryFn: productAdminApi.getProductList,
   });
 };
-
-// export const useProductDetailAdmin = ({ accessToken, orderId }) => {
-//   return useQuery({
-//     queryKey: ["product-detail-admin", accessToken, orderId],
-//     queryFn: productAdminApi.getProductDetail,
-//   });
-// };

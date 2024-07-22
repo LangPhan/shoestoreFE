@@ -45,7 +45,6 @@ const ChatLayout = ({
   }, []);
   const fetchRoomChat = async () => {
     var roomPage = await roomChatApi.getRoomChats({ accessToken });
-    debugger;
     setRoomChats(roomPage.content);
     setSelectedRoomChat(roomPage.content[0]);
   };
