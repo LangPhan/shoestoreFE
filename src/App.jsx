@@ -26,56 +26,27 @@ import OrderPage from "./pages/OrderPage.jsx";
 import OrderStatus from "./components/Order/Status.jsx";
 import Home from "./components/Home/index.jsx";
 import Order from "./components/Order/index.jsx";
+import ChatAdmin from "./components/Chat/Admin/ChatAdmin.jsx";
 
 function App() {
   //Create route for app
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route
-        path="/"
-        element={<RootPage />}
-        errorElement={<ErrorPage />}
-      >
-        <Route
-          path=""
-          element={<HomePage />}
-        >
-          <Route
-            index
-            path="/"
-            element={<Home />}
-          ></Route>
-          <Route
-            path="/about"
-            element={<AboutPage />}
-          ></Route>
-          <Route
-            path="/product"
-            element={<ProductPage />}
-          ></Route>
+      <Route path="/" element={<RootPage />} errorElement={<ErrorPage />}>
+        <Route path="" element={<HomePage />}>
+          <Route index path="/" element={<Home />}></Route>
+          <Route path="/about" element={<AboutPage />}></Route>
+          <Route path="/product" element={<ProductPage />}></Route>
           <Route
             path="/product-detail/:productName/:categoryId"
-            element={
-              <ProductDetailPage />
-            }
+            element={<ProductDetailPage />}
           ></Route>
-          <Route
-            path="/cart"
-            element={<CartPage />}
-          >
-            <Route
-              index
-              element={<CartDetail />}
-            ></Route>
+          <Route path="/cart" element={<CartPage />}>
+            <Route index element={<CartDetail />}></Route>
             <Route
               path="address"
               element={
-                <RequireAuth
-                  roles={[
-                    "USER",
-                    "ADMIN",
-                  ]}
-                >
+                <RequireAuth roles={["USER", "ADMIN"]}>
                   <CartAddress />
                 </RequireAuth>
               }
@@ -83,9 +54,7 @@ function App() {
             <Route
               path="payment"
               element={
-                <RequireAuth
-                  roles={["USER"]}
-                >
+                <RequireAuth roles={["USER"]}>
                   <CartPayment />
                 </RequireAuth>
               }
@@ -94,67 +63,36 @@ function App() {
           <Route
             path="order"
             element={
-              <RequireAuth
-                roles={["USER"]}
-              >
+              <RequireAuth roles={["USER"]}>
                 <OrderPage />
               </RequireAuth>
             }
           >
-            <Route
-              path=""
-              index
-              element={<Order />}
-            ></Route>
-            <Route
-              path="status"
-              element={<OrderStatus />}
-            ></Route>
+            <Route path="" index element={<Order />}></Route>
+            <Route path="status" element={<OrderStatus />}></Route>
           </Route>
         </Route>
-        <Route
-          path="auth"
-          element={<AuthPage />}
-        >
-          <Route
-            path=""
-            index
-            element={<Options />}
-          ></Route>
-          <Route
-            path="email"
-            element={<MailOTP />}
-          ></Route>
-          <Route
-            path="sms"
-            element={<SmsOTP />}
-          ></Route>
+        <Route path="auth" element={<AuthPage />}>
+          <Route path="" index element={<Options />}></Route>
+          <Route path="email" element={<MailOTP />}></Route>
+          <Route path="sms" element={<SmsOTP />}></Route>
         </Route>
         <Route
           path="/admin"
           element={
-            <RequireAuth
-              roles={["ADMIN"]}
-            >
+            <RequireAuth roles={["ADMIN"]}>
               <AdminPage />
             </RequireAuth>
           }
         >
-          <Route
-            path="orders"
-            element={<Orders />}
-          ></Route>
-          <Route
-            path="products"
-            element={<Products />}
-          ></Route>
+          <Route path="orders" element={<Orders />}></Route>
+          <Route path="products" element={<Products />}></Route>
+          <Route path="chat" element={<ChatAdmin />}></Route>
         </Route>
       </Route>
     )
   );
-  return (
-    <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

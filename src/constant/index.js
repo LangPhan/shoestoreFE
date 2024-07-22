@@ -3,6 +3,7 @@ export const API_PROD_URL = "https://tzuy284.id.vn/api/v1";
 export const API_PROD_URL_2 =
   "http://likelion-eshop.ap-northeast-3.elasticbeanstalk.com/api/v1";
 export const API_PLACE_URL = "https://vapi.vnappmob.com/api";
+export const API_PUBLIC_WEB_SOCKET_URL = "https://tzuy284.id.vn/ws";
 // export const API_PROD_URL =
 //   "http://likelion-eshop.ap-northeast-3.elasticbeanstalk.com/api/v1";
 
