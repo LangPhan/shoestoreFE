@@ -12,13 +12,14 @@ import {
   MessageSquare,
   Package,
   Package2,
+  Percent,
   Settings,
   ShoppingCart,
+  TicketPercent,
   Users2,
 } from "lucide-react";
 
 const Navbar = () => {
-  const navigate = useNavigate();
   return (
     <Fragment>
       <aside className="fixed inset-y-0 left-0 z-10 flex-col hidden border-r w-14 bg-background sm:flex">
@@ -76,14 +77,28 @@ const Navbar = () => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  href="#"
+                  to="/admin/promotions"
                   className="flex items-center justify-center transition-colors rounded-lg h-9 w-9 text-muted-foreground hover:text-foreground md:h-8 md:w-8"
                 >
-                  <Users2 className="w-5 h-5" />
-                  <span className="sr-only">Customers</span>
+                  <Percent className="w-5 h-5" />
+                  <span className="sr-only">Promotion</span>
                 </Link>
               </TooltipTrigger>
-              <TooltipContent side="right">Customers</TooltipContent>
+              <TooltipContent side="right">Promotion</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
+                  to="/admin/vouchers"
+                  className="flex items-center justify-center transition-colors rounded-lg h-9 w-9 text-muted-foreground hover:text-foreground md:h-8 md:w-8"
+                >
+                  <TicketPercent className="w-5 h-5" />
+                  <span className="sr-only">Voucher</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="right">Voucher</TooltipContent>
             </Tooltip>
           </TooltipProvider>
           <TooltipProvider>
@@ -98,6 +113,7 @@ const Navbar = () => {
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right">Chat</TooltipContent>
+              <TooltipContent side="right">Customers</TooltipContent>
             </Tooltip>
           </TooltipProvider>
           <TooltipProvider>
@@ -108,6 +124,7 @@ const Navbar = () => {
                   className="flex items-center justify-center transition-colors rounded-lg h-9 w-9 text-muted-foreground hover:text-foreground md:h-8 md:w-8"
                 >
                   <LineChart className="w-5 h-5" />
+                  <span className="sr-only">Analytics</span>
                   <span className="sr-only">Analytics</span>
                 </Link>
               </TooltipTrigger>
@@ -125,8 +142,10 @@ const Navbar = () => {
                 >
                   <Settings className="w-5 h-5" />
                   <span className="sr-only">Settings</span>
+                  <span className="sr-only">Settings</span>
                 </Link>
               </TooltipTrigger>
+              <TooltipContent side="right">Settings</TooltipContent>
               <TooltipContent side="right">Settings</TooltipContent>
             </Tooltip>
           </TooltipProvider>

@@ -1,6 +1,5 @@
 import React from "react";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { userData } from "@/constant/data";
 import { Info, Phone, Video } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";

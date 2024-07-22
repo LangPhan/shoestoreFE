@@ -1,4 +1,3 @@
-import { userData } from "@/constant/data";
 import { useEffect, useState } from "react";
 import {
   ResizableHandle,
@@ -7,7 +6,6 @@ import {
 } from "@/components/ui/resizable";
 import { cn } from "@/lib/utils";
 import React from "react";
-import { messageApi } from "@/api/messageApi";
 import { Sidebar } from "../Component/Sidebar";
 import { roomChatApi } from "@/api/roomChatApi";
 import Chat from "./Chat";
@@ -45,7 +43,6 @@ const ChatLayout = ({
   }, []);
   const fetchRoomChat = async () => {
     var roomPage = await roomChatApi.getRoomChats({ accessToken });
-    debugger;
     setRoomChats(roomPage.content);
     setSelectedRoomChat(roomPage.content[0]);
   };

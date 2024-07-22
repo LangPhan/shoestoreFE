@@ -11,7 +11,6 @@ import React, { useRef, useState } from "react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import { loggedInUserData } from "@/constant/data";
 import { Textarea } from "@/components/ui/textarea";
 import {
   Popover,

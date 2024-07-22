@@ -1,6 +1,5 @@
 import React from "react";
 import ChatLayout from "./ChatLayout";
-import { cn } from "@/lib/utils";
 import {
   Popover,
   PopoverContent,
