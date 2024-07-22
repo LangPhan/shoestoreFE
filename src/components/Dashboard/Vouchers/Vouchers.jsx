@@ -4,13 +4,10 @@ import {
   Home,
   LineChart,
   ListFilter,
-  MoreHorizontal,
   Package,
   Package2,
   PanelLeft,
-  PlusCircle,
   Search,
-  Settings,
   ShoppingCart,
   Users2,
 } from "lucide-react";
@@ -53,10 +50,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Product from "../Product/Product";
-import { Fragment, useEffect, useState } from "react";
 import { v4 } from "uuid";
-import { useProductAdminList } from "@/hooks/useProductAdmin";
 import { Skeleton } from "@/components/ui/skeleton";
 import Spinner from "@/components/ui/spinner";
 import { useVoucherAdminList } from "@/hooks/useVoucherAdmin";

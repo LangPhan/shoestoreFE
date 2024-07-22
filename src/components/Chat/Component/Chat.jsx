@@ -1,4 +1,3 @@
-import { userData } from "@/constant/data";
 import React, { useEffect, useState } from "react";
 import ChatTopbar from "./ChatTopbar";
 import ChatList from "./ChatList";

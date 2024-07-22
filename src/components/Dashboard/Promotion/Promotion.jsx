@@ -34,13 +34,6 @@ const Promotion = ({ promotion, ...props }) => {
   } = promotion;
   const accessToken = JSON.parse(localStorage.getItem("token")).accessToken;
 
-  const handleDeletePromotion = async (promotionId) => {
-    // await productAdminApi.deleteProduct({
-    //   accessToken,
-    //   productId,
-    // });
-  };
-
   return (
     <Fragment>
       <TableRow className="cursor-pointer">
@@ -64,28 +57,6 @@ const Promotion = ({ promotion, ...props }) => {
         <TableCell className="hidden md:table-cell">{`${expiredDate[2]}/${expiredDate[1]}/${expiredDate[0]}`}</TableCell>
         <TableCell>
           <PromotionForm promotionId={promotionId}></PromotionForm>
-          {/* <AlertDialog>
-            <AlertDialogTrigger className="ml-2">
-              <Button>Delete</Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  This action cannot be undone. This will permanently delete
-                  your promotion and remove your data from our servers.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction
-                  onClick={() => handleDeletePromotion(promotionId)}
-                >
-                  Delete
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog> */}
         </TableCell>
       </TableRow>
     </Fragment>

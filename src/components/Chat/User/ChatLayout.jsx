@@ -1,23 +1,13 @@
-import { userData } from "@/constant/data";
-import { useEffect, useState } from "react";
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "@/components/ui/resizable";
-import { cn } from "@/lib/utils";
+import { useState } from "react";
+import { ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 import React from "react";
 import Chat from "../Component/Chat";
-import { messageApi } from "@/api/messageApi";
 
 const ChatLayout = ({
   defaultLayout = [320, 480],
   defaultCollapsed = false,
   navCollapsedSize,
 }) => {
-  const [isCollapsed, setIsCollapsed] = useState(defaultCollapsed);
-  const [isMobile, setIsMobile] = useState(false);
-
   return (
     <ResizablePanelGroup
       direction="horizontal"

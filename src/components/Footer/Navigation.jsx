@@ -11,9 +11,9 @@ import { v4 } from "uuid";
 
 const NavigationFooter = () => {
   return (
-    <div className="md:ml-8 py-4 md:my-10 text-white flex flex-col justify-between items-center md:items-start">
+    <div className="flex flex-col items-center justify-between py-4 text-white md:ml-8 md:my-10 md:items-start">
       <Link
-        className="hidden bg-white md:flex w-fit items-center px-4 py-2 rounded-2xl"
+        className="items-center hidden px-4 py-2 bg-white md:flex w-fit rounded-2xl"
         to={"/"}
       >
         <img
@@ -22,25 +22,20 @@ const NavigationFooter = () => {
           width={220}
         />
       </Link>
-      <ul className="flex flex-col my-8 gap-5 items-center md:items-start">
+      <ul className="flex flex-col items-center gap-5 my-8 md:items-start">
         {navList.map((nav) => {
           return (
-            <Link
-              key={v4()}
-              to={nav.url}
-            >
-              <li className="hover:text-main transition-all">
-                {nav.title}
-              </li>
+            <Link key={v4()} to={nav.url}>
+              <li className="transition-all hover:text-main">{nav.title}</li>
             </Link>
           );
         })}
       </ul>
       <div className="flex gap-4">
-        <FacebookIcon className="w-10 h-10 p-2 hover:text-main hover:m hover:rounded-full hover:p-3 duration-500 transition-all hover:bg-slate-100" />
-        <InstagramIcon className="w-10 h-10 p-2 hover:text-main hover:m hover:rounded-full hover:p-3 duration-500 transition-all hover:bg-slate-100" />
-        <TwitterIcon className="w-10 h-10 p-2 hover:text-main hover:m hover:rounded-full hover:p-3 duration-500 transition-all hover:bg-slate-100" />
-        <MailIcon className="w-10 h-10 p-2 hover:text-main hover:m hover:rounded-full hover:p-3 duration-500 transition-all hover:bg-slate-100" />
+        <FacebookIcon className="w-10 h-10 p-2 transition-all duration-500 hover:text-main hover:m hover:rounded-full hover:p-3 hover:bg-slate-100" />
+        <InstagramIcon className="w-10 h-10 p-2 transition-all duration-500 hover:text-main hover:m hover:rounded-full hover:p-3 hover:bg-slate-100" />
+        <TwitterIcon className="w-10 h-10 p-2 transition-all duration-500 hover:text-main hover:m hover:rounded-full hover:p-3 hover:bg-slate-100" />
+        <MailIcon className="w-10 h-10 p-2 transition-all duration-500 hover:text-main hover:m hover:rounded-full hover:p-3 hover:bg-slate-100" />
       </div>
     </div>
   );
