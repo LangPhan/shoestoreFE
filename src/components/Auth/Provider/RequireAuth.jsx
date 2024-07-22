@@ -1,3 +1,12 @@
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import authStore from "@/stores/authStore";
 import { Loader2 } from "lucide-react";
 import {
@@ -8,16 +17,6 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 
 const RequireAuth = ({
   children,

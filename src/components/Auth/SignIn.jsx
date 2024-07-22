@@ -42,7 +42,6 @@ const SignIn = ({ setShowVerify }) => {
       return authApi.login(accInfo);
     },
     onSuccess: (data) => {
-      console.log(data);
       if (
         !data.user.verify ||
         data.user.verify === null
