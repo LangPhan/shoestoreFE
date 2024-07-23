@@ -1,18 +1,15 @@
-import ProductCard from "../Card";
-import ProductPagination from "../Pagination";
 import { Skeleton } from "@/components/ui/skeleton";
-import ProductHorizontalCard from "../Card/Horizontal";
-import { v4 } from "uuid";
-import { useProduct } from "@/hooks/useProduct";
-import { toast } from "react-toastify";
-import useProductStore from "@/stores/productStore";
-import {
-  useEffect,
-  useRef,
-} from "react";
 import Spinner from "@/components/ui/spinner";
-import Empty from "./Empty";
+import { useProduct } from "@/hooks/useProduct";
 import { scrollToRef } from "@/lib/utils";
+import useProductStore from "@/stores/productStore";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+import { v4 } from "uuid";
+import ProductCard from "../Card";
+import ProductHorizontalCard from "../Card/Horizontal";
+import ProductPagination from "../Pagination";
+import Empty from "./Empty";
 
 const ProductList = ({
   isGirdLayout,

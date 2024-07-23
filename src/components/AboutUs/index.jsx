@@ -1,8 +1,25 @@
 import { motion } from "framer-motion";
-import { MessageCircle } from "lucide-react";
+import {
+  GitPullRequestArrow,
+  MessageCircle,
+} from "lucide-react";
 const AboutUs = () => {
   return (
     <div className="container my-5 flex flex-col justify-center items-center">
+      <motion.div
+        initial={{
+          opacity: 1,
+        }}
+        animate={{
+          opacity: 0,
+          transition: {
+            duration: 1.8,
+          },
+        }}
+        className="h-[200px]"
+      >
+        <GitPullRequestArrow className="w-40 h-40 text main animate-spin" />
+      </motion.div>
       <motion.div
         initial={{
           x: 50,

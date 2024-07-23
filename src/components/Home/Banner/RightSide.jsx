@@ -29,7 +29,7 @@ const RightSide = () => {
       className="relative md:w-1/2 min-h-fit group md:-translate-y-[20%] flex justify-center md:block"
     >
       <div
-        className="relative h-[400px] md:h-full aspect-square ease-in-out drop-shadow-2xl bg-[url('./main.png')]
+        className="relative h-[400px] md:h-full aspect-square ease-in-out drop-shadow-2xl bg-[url('https://raw.githubusercontent.com/LangPhan/shoestoreFE/main/public/main.png')]
         bg-center bg-contain bg-no-repeat
         "
         alt="Shoe Banner"
