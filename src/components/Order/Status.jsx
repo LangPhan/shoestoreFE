@@ -24,6 +24,7 @@ import {
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Button } from "../ui/button";
 
 const OrderStatus = () => {
@@ -78,6 +79,9 @@ const OrderStatus = () => {
         }
       );
     } else {
+      toast.warning(
+        "Transaction was canceled. Access your cart to process payment again"
+      );
       return navigate("/");
     }
   }, [status]);
