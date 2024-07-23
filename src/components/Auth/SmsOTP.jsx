@@ -64,9 +64,6 @@ const SmsOTP = () => {
         "Please check your OTP again"
       );
     },
-    onError: (err) => {
-      console.log(err);
-    },
   });
 
   const onSubmit = (data) => {

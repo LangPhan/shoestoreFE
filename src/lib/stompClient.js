@@ -2,8 +2,8 @@
 import { API_PUBLIC_WEB_SOCKET_URL } from "@/constant";
 // import { client } from "stompjs";
 // import SockJS from "sockjs-client";
-import sockjs from "sockjs-client/dist/sockjs";
 import { Client } from "@stomp/stompjs";
+import sockjs from "sockjs-client/dist/sockjs";
 
 const brokerURL = API_PUBLIC_WEB_SOCKET_URL || "http://localhost:8080/ws";
 
@@ -15,12 +15,8 @@ const connectStompClient = ({ onConnectCallback, onErrorCallback }) => {
     connectHeaders: {
       ["Authorization"]: `Bearer ${accessToken}`,
     },
-    debug: (str) => {
-      console.log(str);
-    },
     reconnectDelay: 5000,
     onConnect: (frame) => {
-      console.log("Connected");
       onConnectCallback(stompClient);
     },
     onStompError: (frame) => {

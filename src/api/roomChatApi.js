@@ -23,7 +23,6 @@ export const roomChatApi = {
       );
       return res;
     } catch (error) {
-      console.error("Error fetching room chats:", error);
       throw "Failed to fetch room chats";
     }
   },

@@ -1,16 +1,27 @@
-import React, { useEffect, useState } from "react";
-import ChatTopbar from "../Component/ChatTopbar";
-import ChatList from "../Component/ChatList";
 import { messageApi } from "@/api/messageApi";
-import connectStompClient from "@/lib/stompClient";
 import { Skeleton } from "@/components/ui/skeleton";
 import Spinner from "@/components/ui/spinner";
+import connectStompClient from "@/lib/stompClient";
+import React, {
+  useEffect,
+  useState,
+} from "react";
+import ChatList from "../Component/ChatList";
+import ChatTopbar from "../Component/ChatTopbar";
 
-const Chat = ({ selectedRoomChat, isMobile = true }) => {
-  const [messagesState, setMessages] = useState([]);
-  const [client, setClient] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const accessToken = JSON.parse(localStorage.getItem("token")).accessToken;
+const Chat = ({
+  selectedRoomChat,
+  isMobile = true,
+}) => {
+  const [messagesState, setMessages] =
+    useState([]);
+  const [client, setClient] =
+    useState(null);
+  const [isLoading, setIsLoading] =
+    useState(false);
+  const accessToken = JSON.parse(
+    localStorage.getItem("token")
+  ).accessToken;
 
   const loggedUser = {
     id: "ab12d22d-9a33-4d3e-87d7-f1962da5d6c9",
@@ -23,26 +34,33 @@ const Chat = ({ selectedRoomChat, isMobile = true }) => {
   };
 
   const sendMessage = (newMessage) => {
-    let roomChatId = selectedRoomChat?.id;
+    let roomChatId =
+      selectedRoomChat?.id;
 
     const destination = `/app/${roomChatId}/sendMessage`;
     try {
       client?.publish({
         destination,
-        body: JSON.stringify(newMessage),
+        body: JSON.stringify(
+          newMessage
+        ),
       });
     } catch (error) {
-      console.error("fail to send message" + error);
+      console.error(
+        "fail to send message" + error
+      );
     }
   };
 
   const fetchMessages = async () => {
-    let roomChatId = selectedRoomChat?.id;
+    let roomChatId =
+      selectedRoomChat?.id;
     setIsLoading(true);
-    const messages = await messageApi.getMessageList({
-      accessToken,
-      roomChatId,
-    });
+    const messages =
+      await messageApi.getMessageList({
+        accessToken,
+        roomChatId,
+      });
     setMessages(messages.content);
     setIsLoading(false);
   };
@@ -53,26 +71,41 @@ const Chat = ({ selectedRoomChat, isMobile = true }) => {
 
   useEffect(() => {
     const onConnect = (client) => {
-      client.subscribe(`/topic/${selectedRoomChat?.id}`, (message) => {
-        console.log("Received message:", message.body);
-        try {
-          const parsedMessage = JSON.parse(message.body);
-          setMessages((prevMessages) => [...prevMessages, parsedMessage]);
-        } catch (error) {
-          console.error("Error parsing message:", error);
+      client.subscribe(
+        `/topic/${selectedRoomChat?.id}`,
+        (message) => {
+          try {
+            const parsedMessage =
+              JSON.parse(message.body);
+            setMessages(
+              (prevMessages) => [
+                ...prevMessages,
+                parsedMessage,
+              ]
+            );
+          } catch (error) {
+            console.error(
+              "Error parsing message:",
+              error
+            );
+          }
         }
-      });
+      );
       setClient(client);
     };
 
     const onError = (error) => {
-      console.error("STOMP error:", error);
+      console.error(
+        "STOMP error:",
+        error
+      );
     };
 
-    const stompClient = connectStompClient({
-      onConnectCallback: onConnect,
-      onErrorCallback: onError,
-    });
+    const stompClient =
+      connectStompClient({
+        onConnectCallback: onConnect,
+        onErrorCallback: onError,
+      });
 
     return () => {
       if (stompClient) {
@@ -91,7 +124,11 @@ const Chat = ({ selectedRoomChat, isMobile = true }) => {
         </Skeleton>
       ) : (
         <>
-          <ChatTopbar loggedUser={selectedRoomChat?.user} />
+          <ChatTopbar
+            loggedUser={
+              selectedRoomChat?.user
+            }
+          />
           <ChatList
             messages={messagesState}
             loggedUser={loggedUser}

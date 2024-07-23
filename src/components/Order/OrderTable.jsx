@@ -9,6 +9,7 @@ import {
   useState,
 } from "react";
 import { v4 } from "uuid";
+import Empty from "../Products/ProductList/Empty";
 import { Button } from "../ui/button";
 import { ScrollArea } from "../ui/scroll-area";
 import { Skeleton } from "../ui/skeleton";
@@ -28,7 +29,12 @@ const OrderTable = () => {
       pageNo,
     });
   const checkPointRef = useRef(null);
-  console.log(orderList);
+  if (
+    !isLoading &&
+    orderList?.totalElements
+  ) {
+    return <Empty />;
+  }
   return (
     <>
       <div
