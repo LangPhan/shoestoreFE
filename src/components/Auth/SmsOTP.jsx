@@ -18,17 +18,22 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-import { useForm } from "react-hook-form";
-import { Button } from "../ui/button";
+import { authApi } from "@/api";
+import useCountdown from "@/hooks/useCountdown";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { authApi } from "@/api";
+import { Hourglass } from "lucide-react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Button } from "../ui/button";
 import { otpSchema } from "./schemas/otpSchema";
 
 const SmsOTP = () => {
   const navigate = useNavigate();
+
+  const countdown = useCountdown(60);
+
   const form = useForm({
     resolver: zodResolver(otpSchema),
     defaultValues: {
@@ -121,6 +126,21 @@ const SmsOTP = () => {
             )}
           />
           <AlertDialogFooter>
+            <Button
+              onClick={() =>
+                navigate(-1)
+              }
+              disabled={countdown > 0}
+            >
+              {countdown > 0 ? (
+                <>
+                  <Hourglass className="animate-spin mr-2" />
+                  Back in {countdown}s
+                </>
+              ) : (
+                "Back"
+              )}
+            </Button>
             <Button
               type="submit"
               disabled={

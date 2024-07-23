@@ -11,10 +11,14 @@ import {
   MessageCircle,
 } from "lucide-react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {
+  useNavigate,
+  useOutletContext,
+} from "react-router-dom";
 import { toast } from "react-toastify";
 import {
   AlertDialogAction,
+  AlertDialogCancel,
   AlertDialogDescription,
   AlertDialogFooter,
 } from "../ui/alert-dialog";
@@ -24,6 +28,8 @@ const Options = () => {
     useState("email");
   const [isLoading, setIsLoading] =
     useState(false);
+  const [setShowVerify] =
+    useOutletContext();
 
   const navigate = useNavigate();
 
@@ -114,6 +120,13 @@ const Options = () => {
         </div>
       </RadioGroup>
       <AlertDialogFooter>
+        <AlertDialogCancel
+          onClick={() =>
+            setShowVerify(false)
+          }
+        >
+          Cancel
+        </AlertDialogCancel>
         <AlertDialogAction
           disabled={isLoading}
           onClick={() =>

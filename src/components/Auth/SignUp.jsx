@@ -1,22 +1,23 @@
 import { memo, useEffect } from "react";
 
+import { authApi } from "@/api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "react-router-dom";
-import SelectField from "./Select";
 import {
   useDistrict,
   useWard,
 } from "@/hooks/useAddress";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import registerSchema from "./schemas/registerSchema";
-import { toast } from "react-toastify";
-import { useMutation } from "@tanstack/react-query";
-import { authApi } from "@/api";
-import { ScrollArea } from "../ui/scroll-area";
 import authStore from "@/stores/authStore";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { Loader2 } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { ScrollArea } from "../ui/scroll-area";
+import registerSchema from "./schemas/registerSchema";
+import SelectField from "./Select";
 
 const SignUp = ({ setShowVerify }) => {
   const {
@@ -40,7 +41,7 @@ const SignUp = ({ setShowVerify }) => {
     handleSubmit,
     setValue,
     setError,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(
       registerSchema
@@ -93,6 +94,7 @@ const SignUp = ({ setShowVerify }) => {
     },
     onError: (error) => {
       setError("", error);
+      toast.error(error.data.message);
     },
   });
 
@@ -255,8 +257,15 @@ const SignUp = ({ setShowVerify }) => {
           <Button
             type="submit"
             className="w-full"
+            disabled={
+              mutation.isPending
+            }
           >
-            Register
+            {mutation.isPending ? (
+              <Loader2 className="animate-spin" />
+            ) : (
+              "Register"
+            )}
           </Button>
         </form>
         <div className="mt-4 text-center text-sm">

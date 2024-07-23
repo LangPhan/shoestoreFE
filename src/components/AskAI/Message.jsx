@@ -14,7 +14,9 @@ const Message = ({
   return (
     <div
       className={`flex py-2 h-full items-start ${
-        isAI ? "" : "justify-end"
+        isAI
+          ? "max-[450px]:max-w-[250px] max-w-full"
+          : "justify-end"
       }`}
     >
       {isAI && (

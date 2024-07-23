@@ -8,6 +8,7 @@ import { useMutation } from "@tanstack/react-query";
 import {
   Eye,
   EyeOff,
+  Loader2,
 } from "lucide-react";
 import { memo, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -31,7 +32,7 @@ const SignIn = ({ setShowVerify }) => {
     register,
     handleSubmit,
     setError,
-    formState: { isSubmitting, errors },
+    formState: { errors },
   } = useForm({
     resolver: zodResolver(loginSchema),
   });
@@ -145,11 +146,13 @@ const SignIn = ({ setShowVerify }) => {
         <Button
           type="submit"
           className="w-full"
-          disabled={isSubmitting}
+          disabled={mutation.isPending}
         >
-          {isSubmitting
-            ? "Signing In"
-            : "Sign In"}
+          {mutation.isPending ? (
+            <Loader2 className="animate-spin" />
+          ) : (
+            "Sign In"
+          )}
         </Button>
         {/* <Button
           variant="outline"

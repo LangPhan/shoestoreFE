@@ -33,7 +33,10 @@ const RequireAuth = ({
       if (
         !isAuth ||
         (roles.length > 0 &&
-          !roles.includes(user?.role))
+          !roles.includes(
+            user?.role
+          )) ||
+        !user?.verify
       ) {
         return setOpenDialog(true);
       }
@@ -78,7 +81,9 @@ const RequireAuth = ({
             <DialogDescription>
               {!isAuth
                 ? "Please login to your account before using this feature"
-                : "Please using account has ADMIN role to access this resources"}
+                : user?.verify
+                ? "Please using account has ADMIN role to access this resources"
+                : "Please verify your account before using this feature"}
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>

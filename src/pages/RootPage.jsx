@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import {
   Outlet,
   ScrollRestoration,
+  useLocation,
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -42,10 +43,19 @@ const RootPage = () => {
     logout,
   } = authStore();
 
+  const location = useLocation();
+
   useEffect(() => {
     setFetching(isFetching);
     if (isSuccess) {
-      if (!userInfo.verify) {
+      const isCurrentInAuth =
+        location.pathname
+          .split("/")
+          .includes("auth");
+      if (
+        !userInfo.verify &&
+        !isCurrentInAuth
+      ) {
         return logout();
       }
       setUser(userInfo);

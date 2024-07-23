@@ -1,21 +1,21 @@
 import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
-import {
   AlertDialog,
   AlertDialogContent,
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
 
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
 import Logo from "../Header/Logo";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import { useState } from "react";
-import { Outlet } from "react-router-dom";
 
 const AuthContainer = () => {
   const [showVerify, setShowVerify] =
@@ -58,7 +58,9 @@ const AuthContainer = () => {
               Please verify your account
               before using
             </AlertDialogTitle>
-            <Outlet />
+            <Outlet
+              context={[setShowVerify]}
+            />
           </AlertDialogHeader>
         </AlertDialogContent>
       </AlertDialog>

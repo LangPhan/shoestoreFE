@@ -5,8 +5,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import ProductCard from "../Products/Card";
 import { v4 } from "uuid";
+import ProductCard from "../Products/Card";
 
 const RecommendList = ({
   productList,
@@ -14,7 +14,7 @@ const RecommendList = ({
   return (
     <Carousel
       opts={{
-        align: "start",
+        align: "end",
       }}
       className="w-full max-w-[300px]"
     >

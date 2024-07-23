@@ -24,7 +24,7 @@ const ProductCard = memo(
     const navigate = useNavigate();
     return (
       <div
-        className="w-full h-full group relative flex flex-col gap-2 rounded-t-2xl hover:border-main hover:border-[1px] transition-all duration-100 md:px-0 cursor-pointer"
+        className="w-full overflow-hidden h-full group relative flex flex-col gap-2 rounded-t-2xl hover:border-main hover:border-[1px] transition-all duration-100 md:px-0 cursor-pointer"
         onClick={() =>
           navigate(
             `/product-detail/${name}/${categoryId}`
