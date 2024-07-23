@@ -1,7 +1,11 @@
+import AboutUs from "@/components/AboutUs";
+import Banner from "@/components/Products/Banner";
+
 const AboutPage = () => {
   return (
     <div className="min-h-screen">
-      AboutPage
+      <Banner name={"About us"} />
+      <AboutUs />
     </div>
   );
 };
