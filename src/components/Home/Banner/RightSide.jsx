@@ -21,15 +21,15 @@ const RightSide = () => {
         rotate: 15,
       }}
       transition={{
-        duration: 4,
+        duration: 3,
         repeat: Infinity,
         repeatType: "reverse",
-        ease: "circInOut",
+        ease: "backInOut",
       }}
       className="relative md:w-1/2 min-h-fit group md:-translate-y-[20%] flex justify-center md:block"
     >
       <div
-        className="relative h-[400px] md:h-full aspect-square ease-in-out drop-shadow-2xl bg-[url('https://github.com/LangPhan/shoestoreFE/blob/68175e516e9aa055d1e9a6743bf45849df6686f8/public/main.png?raw=true')]
+        className="relative h-[400px] md:h-full aspect-square ease-in-out drop-shadow-2xl bg-[url('./main.png')]
         bg-center bg-contain bg-no-repeat
         "
         alt="Shoe Banner"
