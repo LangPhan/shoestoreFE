@@ -150,7 +150,7 @@ const CardItem = ({
           +
         </Button>
       </div>
-      <div className="max-w-full w-full h-full flex items-center">
+      <div className="max-w-full w-full flex items-center">
         <p className="w-full text-center whitespace-normal truncate">
           {convertConcurrency(total)}
         </p>

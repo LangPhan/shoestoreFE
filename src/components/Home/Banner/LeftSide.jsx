@@ -1,9 +1,13 @@
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const LeftSide = () => {
   return (
-    <div className="md:w-1/2 pb-5 flex justify-center overflow-hidden">
+    <motion.div
+      initial={{}}
+      className="md:w-1/2 pb-5 flex justify-center overflow-hidden"
+    >
       <div className="relative w-full">
         <div className="font-extrabold text-6xl lg:text-8xl leading-tight tracking-wider select-none drop-shadow-lg">
           <div className="h-full">
@@ -42,7 +46,7 @@ const LeftSide = () => {
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

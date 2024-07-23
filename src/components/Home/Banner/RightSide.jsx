@@ -18,11 +18,13 @@ const RightSide = () => {
       animate={{
         y: 0,
         x: 0,
-        rotate: 0,
+        rotate: 15,
       }}
       transition={{
         duration: 5,
         repeat: Infinity,
+        repeatType: "reverse",
+        ease: "backInOut",
       }}
       className="relative md:w-1/2 min-h-fit group md:-translate-y-[20%] flex justify-center md:block"
     >
