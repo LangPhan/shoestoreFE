@@ -1,11 +1,3 @@
-import React, {
-  useEffect,
-} from "react";
-import {
-  Link,
-  useNavigate,
-  useSearchParams,
-} from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -14,17 +6,25 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "../ui/button";
-import {
-  CircleCheck,
-  CircleX,
-} from "lucide-react";
+import { useUpdatePaidStatus } from "@/hooks/useOrder";
 import {
   convertToDate,
   formatCurrencyVND,
 } from "@/lib/utils";
-import { useUpdatePaidStatus } from "@/hooks/useOrder";
 import useCartStore from "@/stores/cartStore";
+import {
+  CircleCheck,
+  CircleX,
+} from "lucide-react";
+import React, {
+  useEffect,
+} from "react";
+import {
+  Link,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
+import { Button } from "../ui/button";
 
 const OrderStatus = () => {
   const navigate = useNavigate();

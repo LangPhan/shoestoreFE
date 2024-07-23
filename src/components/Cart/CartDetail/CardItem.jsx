@@ -1,17 +1,18 @@
 import { Button } from "@/components/ui/button";
-import { convertConcurrency } from "@/lib/utils";
-import useCartStore from "@/stores/cartStore";
-import { X } from "lucide-react";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogClose,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { convertConcurrency } from "@/lib/utils";
+import useCartStore from "@/stores/cartStore";
+import { X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 import { toast } from "react-toastify";
 
@@ -24,8 +25,10 @@ const CardItem = ({
   price,
   quantity,
   total,
+  categoryId,
   isOrder = false,
 }) => {
+  const navigate = useNavigate();
   const {
     changeProductQuantity,
     removeProduct,
@@ -83,8 +86,13 @@ const CardItem = ({
         />
         <div className="w-2/3 space-y-1">
           <p
-            className="whitespace-normal"
+            className="hover:cursor-pointer hover:text-main whitespace-normal"
             title={name}
+            onClick={() =>
+              navigate(
+                `/product-detail/${name}/${categoryId}`
+              )
+            }
           >
             {name}
           </p>

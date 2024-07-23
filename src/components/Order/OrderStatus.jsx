@@ -5,7 +5,7 @@ const OrderStatus = ({ status }) => {
     case "RECEIVED":
       return (
         <Badge
-          className="text-white bg-yellow-500"
+          className="px-4 font-semibold py-1 text-white bg-yellow-500"
           variant="outline"
         >
           {status}
@@ -14,7 +14,7 @@ const OrderStatus = ({ status }) => {
     case "TO_SHIP":
       return (
         <Badge
-          className="text-white bg-blue-500"
+          className="px-4 font-semibold py-1 text-white bg-blue-500"
           variant="outline"
         >
           {status}
@@ -23,7 +23,7 @@ const OrderStatus = ({ status }) => {
     case "CANCEL":
       return (
         <Badge
-          className="text-white bg-red-500 border-red-500"
+          className="px-4 font-semibold py-1 text-white bg-red-500 border-red-500"
           variant="outline"
         >
           {status}
@@ -32,7 +32,7 @@ const OrderStatus = ({ status }) => {
     default:
       return (
         <Badge
-          className="text-white bg-green-500"
+          className="px-4 font-semibold py-1 text-white bg-green-500"
           variant="outline"
         >
           {status}

@@ -1,7 +1,7 @@
-import React from "react";
-import CardItem from "./CardItem";
 import useCartStore from "@/stores/cartStore";
+import React from "react";
 import { v4 } from "uuid";
+import CardItem from "./CardItem";
 
 const CartDetail = () => {
   const { cart } = useCartStore();
@@ -28,6 +28,9 @@ const CartDetail = () => {
                 price={item.price}
                 quantity={item.quantity}
                 size={item.size}
+                categoryId={
+                  item.category.id
+                }
                 total={
                   item.price *
                   item.quantity
