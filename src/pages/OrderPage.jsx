@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 const OrderPage = () => {
   return (
-    <section>
+    <section className="min-h-screen">
       <Outlet />
     </section>
   );

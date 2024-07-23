@@ -4,7 +4,7 @@ import OrderTable from "./OrderTable";
 
 const Order = () => {
   return (
-    <div className="mx-auto">
+    <div className="mx-auto min-h-screen">
       <Banner name={"Order History"} />
       <OrderTable />
     </div>

@@ -31,7 +31,7 @@ const OrderTable = () => {
   const checkPointRef = useRef(null);
   if (
     !isLoading &&
-    orderList?.totalElements
+    orderList?.totalElements === 0
   ) {
     return <Empty />;
   }
