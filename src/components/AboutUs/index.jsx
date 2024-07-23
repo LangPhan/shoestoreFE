@@ -6,13 +6,14 @@ const AboutUs = () => {
       <motion.div
         initial={{
           x: 50,
-          opacity: 0.5,
+          opacity: 0,
         }}
         animate={{
           x: 200,
           opacity: 1,
           transition: {
             duration: 1.5,
+            delay: 2,
             delayChildren: 1.5,
           },
         }}
@@ -50,7 +51,7 @@ const AboutUs = () => {
           opacity: 1,
           transition: {
             duration: 1.5,
-            delay: 1.8,
+            delay: 4,
           },
         }}
         className="w-[350px] aspect-[9:16] rounded-2xl drop-shadow-2x
