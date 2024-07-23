@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const LeftSide = () => {
   return (
-    <div className="md:w-1/2 flex justify-center overflow-hidden">
+    <div className="md:w-1/2 pb-5 flex justify-center overflow-hidden">
       <div className="relative w-full">
         <div className="font-extrabold text-6xl lg:text-8xl leading-tight tracking-wider select-none drop-shadow-lg">
           <div className="h-full">

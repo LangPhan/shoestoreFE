@@ -4,11 +4,28 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { motion } from "framer-motion";
 import { memo } from "react";
 
 const RightSide = () => {
   return (
-    <div className="relative md:w-1/2 min-h-fit group md:-translate-y-[20%] flex justify-center md:block">
+    <motion.div
+      initial={{
+        y: -100,
+        x: 10,
+        rotate: 45,
+      }}
+      animate={{
+        y: 0,
+        x: 0,
+        rotate: 0,
+      }}
+      transition={{
+        duration: 5,
+        repeat: Infinity,
+      }}
+      className="relative md:w-1/2 min-h-fit group md:-translate-y-[20%] flex justify-center md:block"
+    >
       <div
         className="relative h-[400px] md:h-full aspect-square ease-in-out drop-shadow-2xl bg-[url('https://github.com/LangPhan/shoestoreFE/blob/68175e516e9aa055d1e9a6743bf45849df6686f8/public/main.png?raw=true')]
         bg-center bg-contain bg-no-repeat
@@ -76,7 +93,7 @@ const RightSide = () => {
           </Tooltip>
         </TooltipProvider>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

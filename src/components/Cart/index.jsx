@@ -1,19 +1,19 @@
-import OrderSummary from "./OrderSummary";
+import useCartStore from "@/stores/cartStore";
+import {
+  ArrowLeft,
+  BaggageClaim,
+  Truck,
+} from "lucide-react";
 import {
   Link,
   Outlet,
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import {
-  ArrowLeft,
-  BaggageClaim,
-  Truck,
-} from "lucide-react";
+import Empty from "../Products/ProductList/Empty";
 import { Button } from "../ui/button";
 import CartNavigate from "./Navigate";
-import useCartStore from "@/stores/cartStore";
-import Empty from "../Products/ProductList/Empty";
+import OrderSummary from "./OrderSummary";
 
 const Cart = () => {
   const location = useLocation();

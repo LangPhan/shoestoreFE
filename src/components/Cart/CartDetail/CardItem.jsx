@@ -34,7 +34,7 @@ const CardItem = ({
     removeProduct,
   } = useCartStore();
   return (
-    <div className="col relative font-bold w-full h-full border-[1px] rounded-lg border-slate-200 text-xs md:text-base min-h-[90px]">
+    <div className="col relative font-bold w-full border-[1px] rounded-lg border-slate-200 text-xs md:text-base min-h-[90px]">
       <Dialog>
         <DialogTrigger
           className={`${
