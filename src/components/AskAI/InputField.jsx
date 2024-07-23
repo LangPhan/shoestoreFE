@@ -2,6 +2,7 @@ import {
   adjustTextareaHeight,
   getJsonRecommend,
 } from "@/lib/utils";
+import { motion } from "framer-motion";
 import {
   ImageUp,
   Loader2,
@@ -121,7 +122,19 @@ const InputField = ({
                   <p className="text-xs pb-1 text-slate-500">
                     Example prompt:
                   </p>
-                  <div
+                  <motion.div
+                    initial={{
+                      y: 10,
+                      opacity: 0.5,
+                    }}
+                    animate={{
+                      y: 0,
+                      opacity: 1,
+                      transition: {
+                        duration: 0.8,
+                        bounce: 1,
+                      },
+                    }}
                     onClick={() => {
                       textAreaRef.current.value =
                         "I am going to date with my boy friend";
@@ -131,7 +144,7 @@ const InputField = ({
                   >
                     I am going to date
                     with my boy friend
-                  </div>
+                  </motion.div>
                 </div>
               )}
             <div className="h-fit translate-x-5 py-2">

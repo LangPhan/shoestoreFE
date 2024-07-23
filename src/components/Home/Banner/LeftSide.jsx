@@ -5,7 +5,15 @@ import { Link } from "react-router-dom";
 const LeftSide = () => {
   return (
     <motion.div
-      initial={{}}
+      initial={{
+        opacity: 0.4,
+      }}
+      animate={{
+        opacity: 1,
+      }}
+      transition={{
+        duration: 1.5,
+      }}
       className="md:w-1/2 pb-5 flex justify-center overflow-hidden"
     >
       <div className="relative w-full">

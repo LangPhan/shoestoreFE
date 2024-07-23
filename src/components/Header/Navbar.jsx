@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import { v4 } from "uuid";
 
@@ -18,7 +19,21 @@ export const navList = [
 
 const Navbar = () => {
   return (
-    <nav className="hidden md:block h-full w-full">
+    <motion.nav
+      initial={{
+        y: -50,
+        opacity: 0.4,
+      }}
+      animate={{
+        y: 0,
+        opacity: 1,
+        transition: {
+          duration: 1.2,
+          delay: 0.8,
+        },
+      }}
+      className="hidden md:block h-full w-full"
+    >
       <ul className="flex w-full h-full px-2 gap-1 justify-center items-center">
         {navList.map((nav) => {
           return (
@@ -39,7 +54,7 @@ const Navbar = () => {
           );
         })}
       </ul>
-    </nav>
+    </motion.nav>
   );
 };
 

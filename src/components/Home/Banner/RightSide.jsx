@@ -13,7 +13,7 @@ const RightSide = () => {
       initial={{
         y: -100,
         x: 10,
-        rotate: 45,
+        rotate: 30,
       }}
       animate={{
         y: 0,
@@ -21,10 +21,10 @@ const RightSide = () => {
         rotate: 15,
       }}
       transition={{
-        duration: 5,
+        duration: 4,
         repeat: Infinity,
         repeatType: "reverse",
-        ease: "backInOut",
+        ease: "circInOut",
       }}
       className="relative md:w-1/2 min-h-fit group md:-translate-y-[20%] flex justify-center md:block"
     >

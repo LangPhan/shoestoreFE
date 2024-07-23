@@ -23,17 +23,17 @@ const ProductCard = memo(
   }) => {
     const navigate = useNavigate();
     return (
-      <div
-        className="w-full overflow-hidden h-full group relative flex flex-col gap-2 rounded-t-2xl hover:border-main hover:border-[1px] transition-all duration-100 md:px-0 cursor-pointer"
-        onClick={() =>
-          navigate(
-            `/product-detail/${name}/${categoryId}`
-          )
-        }
-      >
+      <div className="w-full overflow-hidden h-full group relative flex flex-col gap-2 rounded-t-2xl hover:border-main hover:border-[1px] transition-all duration-100 md:px-0 cursor-default">
         <div className="absolute z-10 px-3 py-3 transition-all rounded-full group/cart md:hidden group-hover:block top-3 right-3 w-fit h-fit hover:cursor-pointer group-hover:bg-slate-200">
           <PackagePlus className="text-main" />
-          <div className="hidden group-hover/cart:block transition-all absolute bg-slate-100 px-1 py-2 right-[100%] top-[50%] -translate-y-[50%] w-[120px] text-center rounded-3xl text-main select-none">
+          <div
+            className="hidden group-hover/cart:block transition-all absolute bg-slate-100 px-1 py-2 right-[100%] top-[50%] -translate-y-[50%] w-[120px] text-center rounded-3xl text-main select-none"
+            onClick={() =>
+              navigate(
+                `/product-detail/${name}/${categoryId}`
+              )
+            }
+          >
             Add to Cart
           </div>
         </div>
@@ -54,7 +54,14 @@ const ProductCard = memo(
           />
         </div>
         <div className="transition-all duration-500 group-hover:scale-95 ">
-          <div className="flex justify-between text-mainForeground">
+          <div
+            className="flex justify-between text-mainForeground hover:text-main"
+            onClick={() =>
+              navigate(
+                `/product-detail/${name}/${categoryId}`
+              )
+            }
+          >
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>

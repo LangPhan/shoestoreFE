@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import useAI from "@/hooks/useAI";
+import { motion } from "framer-motion";
 import { MessageCircleMore } from "lucide-react";
 import { memo, useState } from "react";
 import { v4 } from "uuid";
@@ -28,7 +29,24 @@ const AskAI = () => {
   return (
     <Dialog className="max-w-screen">
       <DialogTrigger asChild>
-        <div
+        <motion.div
+          initial={{
+            x: 50,
+            opacity: 0,
+          }}
+          animate={{
+            x: 0,
+            opacity: 1,
+          }}
+          transition={{
+            duration: 2.5,
+          }}
+          whileHover={{
+            scale: 1.2,
+            transition: {
+              duration: 0.6,
+            },
+          }}
           className="group fixed w-[10%] md:w-[6%] xl:w-[4%] aspect-square bottom-[12%] right-[4%] md:right-[2%] border-[2px] rounded-full border-main px-2 py-2 hover:cursor-pointer 
         bg-[url('https://st3.depositphotos.com/8950810/17657/v/450/depositphotos_176577870-stock-illustration-cute-smiling-funny-robot-chat.jpg')] bg-cover bg-center shadow-sm shadow-main z-50 
       "
@@ -36,7 +54,7 @@ const AskAI = () => {
           <div className="group-hover:visible absolute invisible right-[100%] w-[120px] top-[10%] px-2 py-2 border-[2px] border-main rounded-xl -translate-x-[5%] transition-opacity duration-500 drop-shadow-md bg-white dark:bg-black shadow-xl">
             Ask AI Now
           </div>
-        </div>
+        </motion.div>
       </DialogTrigger>
       <DialogContent className="w-full h-full md:h-[95%] 2xl:h-3/4 flex flex-col">
         <div className="flex flex-col flex-1 overflow-hidden">
