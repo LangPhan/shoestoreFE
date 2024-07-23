@@ -1,19 +1,19 @@
 import { useGetOrderByUser } from "@/hooks/useOrder";
-import OrderCell from "./OrderCell";
+import { scrollToRef } from "@/lib/utils";
+import {
+  ArrowLeft,
+  ArrowRight,
+} from "lucide-react";
 import {
   useRef,
   useState,
 } from "react";
 import { v4 } from "uuid";
-import OrderSkeleton from "./Skeleton";
 import { Button } from "../ui/button";
-import { data } from "autoprefixer";
-import {
-  ArrowLeft,
-  ArrowRight,
-} from "lucide-react";
 import { ScrollArea } from "../ui/scroll-area";
-import { scrollToRef } from "@/lib/utils";
+import { Skeleton } from "../ui/skeleton";
+import OrderCell from "./OrderCell";
+import OrderSkeleton from "./Skeleton";
 
 const OrderTable = () => {
   const accessToken =
@@ -28,14 +28,27 @@ const OrderTable = () => {
       pageNo,
     });
   const checkPointRef = useRef(null);
+  console.log(orderList);
   return (
     <>
       <div
-        className="text-center my-10 text-xl font-semibold"
+        className="flex justify-center my-10 text-xl font-semibold"
         ref={checkPointRef}
       >
-        Total Order :{" "}
-        {orderList?.totalElements}
+        {!isLoading ? (
+          <>
+            {"Total order: " +
+              orderList?.totalElements}
+          </>
+        ) : (
+          <>
+            <Skeleton
+              className={
+                "w-[426px] h-[28px]"
+              }
+            />
+          </>
+        )}
       </div>
       <ScrollArea className="mx-auto px-1 lg:px-5 lg:w-1/2 max-w-[600px] max-h-[800px] flex flex-col items-center mb-10 border-[1px] rounded-sm shadow-lg overscroll-none">
         {orderList &&

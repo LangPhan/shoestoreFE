@@ -52,7 +52,10 @@ const OrderCell = ({ order }) => {
             <div className="table-cell text-center py-2">
               <OrderStatus
                 status={
-                  order.orderStatus
+                  !order.paid &&
+                  order.onlinePayment
+                    ? "CANCEL"
+                    : order.orderStatus
                 }
               />
             </div>
