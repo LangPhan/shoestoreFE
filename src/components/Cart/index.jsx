@@ -41,7 +41,7 @@ const Cart = () => {
   return (
     <>
       <CartNavigate />
-      <div className="flex flex-col md:flex-row gap-5 my-10]">
+      <div className="flex flex-col md:flex-row gap-5 my-10">
         <div className="w-full md:w-2/3 shadow-xl rounded-xl">
           <div className="h-fit flex justify-between items-center mx-2 md:mx-8 py-5 font-bold text-mc border-b-[1px]">
             <span className="inline-flex gap-2 h-fit items-center">

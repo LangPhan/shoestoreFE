@@ -52,13 +52,16 @@ const RootPage = () => {
         location.pathname
           .split("/")
           .includes("auth");
+      if (userInfo.role === "ADMIN") {
+        return setUser(userInfo);
+      }
       if (
         !userInfo.verify &&
         !isCurrentInAuth
       ) {
         return logout();
       }
-      setUser(userInfo);
+      return setUser(userInfo);
     }
   }, [isSuccess, isFetching]);
 

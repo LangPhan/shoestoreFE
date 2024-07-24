@@ -59,13 +59,17 @@ const RequireAuth = ({
       },
     });
   };
+  if (
+    isAuth &&
+    roles.length > 0 &&
+    roles.includes(user?.role) &&
+    children
+  ) {
+    return children;
+  }
 
   return (
     <>
-      {isAuth &&
-        roles.length > 0 &&
-        roles.includes(user?.role) &&
-        children}
       <Dialog
         open={openDialog}
         onOpenChange={(isOpen) => {

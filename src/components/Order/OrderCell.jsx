@@ -82,6 +82,14 @@ const OrderCell = ({ order }) => {
         </div>
       </CollapsibleTrigger>
       <CollapsibleContent className="w-full">
+        <div className="col text-center text-xs text-mainForeground font-semibold py-2">
+          <h3 className="col-span-2">
+            Product Details
+          </h3>
+          <h3>Price</h3>
+          <h3>Quantity</h3>
+          <h3>Total</h3>
+        </div>
         {order?.orderDetails.map(
           (item) => {
             return (

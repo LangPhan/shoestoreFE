@@ -115,14 +115,13 @@ const CardItem = ({
         <p className="w-full whitespace-normal">
           {convertConcurrency(price)}
         </p>
-        <span className="font-normal text-foreground text-xs line-through mx-1 hidden md:block">
-          $140
-        </span>
       </div>
       <div className="my-auto flex flex-col-reverse justify-center sm:flex-row items-center gap-2 md:space-x-1">
         <Button
           variant="ghost"
-          className="h-2 w-2 disabled:opacity-20"
+          className={`${
+            isOrder && "hidden"
+          } h-2 w-2 disabled:opacity-20`}
           onClick={() =>
             changeProductQuantity(
               "DECREASE",
@@ -138,7 +137,9 @@ const CardItem = ({
         <span>{quantity}</span>
         <Button
           variant="ghost"
-          className="h-2 w-2"
+          className={`${
+            isOrder && "hidden"
+          } h-2 w-2`}
           disabled={isOrder}
           onClick={() =>
             changeProductQuantity(

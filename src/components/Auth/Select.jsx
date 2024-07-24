@@ -2,7 +2,6 @@ import {
   Command,
   CommandEmpty,
   CommandGroup,
-  CommandInput,
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
@@ -17,8 +16,8 @@ import {
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/button";
 import { memo } from "react";
+import { Button } from "../ui/button";
 const SelectField = ({
   open,
   setOpen,
@@ -52,7 +51,6 @@ const SelectField = ({
         </PopoverTrigger>
         <PopoverContent className="w-[200px] p-0">
           <Command>
-            <CommandInput placeholder="Search..." />
             <CommandList>
               <CommandEmpty>
                 Not found.

@@ -33,7 +33,10 @@ const LeftSide = () => {
             comfortable shoes, perfect
             for every occasion and need.
           </p>
-          <Button className="rounded-3xl px-10 py-6 shadow-xl bg-main font-bold text-white">
+          <Button
+            asChild
+            className="rounded-3xl px-10 py-6 shadow-xl bg-main font-bold text-white"
+          >
             <Link to={"/product"}>
               Shop Now
             </Link>
