@@ -78,7 +78,7 @@ const RootPage = () => {
   return (
     //Root Layout config
     <ThemeProvider
-      defaultTheme="dark"
+      defaultTheme="light"
       storageKey="vite-ui-theme"
     >
       <>
