@@ -22,7 +22,6 @@ export const useRefreshToken = () => {
       if (data.status !== "UNAUTHORIZED") {
         login(data)
       } else {
-        console.log("Refresh Logout");
         logout()
       }
     },
