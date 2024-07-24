@@ -45,7 +45,7 @@ const RequireAuth = ({
 
   if (isFetching) {
     return (
-      <div className="flex min-h-[100px] items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center">
         <Loader2 className="z-10 h-10 w-10 animate-spin mx-auto text-main" />
       </div>
     );
@@ -62,8 +62,7 @@ const RequireAuth = ({
   if (
     isAuth &&
     roles.length > 0 &&
-    roles.includes(user?.role) &&
-    children
+    roles.includes(user?.role)
   ) {
     return children;
   }
