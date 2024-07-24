@@ -1,14 +1,14 @@
-import authStore from "@/stores/authStore";
-import { User } from "lucide-react";
-import { Skeleton } from "../ui/skeleton";
-import { Button } from "../ui/button";
-import { useNavigate } from "react-router-dom";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import authStore from "@/stores/authStore";
+import { User } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Button } from "../ui/button";
+import { Skeleton } from "../ui/skeleton";
 
 const Profile = ({ isShow }) => {
   const navigate = useNavigate();
@@ -55,18 +55,21 @@ const Profile = ({ isShow }) => {
           <HoverCardContent
             className={`${
               isShow && "shadow-none"
-            } w-[140px] px-0 py-2`}
+            } w-[140px] px-0 py-0`}
           >
+            {user?.roles ===
+              "ADMIN" && (
+              <div
+                className="hover:bg-slate-100 py-1 font-semibold text-center"
+                onClick={() => {
+                  navigate("/admin");
+                }}
+              >
+                Manage
+              </div>
+            )}
             <div
-              className="hover:bg-slate-100  font-semibold text-center"
-              onClick={() => {
-                navigate("/admin");
-              }}
-            >
-              Manage
-            </div>
-            <div
-              className="hover:bg-slate-100 font-semibold text-center"
+              className="hover:bg-slate-100 py-1 font-semibold text-center"
               onClick={() =>
                 navigate("/order")
               }
@@ -74,7 +77,7 @@ const Profile = ({ isShow }) => {
               Order History
             </div>
             <div
-              className="hover:bg-slate-100 text-red-500 font-semibold text-center"
+              className="hover:bg-slate-100 py-1 text-red-500 font-semibold text-center"
               onClick={() => {
                 logout();
                 toast.info(
